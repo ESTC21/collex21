@@ -106,7 +106,7 @@ class Setup < ActiveRecord::Base
 
 	def self.solr_url()
 		val = globals()['site_solr_url']
-    return val.present? ? val : "http://estc21.lib.ucdavis.edu:3000"
+    return val.present? ? val : "http://localhost:8983"
 	end
 
 	#

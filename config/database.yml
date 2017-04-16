@@ -38,7 +38,7 @@ development:
   adapter: mysql2
   database: collex_development
   username: root
-  password: estc21DB_world#DOM!
+  password: root
   host: localhost
   encoding: utf8
 
@@ -49,7 +49,7 @@ test:
   adapter: mysql2
   database: collex_test
   username: root
-  password: estc21DB_world#DOM!
+  password: root
   host: localhost
   encoding: utf8
 
@@ -57,6 +57,6 @@ production:
   adapter: mysql2
   database: collex_production
   username: root
-  password: estc21DB_world#DOM!
+  password: root
   host: localhost
   encoding: utf8

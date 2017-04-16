@@ -36,12 +36,6 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "avatars", :force => true do |t|
-    t.integer "annotation_database_id"
-    t.string  "style"
-    t.binary  "file_contents"
-  end
-
   create_table "cached_properties", :force => true do |t|
     t.string  "name"
     t.text    "value",              :limit => 16777215
@@ -62,8 +56,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.text     "description"
     t.decimal  "group_id",    :precision => 10, :scale => 0
     t.decimal  "image_id",    :precision => 10, :scale => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "visible_url"
     t.string   "visibility"
   end
@@ -72,8 +66,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.decimal  "user_id",            :precision => 10, :scale => 0
     t.decimal  "cached_resource_id", :precision => 10, :scale => 0
     t.text     "annotation"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
   end
 
   create_table "comment_reports", :force => true do |t|
@@ -117,8 +111,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.string   "link_url"
     t.string   "image_url"
     t.text     "comment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.datetime "user_modified_at"
     t.string   "link_title"
   end
@@ -126,8 +120,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
   create_table "discussion_threads", :force => true do |t|
     t.integer  "discussion_topic_id"
     t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
     t.decimal  "number_of_views",     :precision => 10, :scale => 0
     t.decimal  "license",             :precision => 10, :scale => 0
     t.decimal  "group_id",            :precision => 10, :scale => 0
@@ -136,8 +130,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
 
   create_table "discussion_topics", :force => true do |t|
     t.string   "topic"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.decimal  "position",    :precision => 10, :scale => 0
     t.text     "description"
   end
@@ -146,8 +140,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.integer  "user_id"
     t.integer  "discussion_thread_id"
     t.datetime "last_visit"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "exhibit_elements", :force => true do |t|
@@ -155,8 +149,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.decimal  "position",                    :precision => 10, :scale => 0
     t.string   "exhibit_element_layout_type"
     t.text     "element_text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
     t.decimal  "border_type_enum",            :precision => 10, :scale => 0
     t.decimal  "exhibit_page_id",             :precision => 10, :scale => 0
     t.text     "element_text2"
@@ -166,8 +160,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
 
   create_table "exhibit_footnotes", :force => true do |t|
     t.text     "footnote"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "exhibit_illustrations", :force => true do |t|
@@ -180,8 +174,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.text     "caption2"
     t.decimal  "image_width",          :precision => 10, :scale => 0
     t.string   "link"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.string   "alt_text"
     t.string   "nines_object_uri"
     t.decimal  "height",               :precision => 10, :scale => 0
@@ -202,23 +196,23 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
   create_table "exhibit_objects", :force => true do |t|
     t.string   "uri"
     t.integer  "exhibit_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "exhibit_pages", :force => true do |t|
     t.decimal  "exhibit_id", :precision => 10, :scale => 0
     t.decimal  "position",   :precision => 10, :scale => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "exhibits", :force => true do |t|
     t.string   "title"
     t.decimal  "user_id",                 :precision => 10, :scale => 0
     t.string   "thumbnail"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                             :null => false
+    t.datetime "updated_at",                                             :null => false
     t.string   "visible_url"
     t.decimal  "is_published",            :precision => 10, :scale => 0
     t.decimal  "thumbleft",               :precision => 10, :scale => 0
@@ -261,8 +255,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.string   "saved_search_url"
     t.decimal  "image_id",          :precision => 10, :scale => 0
     t.string   "disabled"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
   end
 
   create_table "groups", :force => true do |t|
@@ -272,8 +266,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.string   "group_type"
     t.decimal  "image_id",                    :precision => 10, :scale => 0
     t.string   "forum_permissions"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
     t.decimal  "license_type",                :precision => 10, :scale => 0
     t.string   "header_font_name"
     t.string   "header_font_size"
@@ -321,8 +315,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.string   "role"
     t.boolean  "pending_invite"
     t.boolean  "pending_request"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.string   "notifications"
   end
 
@@ -334,8 +328,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.integer  "size"
     t.integer  "width"
     t.integer  "height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.string   "photo_file_size"
@@ -350,8 +344,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.integer  "size"
     t.integer  "width"
     t.integer  "height"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.string   "photo_file_size"
@@ -370,8 +364,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.string   "username"
     t.string   "address"
     t.string   "action"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "namespaces", :force => true do |t|
@@ -386,13 +380,13 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.string   "action"
     t.string   "uri"
     t.string   "tagname"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "peer_reviews", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.decimal  "image_full_id", :precision => 10, :scale => 0
   end
 
@@ -404,8 +398,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
   end
 
   create_table "publication_images", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                   :null => false
+    t.datetime "updated_at",                                   :null => false
     t.decimal  "image_full_id", :precision => 10, :scale => 0
   end
 
@@ -432,8 +426,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.datetime "last_indexed"
     t.decimal  "seconds_spent_indexing", :precision => 10, :scale => 3
     t.decimal  "objects_indexed",        :precision => 10, :scale => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.string   "obj_type"
   end
 
@@ -457,14 +451,14 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
   create_table "setups", :force => true do |t|
     t.string   "key"
     t.text     "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "tagassigns", :force => true do |t|
     t.decimal  "tag_id",             :precision => 10, :scale => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
     t.integer  "cached_resource_id"
     t.integer  "user_id"
   end
@@ -480,8 +474,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.string   "uri"
     t.boolean  "primary"
     t.boolean  "disabled"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -518,8 +512,8 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.string   "auth_code"
     t.string   "avs_code"
     t.text     "error_txt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
 end
