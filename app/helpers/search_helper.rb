@@ -522,10 +522,19 @@ module SearchHelper
   def create_genre_table( genre_data )
     html = raw('<table class="limit_to facet-genre">')
     #html += raw("<tr><th>#{Setup.display_name_for_facet_genre}</th><th class=\"num_objects\"># of Objects</th></tr>")
+    html += raw("<tr><th>Format</th><th class=\"num_objects\"># of Objects</th></tr>")
+    ix = 0
     for genre in genre_data
       html += facet_selector( genre, 'g' )
+      ix = ix + 1
     end
     html += raw('</table>')
+    
+    html += raw('<table class="limit_to facet-new">')
+    html += raw("<tr><th>Test (#{ix})</th><th class=\"num_objects\">See All</th></tr>")
+    html += facet_tree_node_row("2", 1, 0, 0, true, "test_facet_restriction", 23, false)
+    html += raw('</table>')
+
     return raw(html)
   end
 
@@ -548,16 +557,16 @@ module SearchHelper
   #end
 
 
-#  def create_format_table( format_data )
- #   html = raw('<table class="limit_to facet-format">')
-    #html += raw("<tr><th>#{Setup.display_name_for_facet_format}</th><th class=\"num_objects\"># of Objects</th></tr>")
-    # for format in format_data
-    #   html += facet_selector( format, 'doc_type' )
-    # end
-  #  html += raw('</table>')
-   # puts raw(html)
-    #return raw(html)
-  #end
+#def create_format_table( format_data )
+#    html = raw('<table class="limit_to facet-format">')
+#    html += raw("<tr><th>#{Setup.display_name_for_facet_format}</th><th class=\"num_objects\"># of Objects</th></tr>")
+#    for format in format_data
+#       html += facet_selector( format, 'doc_type' )
+#     end
+#    html += raw('</table>')
+#    #puts raw(html)
+#    return raw(html)
+#end
 
   #def create_discipline_table( discipline_data )
   #  html = raw('<table class="limit_to facet-discipline">')

@@ -26,6 +26,9 @@ class SearchController < ApplicationController
 	def index
 		# When this is called as html, it just creates the blank search page and it will send back an ajax call for the search.
 		# When this is called as json, it does the search.
+		
+		#logger.debug("Im in the search controller")
+		
 		get_search_results_button_info()
 		get_annotate_match_button_info()
 		get_predicate_info()
