@@ -15,27 +15,10 @@
 ---------------------------------------------------------------------------- %>
 
 <div class="search_left_column ajax-style" style="overflow-y:auto;">
-	<div class="right_column_header" <% if @other_federations.length == 0 %>style="display:none"<% end %> >Currently Searching...</div>
-	<table class="limit_to limit_to_federation" <% if @other_federations.length == 0 %>style="display:none;"<% end %> >
-		<%= federation_selector(Setup.default_federation(), 0) %>
-		<% for fed in @other_federations %>
-			<%= federation_selector(fed, 0) %>      
-		<% end %>
-	</table>
-
-<!-- 	<div class="right_column_header">Limit Results to...</div>
-    <p>Select a resource below to limit your search results</p>
-
-	<table class="limit_to facet-archive">
-		<tr>
-			<th>Resource</th>
-			<th class="num_objects"># of Objects</th>
-		</tr>
-	</table>
-  <br/> 
- -->
   <div class="right_column_header">Browse</div>
   <p>Select a facet below to limit your search results</p>
   <br>
-  <%=  create_genre_table([]) %>
+  <%=  create_facet_tables([]) %>
+  <br>
+  <%=  create_temp_tables([]) %>
 </div>

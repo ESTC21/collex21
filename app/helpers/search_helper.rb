@@ -523,23 +523,40 @@ module SearchHelper
   
   	logger.info "This is from create_genre_table"
   
-    html = raw('<table class="limit_to facet-genre">')
-    #html += raw("<tr><th>#{Setup.display_name_for_facet_genre}</th><th class=\"num_objects\"># of Objects</th></tr>")
-    html += raw("<tr><th>Format</th><th class=\"num_objects\"># of Objects</th></tr>")
-    ix = 0
-    for genre in genre_data
-      html += facet_selector( genre, 'g' )
-      ix = ix + 1
-    end
+    html = raw('<table id="genre_table" class="limit_to facet-genre">')
+    html += raw("<tr><th id=\"genre_table_header\">Format</th><th class=\"num_objects\"># of Objects</th></tr>")
     html += raw('</table>')
     
     html += raw('<table class="limit_to facet-new">')
-    html += raw("<tr><th>Test (#{ix})</th><th class=\"num_objects\">See All</th></tr>")
+    html += raw("<tr><th>Test (12)</th><th class=\"num_objects\">See All</th></tr>")
     html += facet_tree_node_row("2", 1, 0, 0, true, "test_facet_restriction", 23, false)
     html += raw('</table>')
 
     return raw(html)
   end
+  
+  
+  def create_facet_tables( genre_data )
+  
+  	logger.info "This is from create_genre_table"
+  
+    html = raw('<table id="genre_table" class="limit_to facet-genre">')
+    html += raw("<tr><th id=\"genre_table_header\">Format</th><th class=\"num_objects\"># of Objects</th></tr>")
+    html += raw('</table>')
+
+    return raw(html)
+  end
+  
+  def create_temp_tables( genre_data )
+    
+    html = raw('<table class="limit_to facet-new">')
+    html += raw("<tr><th>Test (12)</th><th class=\"num_objects\">See All</th></tr>")
+    html += facet_tree_node_row("2", 1, 0, 0, true, "test_facet_restriction", 23, false)
+    html += raw('</table>')
+
+    return raw(html)
+  end
+  
 
   #def create_access_table( freeculture_count, fulltext_count, typewright_count )
    # html = raw('<table class="limit_to facet-access">')
