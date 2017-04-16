@@ -520,6 +520,9 @@ module SearchHelper
   end
 
   def create_genre_table( genre_data )
+  
+  	logger.info "This is from create_genre_table"
+  
     html = raw('<table class="limit_to facet-genre">')
     #html += raw("<tr><th>#{Setup.display_name_for_facet_genre}</th><th class=\"num_objects\"># of Objects</th></tr>")
     html += raw("<tr><th>Format</th><th class=\"num_objects\"># of Objects</th></tr>")
