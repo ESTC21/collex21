@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
 	"use strict";
 	var body = $("body");
 
- 	$(".search_left_column").height($(window).height()/2);
+ 	//$(".search_left_column").height($(window).height()/2);
  	// catch the search submit at the last moment and be sure the
    // action URL on the search form matches the browser URL. Ensures
    // that the correct federations are searched,

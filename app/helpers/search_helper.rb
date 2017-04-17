@@ -519,44 +519,92 @@ module SearchHelper
     return raw(html)
   end
 
-  def create_genre_table( genre_data )
-  
-  	logger.info "This is from create_genre_table"
-  
-    html = raw('<table id="genre_table" class="limit_to facet-genre">')
-    html += raw("<tr><th id=\"genre_table_header\">Format</th><th class=\"num_objects\"># of Objects</th></tr>")
-    html += raw('</table>')
-    
-    html += raw('<table class="limit_to facet-new">')
-    html += raw("<tr><th>Test (12)</th><th class=\"num_objects\">See All</th></tr>")
-    html += facet_tree_node_row("2", 1, 0, 0, true, "test_facet_restriction", 23, false)
-    html += raw('</table>')
-
-    return raw(html)
-  end
-  
-  
-  def create_facet_tables( genre_data )
-  
-  	logger.info "This is from create_genre_table"
-  
-    html = raw('<table id="genre_table" class="limit_to facet-genre">')
-    html += raw("<tr><th id=\"genre_table_header\">Format</th><th class=\"num_objects\"># of Objects</th></tr>")
-    html += raw('</table>')
-
-    return raw(html)
-  end
-  
-  def create_temp_tables( genre_data )
+  def create_roles_table( _data )
     
     html = raw('<table class="limit_to facet-new">')
-    html += raw("<tr><th>Test (12)</th><th class=\"num_objects\">See All</th></tr>")
-    html += facet_tree_node_row("2", 1, 0, 0, true, "test_facet_restriction", 23, false)
+    html += raw("<tr><th>Roles</th><th class=\"num_objects\">See All</th></tr>")
+    html += facet_tree_node_row("2", 1, 0, 0, true, "Artist", 23, false)
+    html += facet_tree_node_row("2", 1, 0, 0, true, "Author", 23, false)
+    html += facet_tree_node_row("2", 1, 0, 0, true, "Book Designer", 23, false)
+    html += facet_tree_node_row("2", 1, 0, 0, true, "Binder", 23, false)
+    html += facet_tree_node_row("2", 1, 0, 0, true, "Calligrapher", 23, false)
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">More...</a></td><td>&nbsp;</td></tr>")
     html += raw('</table>')
 
     return raw(html)
   end
-  
+
+  def create_pub_place_table( _data )
+
+    html = raw('<table class="limit_to facet-new">')
+    html += raw("<tr><th>Roles</th><th class=\"num_objects\">See All</th></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">Publisher One</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">Publisher Two</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">Publisher Three</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">Publisher Four</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">Publisher Five</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">More...</a></td><td>&nbsp;</td></tr>")
+    html += raw('</table>')
+
+    return raw(html)
+  end
+
+  def create_subjects_table( _data )
+
+    html = raw('<table class="limit_to facet-new">')
+    html += raw("<tr><th>Subject</th><th class=\"num_objects\">See All</th></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">Subject One</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">Subject Two</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">Subject Three</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">Subject Four</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">Subject Five</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">More...</a></td><td>&nbsp;</td></tr>")
+    html += raw('</table>')
+
+    return raw(html)
+  end
+
+  def create_language_table( _data )
+
+    html = raw('<table class="limit_to facet-new">')
+    html += raw("<tr><th>Language</th><th class=\"num_objects\">See All</th></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">English</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">French</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">German</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">Portuguese</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">Spanish</a></td><td>&nbsp;</td></tr>")
+    html += raw('</table>')
+
+    return raw(html)
+  end
+
+  def create_date_table( _data )
+
+    html = raw('<table class="limit_to facet-new">')
+    html += raw("<tr><th>Date</th><th class=\"num_objects\">See All</th></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">1400-1450</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">1450-1500</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">1500-1550</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">1550-1600</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">1600-1650</a></td><td>&nbsp;</td></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">More...</a></td><td>&nbsp;</td></tr>")
+    html += raw('</table>')
+
+    return raw(html)
+  end
+
+  def create_genre_table( genre_data )
+
+    logger.info "This is from create_genre_table"
+
+    html = raw('<table id="genre_table" class="limit_to facet-genre">')
+    html += raw("<tr><th id=\"genre_table_header\">Genre/Format</th><th class=\"num_objects\"># of Objects</th></tr>")
+    html += raw('</table>')
+
+    return raw(html)
+  end
+
+
 
   #def create_access_table( freeculture_count, fulltext_count, typewright_count )
    # html = raw('<table class="limit_to facet-access">')

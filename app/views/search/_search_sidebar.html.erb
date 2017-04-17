@@ -14,11 +14,19 @@
     limitations under the License.
 ---------------------------------------------------------------------------- %>
 
-<div class="search_left_column ajax-style" style="overflow-y:auto;">
+<div class="search_left_column ajax-style" style="overflow-y:auto;height:auto;">
   <div class="right_column_header">Browse</div>
   <p>Select a facet below to limit your search results</p>
   <br>
-  <%=  create_facet_tables([]) %>
+  <%=  create_roles_table([]) %>
   <br>
-  <%=  create_temp_tables([]) %>
+  <%=  create_pub_place_table([]) %>
+  <br>
+  <%=  create_subjects_table([]) %>
+  <br>
+  <%=  create_language_table([]) %>
+  <br>
+  <%=  create_date_table([]) %>
+  <br>
+  <%=  create_genre_table([]) %>
 </div>
