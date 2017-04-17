@@ -246,50 +246,47 @@ jQuery(document).ready(function($) {
 				//return window.pss.createHtmlTag("div", { 'class': klass },
 				//	window.pss.createHtmlTag("td", { 'class': 'label' }, label) +
 				//	window.pss.createHtmlTag("td", { 'class': 'value' }, value));//window.pss.createHtmlTag("span", { 'class': 'value' }, value.join("; ")));
-			
-						
-			// working here to inject the actual holding information
+
+
+            // hanlde holdiing information
 			case "hasInstanceItem":
-				var html = "";
+
+
+            // The code below was used to convert the plain text url to the shelfmark of the item for
+            // display.  It needs to be moved so that it only performs the operation when the 'more' link
+            // is pressed.
+            //
+			//	var html = "";
+			//	for (var i = 0; i < value.length; i++) {
+            //
+			//		var plainTextURL = value[i];
+			//		var baseURL = value[i].replace(/\//g, "%2F");
+			//		var formattedURL = baseURL.replace(/\:/g, "%3A");
+			//		var curlURL = "http://estc21.ucr.edu/details/holdings?uri=" + formattedURL;
+			//
+			//		var xmlHttp = new XMLHttpRequest();
+    		//		xmlHttp.open( "GET", curlURL, false ); // false for synchronous request
+    		//		xmlHttp.send( null );
+    		//		var jsonBack = xmlHttp.responseText;
+    		//		if (i > 0) {
+    		//		 html += "<br>";
+    		//		}
+			//		html += "<a href=\"http://estc21.ucr.edu/fullrecord?action=fullrecord&uri=" + plainTextURL + "\">" + window.pss.createHtmlTag("span", { 'class': 'value' }, jsonBack) + "</a>";
+			//	}
+			//	return window.pss.createHtmlTag("div", { 'class': klass }, window.pss.createHtmlTag("td", { 'class': 'label' }, label) + window.pss.createHtmlTag("td", { 'class': 'label' }, html));
+
+			
+ 				var html = "Item: " + window.pss.createHtmlTag("span ", { 'class': 'value' }, value[0]);
 				for (var i = 0; i < value.length; i++) {
-					// html += "<br>" + window.pss.createHtmlTag("span", { 'class': 'value' }, value[i]);
-					var plainTextURL = value[i];
-					var baseURL = value[i].replace(/\//g, "%2F");
-					var formattedURL = baseURL.replace(/\:/g, "%3A");
-					var curlURL = "http://estc21.ucr.edu/details/holdings?uri=" + formattedURL;
-					
-					var xmlHttp = new XMLHttpRequest();
-    				xmlHttp.open( "GET", curlURL, false ); // false for synchronous request
-    				xmlHttp.send( null );
-    				var jsonBack = xmlHttp.responseText;
-    				if (i > 0) {
-    				 html += "<br>";
-    				}
-					//html += "<a href=\"http://estc21.ucr.edu/fullrecord?action=fullrecord&uri=" + value[i] + "\">" + window.pss.createHtmlTag("span", { 'class': 'value' }, jsonBack) + "</a>";
-					html += "<a href=\"http://estc21.ucr.edu/fullrecord?action=fullrecord&uri=" + plainTextURL + "\">" + window.pss.createHtmlTag("span", { 'class': 'value' }, jsonBack) + "</a>";
+					//var str = value[i];
+					//var repSlash = str.replace(/\//g, "%2F");
+					//var strLink = repSlash.replace(/\:/g, "%3A");
+					//var getHolding = "http://estc21.ucr.edu/details/holdings?uri=" + strLink;
+					//$.get(getHolding, function(responseText) {
+					//	html += "<br>Item: " + window.pss.createHtmlTag("span", { 'class': 'value' }, responseText);
+					//});
+					html += "<br>Item: " + window.pss.createHtmlTag("span", { 'class': 'value' }, value[i])
 				}
-				return window.pss.createHtmlTag("div", { 'class': klass }, window.pss.createHtmlTag("td", { 'class': 'label' }, label) + window.pss.createHtmlTag("td", { 'class': 'label' }, html));
-				
-			
-			
-			
-			
-			
-			
-			
-			
-			
-// 				var html = "Item: " + window.pss.createHtmlTag("span ", { 'class': 'value' }, value[0]);
-//				for (var i = 0; i < value.length; i++) {
-//					var str = value[i];
-//					var repSlash = str.replace(/\//g, "%2F");
-//					var strLink = repSlash.replace(/\:/g, "%3A");
-//					var getHolding = "http://estc21.ucr.edu/details/holdings?uri=" + strLink;
-//					$.get(getHolding, function(responseText) {
-//						html += "<br>Item: " + window.pss.createHtmlTag("span", { 'class': 'value' }, responseText);
-//					});
-//					// html += "<br>Item: " + window.pss.createHtmlTag("span", { 'class': 'value' }, value[i])
-//				}
 
 				return window.pss.createHtmlTag("div", { 'class': klass }, window.pss.createHtmlTag("td", { 'class': 'label' }, label) + window.pss.createHtmlTag("td", { 'class': 'label' }, html));
 				
