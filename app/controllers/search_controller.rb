@@ -208,7 +208,7 @@ class SearchController < ApplicationController
 			   end
 			   set_archive_toggle_state(archive['children'])
 		   end
-	   }
+	   } if archives
    end
 
    def init_view_options
