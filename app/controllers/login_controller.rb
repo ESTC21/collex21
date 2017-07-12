@@ -146,7 +146,9 @@ class LoginController < ApplicationController
         end
         if params[:create_password] == params[:create_password2]
         	#Assign 'scholar' role to the newly signedup users. The role_id of scholar is 3.  
-			set_current_user(User.create_user(params[:create_username], params[:create_password].strip, params[:create_email], Role.find(3)))
+			set_current_user(User.create_user(params[:create_username],
+																				params[:create_password].strip,
+																				params[:create_email], Role.find(1)))
           return nil
         else
           return "Passwords do not match"

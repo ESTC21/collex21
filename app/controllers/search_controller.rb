@@ -191,8 +191,8 @@ class SearchController < ApplicationController
   		   constraints.delete(fuz) if !other
   	   end
 
-  	   fqconstraint = "-instanceof:http*"
-  	   constraints.push({key: 'fq', val: fqconstraint})
+  	   # fqconstraint = "-instanceof:http*"
+  	   # constraints.push({key: 'fq', val: fqconstraint})
 	   end
 	   
 	   return constraints

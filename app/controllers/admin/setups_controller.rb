@@ -28,7 +28,7 @@ class Admin::SetupsController < Admin::BaseController
       solr.get_federations().each do |fed|
          # format: [fed, {data}]
          # see if a setup exists for this fed
-         next if fed[0]== @setups['site_default_federation']
+         next if fed[1]== @setups['site_default_federation']
          found = false
          fed_key = "federation_#{fed[0]}"
          feds << fed_key

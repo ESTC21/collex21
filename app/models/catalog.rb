@@ -60,11 +60,13 @@ class Catalog
    end
 
    def num_docs# called for each entry point to get the number for the footer.
+      puts '######### collecting num_docs...'
       query_totals() if @num_docs == nil
       return @num_docs
    end
 
    def num_sites# called for each entry point to get the number for the footer.
+      puts '######### collecting num_sites...'
       query_totals() if @num_sites == nil
       return @num_sites
    end
@@ -396,7 +398,8 @@ if nodes != nil
       }
 end
       archives = response['resource_tree']['archives']['archive']
-      puts archives.length
+      # puts archives.length
+      archives = [] if archives.nil?
       archives.each { |archive|
          #puts archive
          #puts id
@@ -442,7 +445,7 @@ end
       }
    end
       archives.each { |archive|
-         if archive['parent'] == nil
+         if archive.present? and archive['parent'] == nil
          @@resource_tree.push(archive)
          else
             if nodes != nil 
@@ -669,7 +672,7 @@ end
       ret = {}
       return ret if feds['federations'] == nil || feds['federations']['federation'] == nil
       feds['federations']['federation'].each { |fed|
-         ret[fed['name']] = fed
+         ret[fed[0]] = fed[1]
       }
       return ret
    end

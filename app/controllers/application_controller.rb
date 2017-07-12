@@ -67,7 +67,7 @@ class ApplicationController < ActionController::Base
 			ActionMailer::Base.default_url_options[:host] = request.host_with_port
 			if !self.kind_of?(TestJsController)
 				solr = Catalog.factory_create(session[:use_test_index] == "true")
-				session[:num_docs] ||= solr.num_docs()
+				session[:num_docs] = solr.num_docs() #if session[:num_docs] == 0
 				session[:num_sites] ||= solr.num_sites()
 				session[:num_docs] ||= 0
 				session[:num_sites] ||= 0

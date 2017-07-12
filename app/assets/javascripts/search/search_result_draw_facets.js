@@ -120,6 +120,9 @@ jQuery(document).ready(function($) {
 	function createResourceSection(resources, hash, level, childClass, handleOfSelected) {
 		var html = "";
 		var total = 0;
+        if(resources === null) {
+            resources = Array();
+        }
 		for (var i = 0; i < resources.length; i++) {
 			var archive = resources[i];
 			if (archive.children) {
@@ -150,6 +153,9 @@ jQuery(document).ready(function($) {
 	}
 
 	window.collex.setResourceToggle = function(block, resources) {
+        if(resources === null) {
+            resources = Array();
+        }
 		for (var i = 0; i < resources.length; i++) {
 			var archive = resources[i];
 			if (archive.children) {
