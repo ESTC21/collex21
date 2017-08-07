@@ -194,12 +194,13 @@ end
 	   hl = "hl=on"
 	   start = start ? "start=#{start}" : ""
 	   max = max ? "max=#{max}" : ""
-
+     # role= "aut=Surr, T. S. 1770-1847."
 	   params = parse_constraints(constraints)
 	   params.push(sort) if sort.length > 0
 	   params.push(hl) if hl.length > 0
 	   params.push(start) if start.length > 0
 	   params.push(max) if max.length > 0
+	   # params.push(role) if role.length > 0
 
 
  	   results = call_solr("search", :get, params)

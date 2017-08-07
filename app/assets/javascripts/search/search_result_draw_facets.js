@@ -2,7 +2,8 @@ jQuery(document).ready(function($) {
 	"use strict";
 
 	window.collex.create_facet_button = function(label, value, action, key) {
-		return window.pss.createHtmlTag("button", { 'class': 'select-facet nav_link', 'data-action': action, 'data-key': key, 'data-value': value }, label);
+		return window.pss.createHtmlTag("button",
+            { 'class': 'select-facet nav_link', 'data-action': action, 'data-key': key, 'data-value': value }, label);
 	};
 
 	window.collex.number_with_delimiter = function(number) {
@@ -28,6 +29,86 @@ jQuery(document).ready(function($) {
 
 		}
 	}
+
+    function createFacetBlockOrig(facet_class, hash, dataKey, selected, labels) {
+        var html = "";
+        if (typeof selected === 'string') selected = [ selected ];
+        for (var key in hash) {
+            if (hash.hasOwnProperty(key)) {
+                var selectedIndex = $.inArray(key, selected);
+                var label = key;
+                if (labels) label = labels[key];
+                html += createFacetRow(key, hash[key], dataKey, selectedIndex !== -1, label);
+            }
+        }
+
+        var block = $("."+facet_class);
+        var header = window.pss.createHtmlTag("tr", {}, block.find("tr:first-of-type").html());
+        block.html(header + html);
+    }
+
+    function createRoleFacetBlock(facet_class, obj) {
+        var html = "";
+        var selected = "";
+        var labels = "";
+
+        var hash_role = obj.facets.role;
+        var consolidated_role_params = [];
+
+        for(var role in obj.facets.role) {
+            var values = _.pluck(obj.hits, role).flatten();
+            values = _.reject(values, function(val){ return val == undefined });
+
+            if(values.length > 0) {
+                consolidated_role_params[role] = _.uniq(values);
+            }
+        }
+
+        console.log("roles arr: ");
+        console.log(consolidated_role_params);
+
+        for (var key in consolidated_role_params) {
+            if (consolidated_role_params.hasOwnProperty(key)) {
+                selected = obj.query.aut;
+                if (typeof selected === 'string') selected = [ selected ];
+                var selectedIndex = $.inArray(key, selected);
+                var label = key;
+                if (labels) label = labels[key];
+                html += createRoleFacetRow(key, consolidated_role_params[key].length, 'aut', selectedIndex !== -1, label, false);
+                _.map(consolidated_role_params[key], function(role_desc){ return html += createRoleFacetRow(key, role_desc, 'aut', selectedIndex !== -1, label, true); });
+            }
+        }
+
+        var block = $("."+facet_class);
+        var header = window.pss.createHtmlTag("tr", {}, block.find("tr:first-of-type").html());
+        block.html(header + html);
+    }
+
+    function createRoleFacetRow(name, count, dataKey, isSelected, label, isSubmenu) {
+        if (!label) label = name;
+        if (isSelected) {
+            var remove = window.collex.create_facet_button('[X]', name, "remove", dataKey);
+            return window.pss.createHtmlTag("tr", { 'class': "limit_to_selected" },
+                window.pss.createHtmlTag("td", { 'class': "limit_to_lvl1" }, label + "&nbsp;&nbsp;" + remove) +
+                window.pss.createHtmlTag("td", { 'class': "num_objects" }, window.collex.number_with_delimiter(count)));
+        } else {
+            if(isSubmenu){
+                var button = window.collex.create_facet_button(count, count, "add", dataKey);
+                return window.pss.createHtmlTag("tr", {'class': name},
+                    window.pss.createHtmlTag("td", {'class': ""}, button) +
+                    window.pss.createHtmlTag("td", {'class': ""}, ""));
+            }
+            else {
+                var button = window.collex.create_facet_button(label, name, "add", dataKey);
+                var arrow_html = '<span class="exp-arrow hidden"><img alt="Arrow" src="/assets/arrow.gif">' +
+                                 '</span><span class="col-arrow "><img alt="Arrow_dn" src="/assets/arrow_dn.gif"></span>';
+
+                return window.pss.createHtmlTag("tr", {'class': 'category-btn expanded'},
+                    window.pss.createHtmlTag("td", {'class': "limit_to_lvl0"}, arrow_html + '<span class="nav_link">' + name + '</span>') +
+                    window.pss.createHtmlTag("td", {'class': "num_objects"}, window.collex.number_with_delimiter(count)));
+            }
+        }
+    }
 
 	function createFacetBlock(facet_class, obj) {
 
@@ -187,6 +268,7 @@ jQuery(document).ready(function($) {
 		/*createFacetBlock('facet-genre', obj.facets.discipline, 'discipline', obj.query.discipline);
 		createFacetBlock('facet-genre', obj.facets.doc_type, 'doc_type', obj.query.doc_type);
 		createFacetBlock('facet-genre', obj.facets.access, 'o', obj.query.o, window.collex.facetNames.access);*/
+        createRoleFacetBlock('facet-new-role', obj);
 		createResourceBlock(obj.facets.archive, obj.query.a);
 	};
 });

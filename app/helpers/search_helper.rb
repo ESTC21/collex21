@@ -521,9 +521,9 @@ module SearchHelper
 
   def create_roles_table( _data )
     
-    html = raw('<table class="limit_to facet-new">')
+    html = raw('<table class="limit_to facet-new-role">')
     html += raw("<tr><th>Roles</th><th class=\"num_objects\">See All</th></tr>")
-    html += facet_tree_node_row("2", 1, 0, 0, true, "Artist", 23, false)
+    html += facet_tree_node_row("2", 1, 0, 0, true, "Artist", 23, true)
     html += facet_tree_node_row("2", 1, 0, 0, true, "Author", 23, false)
     html += facet_tree_node_row("2", 1, 0, 0, true, "Book Designer", 23, false)
     html += facet_tree_node_row("2", 1, 0, 0, true, "Binder", 23, false)
