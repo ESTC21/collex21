@@ -45,7 +45,8 @@ jQuery(document).ready(function($) {
 			$j("#matchtitle2").text("Use the form below to search for a related record.");
 			$j("#nav_container").hide();
 			$j(".my_collex_link").hide();
-			$j("#subnav_container").hide();			
+			$j("#subnav_container").hide();
+            $j(".search-close-btn").show();
 		}
 		else{
 		}

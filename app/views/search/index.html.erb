@@ -32,6 +32,10 @@
 <% if session[:use_test_index] == "true" -%>
 	<div class="right_column_header">USING TEST INDEX</div>
 <% end -%>
+
+<%= link_to "Back to Search", "javascript:void(0);", id: "closebtn",
+            class: 'back-to-search search-close-btn', onclick:"self.close();", style: 'display: none' %>
+
 <div class="inner_content_container">
 	<div class="search_error_message" style="display:none;"></div>
 	<div class="search_right_column ajax-style">

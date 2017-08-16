@@ -4,8 +4,11 @@
 		<p id="notice" class="notice" style = "font-weight: bold; font-size: 12pt; color: Red"> <%= f.label @errorMsg %> </p>
 	<% end %>
 
+  <p>
+    <%= link_to "Back to Search", "javascript:void(0);", id: "closebtn", class: 'back-to-search' %>
+  </p>
 	<p> <%= link_to session[:annotateTitle], "/fullrecord?action=fullrecord&uri="+session[:annotateUri]+"", :target => "_self" %> </p>
-	<p> <%= f.select(:predicate,  options_from_collection_for_select(@predicates, 'id', 'display_name'), prompt: "Select a verb") %> <b> of </b></p> 
+  <p> <%= f.select(:predicate,  options_from_collection_for_select(@predicates, 'id', 'display_name'), prompt: "Select a verb") %> <b> of </b></p>
 	<p> <%= f.text_field :object_uri, size: 50 %> </p> 
 	<p>    
 		<input type="radio" name="annotationoption" value="replace" checked> Replace<br>
@@ -19,8 +22,8 @@
 	  <tr>
 		<td> <%= file_field_tag "documents[]", :multiple => true %> </td>
 		<td> </td>
-		<td> <%= f.button "Close", type: 'button', :id => "closebtn" %></td>
-		<td> <%= f.submit "Submit", :id => "submitbtn" %> </td>
+		<td><%= f.submit "Submit", :id => "submitbtn" %></td>
+		<td></td>
       </tr>
 	</table>	
 
