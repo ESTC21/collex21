@@ -55,9 +55,11 @@ jQuery(document).ready(function($) {
 							object = (obj.hits[i])["predicateid"] > 2 ? objinfo : objinfo['uri'];
 						}
 						else if (key == 'subject'){
-							subjecturi = ((obj.hits[i])[key])['uri'];
-							html += window.collex.createReviewMediaBlock((obj.hits[i])[key], j);	
-						}			
+						    if((obj.hits[i])[key] != null) {
+                                subjecturi = ((obj.hits[i])[key])['uri'];
+                                html += window.collex.createReviewMediaBlock((obj.hits[i])[key], j);
+                            }
+						}
 						j += 1;
 					}	
 				}	

@@ -633,9 +633,9 @@ end
 
    def get_object(uri) #called when "collect" is pressed.
       #puts "Before call solr"
-      response = call_solr("search/details", :get, [ "uri=#{uri}" ])
+      response = call_solr("search/details", :get, [ "uri=#{uri}" ]) rescue nil
       #puts "After call solr"
-      return normalize_hits(response['search']['results']['result'])[0]
+      return normalize_hits(response.nil? ? nil : response['search']['results']['result'])[0]
    end
 
    def modify_object(uri, operation, field, value) #called when "Approve" is pressed.
