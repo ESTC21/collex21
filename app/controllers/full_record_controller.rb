@@ -7,8 +7,14 @@ class FullRecordController < ApplicationController
 		get_predicate_info()
 		get_site_info()
 		
-   	session[:fullrecorduri] = params[:uri] 
-   	
+   	session[:fullrecorduri] = params[:uri]
+
+		if params[:annotate]
+			session[:annotateTitle] = params[:annotate][:title]
+			session[:annotateUri] = params[:annotate][:uri]
+			session[:annotateUrl] = params[:annotate][:url]
+		end
+
    	if params[:'chunk.id'].present?
    		session[:fullrecorduri] = params[:uri] + ';chunk.id=' + params[:'chunk.id']
    	end
