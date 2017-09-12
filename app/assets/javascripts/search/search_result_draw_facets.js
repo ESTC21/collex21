@@ -74,8 +74,17 @@ jQuery(document).ready(function($) {
                 var selectedIndex = $.inArray(key, selected);
                 var label = key;
                 if (labels) label = labels[key];
-                html += createRoleFacetRow(key, consolidated_role_params[key].length, 'aut', selectedIndex !== -1, label, false);
-                _.map(consolidated_role_params[key], function(role_desc){ return html += createRoleFacetRow(key, role_desc, 'aut', selectedIndex !== -1, label, true); });
+
+                var data_key = 'aut';
+                if(key == 'role_OWN'){
+                    data_key = 'r_own'
+                }
+                else if(key == 'role_RPS'){
+                    data_key = 'role_RPS'
+                }
+
+                html += createRoleFacetRow(key, consolidated_role_params[key].length, data_key, selectedIndex !== -1, label, false);
+                _.map(consolidated_role_params[key], function(role_desc){ return html += createRoleFacetRow(key, role_desc, data_key, selectedIndex !== -1, label, true); });
             }
         }
 
