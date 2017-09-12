@@ -15,15 +15,15 @@ class AnnotateController < ApplicationController
 
   def create
     user_id = get_curr_user_id()
-  	flag = (is_bibliographer? or is_admin?) ? "2" : "1" # flag 1 => active, 2=> review done by admin (if biblographer is making any annotations or match then it should be approved directly)
+    # flag
+    # 1 => active,
+    # 2 /;=> review done by admin (if bibliographer is making any annotations or match then it should be approved directly)
+  	flag = (is_bibliographer? or is_admin?) ? "2" : "1"
   
-puts "========================================================================"
-puts params
-params[:annotationoption]
+    puts "========================================================================"
+    puts params
+    params[:annotationoption]
 
-#test = @solr.modify_object(uri, action, "title", "111112222223333333111111") # action = append or replace
-test = @solr.modify_object(session[:annotateUri], params[:annotationoption], "date_label", "2000") # action = append or replace
-puts test
     subject_uri = session[:annotateUri]
     object_uri = params[:annotation][:object_uri]
 
@@ -46,8 +46,10 @@ puts test
               annotation.user_id = user_id
               annotation.feedback = params[:annotation][:feedback] if ( is_scholar? and !is_bibliographer? or !is_admin?)
               annotation.object_uri = object_uri
-              annotation.predicate_id = params[:annotation][:predicate] 
+              annotation.predicate_id = params[:annotation][:predicate]
               annotation.attachment_no = (lastrecord + 1) if params[:documents].present? and ( is_scholar? and !is_bibliographer? or !is_admin? )
+              # if solr_update_mode is empty, that will be feedback from other users; ignore that while handling annotation update to solr
+              annotation.solr_update_mode = params[:annotationoption].downcase if params[:annotationoption].present?
               annotation.save!
             
             if is_bibliographer? or is_admin?

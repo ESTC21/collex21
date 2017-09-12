@@ -1,5 +1,6 @@
 class ReviewController < ApplicationController
   before_filter :init_view_options
+  after_filter :update_solr, only: :get_review_feedback
 
   def index  
     get_search_results_button_info()
@@ -167,6 +168,19 @@ class ReviewController < ApplicationController
 			   set_archive_toggle_state(archive['children'])
 		   end
 	   }
-   end
+  end
+
+  def update_solr
+    annotation = Annotation.find(params[:annotationid])
+    predicate = annotation.predicate
+    solr_field_name = predicate.display_name
+    solr_field_value = annotation.object_uri
+    solr_operaton = annotation.solr_update_mode.present? ? annotation.solr_update_mode : 'append'
+
+    solr_response = @solr.modify_object(annotation.subject_uri, solr_operaton, solr_field_name, solr_field_value) # action = append or replace
+
+    puts "Solr Response:: #{solr_response}\n\n"
+    puts annotation.attributes
+  end
   
 end
