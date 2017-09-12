@@ -1,8 +1,13 @@
+$(document).on('click', ".nav_link", function(e){
+    console.log(e.target);
+    var target_div = e.target.textContent;
+    // $('.' + target_div).toggle();
+});
+
 jQuery(document).ready(function($) {
 	"use strict";
 	var body = $("body");
 
- 
 	function createTotals(total) {
 		$("#search_result_count").text("Search Results (" + window.collex.number_with_delimiter(total)+")");
 		if(sessionStorage.getItem('match') == "true"){

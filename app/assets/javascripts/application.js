@@ -18,7 +18,8 @@
 //= require jquery
 //= require no_conflict
 
-
 //= require jquery-ui/autocomplete
 //= require_tree ./lib
+//= require underscore
+
 //= require_tree .

@@ -83,7 +83,7 @@
 		<% if group.can_edit(user_id) -%>
 			<% gus = GroupsUser.get_all_pending_requests(group.id) -%>
 <script type="text/javascript">
-	gPendingRequests =
+	gPendingRequests = '';
 	<%= reqs = []
 		gus.each { |gu|
 			reqs.push({ :user_name => "#{escape_apos(User.find(gu.user_id).fullname)}", :group_id => "#{Group.id_obfuscator(gu.id)}" })
