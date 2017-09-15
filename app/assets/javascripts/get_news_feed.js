@@ -24,8 +24,10 @@ function loadLatestNews( targetList, rssFeedURL, maxItems, retry ) {
 	var onSuccess = function(x, resp) {
 		var rss = resp.responseXML;
 		if (rss === null) {
-			$(targetList).update("<ul><li>Error in retrieving News Feed.</li></ul>\n");
-			return;
+		    if($(targetList) !== null) {
+                $(targetList).update("<ul><li>Error in retrieving News Feed.</li></ul>\n");
+            }
+            return;
 		}
 		var doc = rss.documentElement;
 		var channel = doc.getElementsByTagName('channel');
