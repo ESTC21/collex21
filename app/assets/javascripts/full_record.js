@@ -26,10 +26,12 @@ jQuery(document).ready(function($) {
         var close_or_back = window.menubar.visible ? 'window.history.back();' : 'window.opener.location.reload();window.close();';
 		html += window.pss.createHtmlTag("button",
             { 'class': "home_btn", 'onclick': close_or_back }, 'Go Back');
-		var attr = obj.hits;
-		html += '<div class="contribute_action search-result" data-index="0" data-uri="'+attr.uri+'" data-url="'+attr.url+'" data-title="'+attr.title+'">';
-		html += window.pss.createHtmlTag("button", { 'class': "home_btn annotate" }, 'Contribute');
-		html += '</div>';
+        if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar) {
+            var attr = obj.hits;
+            html += '<div class="contribute_action search-result" data-index="0" data-uri="' + attr.uri + '" data-url="' + attr.url + '" data-title="' + attr.title + '">';
+            html += window.pss.createHtmlTag("button", {'class': "home_btn annotate"}, 'Contribute');
+            html += '</div>';
+        }
 
 		html+= window.pss.createHtmlTag("br");
 		html+= window.pss.createHtmlTag("br");
