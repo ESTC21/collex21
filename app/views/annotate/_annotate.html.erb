@@ -1,33 +1,58 @@
+<div class="inner-content">
+  <%= form_for(@annotation, url: create_annotate_path, :html => { :multipart => true, :onsubmit => "return confirm('Are you sure you want to make the following annotation?');"}) do |f| %>
+    <% if @errorMsg.present? %>
+      <p id="notice" class="notice" style = "font-weight: bold; font-size: 12pt; color: Red"> <%= f.label @errorMsg %> </p>
+    <% end %>
 
-<%= form_for(@annotation, url: create_annotate_path, :html => { :multipart => true, :onsubmit => "return confirm('Are you sure you want to make the following annotation?');"}) do |f| %>	
-	<% if @errorMsg.present? %>
-		<p id="notice" class="notice" style = "font-weight: bold; font-size: 12pt; color: Red"> <%= f.label @errorMsg %> </p>
-	<% end %>
+    <p><%= link_to "Back to Search", "javascript:void(0);", id: "closebtn", class: 'back-to-search' %></p>
 
-  <p>
-    <%= link_to "Back to Search", "javascript:void(0);", id: "closebtn", class: 'back-to-search' %>
-  </p>
-	<p> <%= link_to session[:annotateTitle], "/fullrecord?action=fullrecord&uri="+session[:annotateUri]+"", :target => "_self" %> </p>
-  <p> <%= f.select(:predicate,  options_from_collection_for_select(@predicates, 'id', 'display_name'), prompt: "Select a verb") %></p>
-	<p> <%= f.text_field :object_uri, size: 50 %> </p>
-	<p>    
-		<input type="radio" name="annotationoption" value="replace" checked> Replace<br>
-		<input type="radio" name="annotationoption" value="append"> Append<br>
-	</p>
-	<table>
-	  <tr>
-		<td><h3>Please provide an explanation of the reason for the above annotation: </h3></td>
-		<td colspan = "3"> <%= f.text_area :feedback, cols: 50, rows: 10 %> </td>
-	  </tr>
-	  <tr>
-		<td> <%= file_field_tag "documents[]", :multiple => true %> </td>
-		<td> </td>
-		<td><%= f.submit "Submit", :id => "submitbtn" %></td>
-		<td></td>
-      </tr>
-	</table>	
+    <p> <%= link_to session[:annotateTitle], "/fullrecord?action=fullrecord&uri="+session[:annotateUri]+"", :target => "_self" %> </p>
+    <p>
+      Enhance the ESTC by using the form below to provide more or corrected information about the indicated item.
+      User entered annotations are reviewed by other ESTC <br>users and ESTC Staff. All annotations become part of the
+      history of the record being annotated. Annotations that are approved by ESTC staff become part of the official<br>
+      ESTC record for an item.
+    </p>
 
-<% end %>
+    <p class="info-box-highlighter">
+      You are annotating: The new dispensatory of the Royal College of Physicians in London. With copious and accurate indexes.<br>
+      Faithfully translated from the Latin of the Pharmacopœia Londinensis, publish'd by order of the King and Council.
+    </p>
+
+    <div class="checkbox-wrapper">
+      <div class="float-left">Please indicate whether this annotation is a correction to current catalog information or additional information:&nbsp;&nbsp;</div>
+      <div class="float-left">
+        <input type="radio" name="annotationoption" value="append" checked> Additional Information<br>
+        <input type="radio" name="annotationoption" value="replace"> Correction<br>
+      </div>
+    </div>
+    <br>
+    <p>
+      This item <%= f.select(:predicate,  options_from_collection_for_select(@predicates, 'id', 'display_name'), prompt: "Select a verb") %>&nbsp;&nbsp;
+      <%= f.text_field :object_uri, size: 50 %>
+    </p>
+
+    <p>
+      <span>
+        Please provide as detailed an explanation as possible about how you arrived at your assertion, providing as much evidences as<br>
+        possible. This information will help other users and ESTC staff to determine the accuracy of the assertion and will increase the<br>
+        odds that it is approved.
+      </span>
+      <div>
+        <%= f.text_area :feedback, cols: 80, rows: 10 %>
+      </div>
+    </p>
+
+    <p>
+      You can also attach file in support of your annotation:<br>
+      <%= file_field_tag "documents[]", :multiple => true %>
+    </p>
+
+    <p>
+      <%= f.submit "Submit Annotation for Review", :id => "submitbtn" %>
+    </p>
+  <% end %>
+</div>
 
 <script>
 	var $j = jQuery.noConflict();

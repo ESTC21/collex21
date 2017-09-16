@@ -456,4 +456,23 @@ span.advanced_search_field_tooltip {
     border-radius: 5px;
     margin-left: 5px;
   }
+
+  .inner-content {
+    margin: 0 10px;
+  }
+
+  .info-box-highlighter {
+    background-color:#BFCFFF;
+    padding: 15px;
+    font-size: 19px;
+  }
+
+  .checkbox-wrapper {
+    position: relative;
+    overflow: hidden;
+
+    .float-left {
+      float: left;
+    }
+  }
 }
