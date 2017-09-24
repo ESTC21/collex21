@@ -16,7 +16,7 @@
     # ---------------------------------------------------------------------------- -%>
 <%# login_slider params: string current_page -%>
 <% if user_signed_in? %>
-	signed in as <%= current_user.username %><%= link_separator %>
+	Signed in as <b><%= current_user.username %></b><%= link_separator %>
     <%#= my_account_link({ :class => 'nav_link' }) %>
     <%#= link_separator %>
 	<%= link_to 'log out', { :controller => '/login', :action => 'logout' }, { :class => 'nav_link' } %>

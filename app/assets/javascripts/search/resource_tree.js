@@ -35,12 +35,23 @@ jQuery(document).ready(function($) {
        }
      });
 
-     if (el.hasClass("expanded") ) {
+        var data_key = el.data('key');
+
+        var current_rows_key = 'role_AUT';
+        if(data_key == 'r_own'){
+            current_rows_key = 'role_OWN'
+        }
+        else if(data_key == 'role_RPS'){
+            current_rows_key = 'role_RPS'
+        }
+
+        if (el.hasClass("expanded") ) {
         // just collapsed
         el.removeClass("expanded");
         el.addClass("collapsed");
         el.find(".exp-arrow").show();
         el.find(".col-arrow").hide();
+        parent.find('.'+current_rows_key).hide();
         serverNotify("/search/remember_resource_toggle", { dir: "close", id: myId });
      } else {
         // just expanded
@@ -48,6 +59,7 @@ jQuery(document).ready(function($) {
         el.addClass("expanded");
         el.find(".exp-arrow").hide();
         el.find(".col-arrow").show();
+        parent.find('.'+current_rows_key).show();
         serverNotify("/search/remember_resource_toggle", { dir: "open", id: myId });
      }
 

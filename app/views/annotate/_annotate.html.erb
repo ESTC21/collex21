@@ -6,7 +6,7 @@
 
     <p><%= link_to "Back to Search", "javascript:void(0);", id: "closebtn", class: 'back-to-search' %></p>
 
-    <p> <%= link_to session[:annotateTitle], "/fullrecord?action=fullrecord&uri="+session[:annotateUri]+"", :target => "_self" %> </p>
+    <p class="record-title-uri"> <%= link_to session[:annotateTitle], "/fullrecord?action=fullrecord&uri="+session[:annotateUri]+"", :target => "_self" %> </p>
     <p>
       Enhance the ESTC by using the form below to provide more or corrected information about the indicated item.
       User entered annotations are reviewed by other ESTC <br>users and ESTC Staff. All annotations become part of the

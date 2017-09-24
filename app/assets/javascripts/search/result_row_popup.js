@@ -342,8 +342,7 @@ function doViewAnnotation(row, viewAnnotation, subject_uri, url, row_num, row_id
 	var onSuccess = function(resp) {
 		var json = JSON.parse(resp.responseText);
 		if (json.totalreviewitem > 0){
-			html += window.pss.createHtmlTag("a", { 'class': 'label', 'style': 'font-weight: bold;', 'href': "/fullrecord?action=fullrecord&uri="+subject_uri+"" ,
-			target: '_blank'}, "[" + json.totalreviewitem + " active annotation]"); 		
+			html += window.pss.createHtmlTag("a", { 'class': 'label', 'style': 'font-weight: bold;', 'href': "/fullrecord?action=fullrecord&uri="+subject_uri+""}, "[" + json.totalreviewitem + " active annotation]");
 		}
 		else
 		{	
@@ -494,10 +493,14 @@ function doAnnotate(uri, url, row_num, row_id, is_logged_in, title)
             success: onAnnotateSuccess
             });
 }
-function onAnnotateSuccess(resp) {	
+function onAnnotateSuccess(resp) {
 	sessionStorage.setItem('annotate', true);
-    newwindow = window.open("/annotate?action=annotate", '_blank', "height= " + screen.height * (0.9) + ",width=" + screen.width * (0.9) + " ");
-    newwindow.moveTo(20, 20);
+	if(window.location.pathname == '/search') {
+        sessionStorage.setItem('returnURI', window.location.href);
+    }
+	window.location.href = '/annotate?action=annotate'
+    // newwindow = window.open("/annotate?action=annotate", '_blank', "height= " + screen.height * (0.9) + ",width=" + screen.width * (0.9) + " ");
+    // newwindow.moveTo(20, 20);
 }
 
 function getchooseObjectInfo(link) {

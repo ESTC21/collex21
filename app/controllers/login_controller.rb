@@ -148,7 +148,7 @@ class LoginController < ApplicationController
         	#Assign 'scholar' role to the newly signedup users. The role_id of scholar is 3.  
 			set_current_user(User.create_user(params[:create_username],
 																				params[:create_password].strip,
-																				params[:create_email], Role.find(1)))
+																				params[:create_email], Role.find_by_name('user')))
           return nil
         else
           return "Passwords do not match"

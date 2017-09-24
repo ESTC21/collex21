@@ -172,7 +172,8 @@ private
 
     # the my_collex tab is separate, and is rendered first
     cls = (curr_page == Setup.my_collex()) ? 'my_collex_link_current' : 'my_collex_link'
-    html = "\t" + link_to(Setup.my_collex(), '/' + MY_COLLEX_URL, { :class => cls }) + "\n"
+    html = ''
+    # html = "\t" + link_to(Setup.my_collex(), '/' + MY_COLLEX_URL, { :class => cls }) + "\n"
     html += "\t" + "<div id='nav_container'>\n"
     tabs.each { |tab|
       if tab[:dont_show_yourself] && curr_page == tab[:name]

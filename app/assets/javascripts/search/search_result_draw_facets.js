@@ -67,6 +67,7 @@ jQuery(document).ready(function($) {
         console.log("roles arr: ");
         console.log(consolidated_role_params);
 
+        var idx = 0;
         for (var key in consolidated_role_params) {
             if (consolidated_role_params.hasOwnProperty(key)) {
                 selected = obj.query.aut;
@@ -83,9 +84,10 @@ jQuery(document).ready(function($) {
                     data_key = 'role_RPS'
                 }
 
-                html += createRoleFacetRow(key, consolidated_role_params[key].length, data_key, selectedIndex !== -1, label, false);
-                _.map(consolidated_role_params[key], function(role_desc){ return html += createRoleFacetRow(key, role_desc, data_key, selectedIndex !== -1, label, true); });
+                html += createRoleFacetRow(key, consolidated_role_params[key].length, data_key, selectedIndex !== -1, label, false, idx);
+                _.map(consolidated_role_params[key], function(role_desc){ return html += createRoleFacetRow(key, role_desc, data_key, selectedIndex !== -1, label, true, idx); });
             }
+            idx++;
         }
 
         var block = $("."+facet_class);
@@ -93,7 +95,7 @@ jQuery(document).ready(function($) {
         block.html(header + html);
     }
 
-    function createRoleFacetRow(name, count, dataKey, isSelected, label, isSubmenu) {
+    function createRoleFacetRow(name, count, dataKey, isSelected, label, isSubmenu, index) {
         if (!label) label = name;
         if (isSelected) {
             var remove = window.collex.create_facet_button('[X]', name, "remove", dataKey);
@@ -102,17 +104,22 @@ jQuery(document).ready(function($) {
                 window.pss.createHtmlTag("td", { 'class': "num_objects" }, window.collex.number_with_delimiter(count)));
         } else {
             if(isSubmenu){
+                var display = (index == 0 ? '' : 'no-display');
                 var button = window.collex.create_facet_button(count, count, "add", dataKey);
-                return window.pss.createHtmlTag("tr", {'class': name},
+                return window.pss.createHtmlTag("tr", {'class': ''+ name + ' ' + display},
                     window.pss.createHtmlTag("td", {'class': ""}, button) +
                     window.pss.createHtmlTag("td", {'class': ""}, ""));
             }
             else {
-                var button = window.collex.create_facet_button(label, name, "add", dataKey);
-                var arrow_html = '<span class="exp-arrow hidden"><img alt="Arrow" src="/assets/arrow.gif">' +
-                                 '</span><span class="col-arrow "><img alt="Arrow_dn" src="/assets/arrow_dn.gif"></span>';
+                var arrow = (index == 0 ? 'hidden' : '');
+                var down = (index == 0 ? '' : 'hidden');
+                var menu_style = (index == 0 ? 'expanded' : 'collapsed');
 
-                return window.pss.createHtmlTag("tr", {'class': 'category-btn expanded'},
+                var button = window.collex.create_facet_button(label, name, "add", dataKey);
+                var arrow_html = '<span class="exp-arrow "' + arrow + '><img alt="Arrow" src="/assets/arrow.gif">' +
+                                 '</span><span class="col-arrow"' + down + '><img alt="Arrow_dn" src="/assets/arrow_dn.gif"></span>';
+
+                return window.pss.createHtmlTag("tr", {'class': 'category-btn ' + menu_style, 'data-key': dataKey},
                     window.pss.createHtmlTag("td", {'class': "limit_to_lvl0"}, arrow_html + '<span class="nav_link">' + name + '</span>') +
                     window.pss.createHtmlTag("td", {'class': "num_objects"}, window.collex.number_with_delimiter(count)));
             }

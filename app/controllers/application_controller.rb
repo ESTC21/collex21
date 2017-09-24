@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   before_filter :session_create
 
   helper_method :user_signed_in?, :current_user, :username, :user, :is_admin?, :is_bibliographer?,  
-                 :is_scholar?, :get_curr_user_id, :respond_to_file_upload, :get_curr_user_name,
+                 :is_scholar?, :get_curr_user_id, :respond_to_file_upload, :get_curr_user_name, :is_user_role?,
                  :get_search_results_button_info, :get_annotate_match_button_info, :get_predicate_info, :get_site_info
 
   protect_from_forgery
@@ -160,7 +160,15 @@ class ApplicationController < ActionController::Base
         return true
       end
       return false
-    end
+		end
+
+		def is_user_role?
+			user = session[:user]
+			if user and user[:role_names] and user[:role_names].include? 'user'
+				return true
+			end
+			return false
+	end
 
 	def get_curr_user_id
 		return nil if !user_signed_in?

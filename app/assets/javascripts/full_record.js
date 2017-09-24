@@ -26,7 +26,8 @@ jQuery(document).ready(function($) {
         var close_or_back = window.menubar.visible ? 'window.history.back();' : 'window.opener.location.reload();window.close();';
 		html += window.pss.createHtmlTag("button",
             { 'class': "home_btn", 'onclick': close_or_back }, 'Go Back');
-        if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar) {
+		// TODO: isUser added on Carl's request: Need to remove it later as User with role 'user' cannot create annotations
+        if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar || window.collex.isUser) {
             var attr = obj.hits;
             var contribute_btn = window.pss.createHtmlTag("button", {'class': "home_btn annotate"}, 'Contribute');
             html += window.pss.createHtmlTag("div", {'class': "contribute_action search-result",

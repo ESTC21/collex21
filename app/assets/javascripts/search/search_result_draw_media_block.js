@@ -125,8 +125,10 @@ jQuery(document).ready(function($) {
 
 				if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar) {
 					match = matchbutton == "on" ? window.pss.createHtmlTag("a", { 'class': 'match'}, "Match") : '';
-					annotate = annotatebutton == "on" ? window.pss.createHtmlTag("a", { 'class': 'annotate'}, "Contribute") : '';
 				}
+                if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar || window.collex.isUser) {
+                    annotate = annotatebutton == "on" ? window.pss.createHtmlTag("a", {'class': 'annotate'}, "Contribute") : '';
+                }
 
 			    displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, collect+uncollect+discuss+exhibit+typewright+pages+match+annotate);
 		}

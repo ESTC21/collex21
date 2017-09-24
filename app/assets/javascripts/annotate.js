@@ -9,3 +9,11 @@ jQuery(document).ready(function($) {
 		$j("#subnav_container").hide();
 	}
 });
+
+jQuery(document).on("click", "#closebtn", function() {
+    var returnURL = sessionStorage.getItem('returnURI');
+    if(returnURL == '' || returnURL == null){
+        returnURL = '/';
+    }
+    window.location = returnURL;
+});
