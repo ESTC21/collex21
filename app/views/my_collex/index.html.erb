@@ -35,7 +35,7 @@
 				<%= render :partial => 'recently_collected_items', :locals => { :user_id => get_curr_user_id, :hits => @results, :has_more => @has_more } %>
 			</div>
 		</div>
-		<div class="right_column">
+		<div class="right_column" style="display: none;">
           <% if COLLEX_PLUGINS['typewright'] %>
 			  <div class="right_column_header">My TypeWright</div>
           <div id="typewright" class="lazy-load" data-action="/<%= MY_COLLEX_URL %>/get_typewright_documents">
