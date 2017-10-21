@@ -35,7 +35,7 @@
 				<%= render :partial => 'recently_collected_items', :locals => { :user_id => get_curr_user_id, :hits => @results, :has_more => @has_more } %>
 			</div>
 		</div>
-		<div class="right_column" style="display: none;">
+		<div class="right_column">
           <% if COLLEX_PLUGINS['typewright'] %>
 			  <div class="right_column_header">My TypeWright</div>
           <div id="typewright" class="lazy-load" data-action="/<%= MY_COLLEX_URL %>/get_typewright_documents">
@@ -48,13 +48,13 @@
 			<div id="tag_cloud">
 				<%= render :partial => 'tag_cloud_sidebar', :locals => { :cloud_info => @cloud_info } %>
 			</div>
-			<div id="discussions">
+			<div id="discussions" style="display: none;">
 				<%= render :partial => 'my_discussions_list', :locals => { :user_id => get_curr_user_id } %>
 			</div>
 			<div id="my_exhibits">
 				<%= render :partial => 'my_exhibits_list', :locals => { :user_id => get_curr_user_id } %>
 			</div>
-			<div id="groups">
+			<div id="groups" style="display: none;">
 				<%= render :partial => 'my_groups_list', :locals => { :user_id => get_curr_user_id } %>
 			</div>
 		</div>
