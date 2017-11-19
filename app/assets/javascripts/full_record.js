@@ -199,17 +199,46 @@ jQuery(document).ready(function($) {
 		needShowMoreLink = false;
 		var html = "";
 		html += createResultContentItem('one_col', '', obj.alternative, false);
-		html += createResultContentItem('single_item', 'ESTC ID: ', obj.uri.substring(obj.uri.lastIndexOf('/') + 1), false);
-		html += createResultContentItem('single_item', 'Date:', obj.date_label, false);
-		html += createResultContentItem('multiple_item', 'Author:', obj.role_AUT, false);
+        html += createResultContentItem('single_item', 'ESTC ID: ', obj.uri.substring(obj.uri.lastIndexOf('/') + 1), false);
+        html += createResultContentItem('single_item', 'Date:', obj.year, false);
+        html += createResultContentItem('single_item', 'Period:', obj.created, false);
+        html += createResultContentItem('multiple_item', 'Author:', obj.role_AUT, false);
+
 		html += createResultContentItem('separate_lines', 'Source:', obj.source, false);
 
-		var table = "";	
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Artist:', obj.role_ART, true));
+		var table = "";
+
+        // updated new RDF model
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject:', obj.subject, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject URI:', obj.subject_uri, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Owner:', obj.role_OWN, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Repository:', obj.role_RPS, true));
+
+        // Value displayed on the page should be the value of the <bf:shelfMark> element for the identified resource,
+        // and it should be a link to the record display of that resource.
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('hasInstanceItem', 'Copies:', obj, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Notes:', obj.description, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'URL:', obj.url, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Standard Title:', obj.titleOfResource, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Abbreviated Title:', obj.abbreviatedTitle, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Variant Title:', obj.variantTitle, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Previous Title:', obj.earlierTitleProper, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Series Statement:', obj.P1041, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Note on Frequency:', obj.noteOnFrequency, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Imprint:', obj.publisher, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Extant:', obj.format, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Physical Description:', obj.doc_type, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Language:', obj.language, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Shelf Mark:', obj.shelfMark, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Referenced by:', obj.isReferencedBy, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Rights Statement:', obj.rights, true));
+        var tmp = window.pss.createHtmlTag("tr", {}, createResultContentItem('instanceOfItem', 'ESTC Manifestation Record:', obj.instanceof, true));
+        table += tmp;
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Artist:', obj.role_ART, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Genre:', obj.genre, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Discipline:', obj.discipline, true));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Exhibit&nbsp;type:', obj.exhibit_type, false));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'License:', obj.license, false));
+		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Exhibit&nbsp;type:', obj.exhibit_type, false));
+		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'License:', obj.license, false));
 
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Editor:', obj.role_EDT, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Publisher:', obj.role_PBL, true));
@@ -255,16 +284,16 @@ jQuery(document).ready(function($) {
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Typographer:', obj.role_TYG, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Wood Engraver:', obj.role_WDE, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Wood Cutter:', obj.role_WDC, true));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject:', obj.subject, true));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Digital Surrogats:', obj.digital_surrogats, true));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Coverage:', obj.coverage, true));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Sub Location:', obj.subLocation, true));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Is Referenced By:', obj.isReferencedBy, true));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Shelf Mark:', obj.shelfMark, true));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Contributor:', obj.contributor, true));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Instance of:', obj.instanceof, true));
+		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject:', obj.subject, true));
+		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Digital Surrogats:', obj.digital_surrogats, true));
+		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Coverage:', obj.coverage, true));
+		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Sub Location:', obj.subLocation, true));
+		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Is Referenced By:', obj.isReferencedBy, true));
+		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Shelf Mark:', obj.shelfMark, true));
+		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Contributor:', obj.contributor, true));
+		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Instance of:', obj.instanceof, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Description:', obj.description, true));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'URL:', obj.url, true));
+		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'URL:', obj.url, true));
 
 		var exhibits;
 		if (obj.exhibits) {
@@ -292,6 +321,11 @@ jQuery(document).ready(function($) {
 
 	var needShowMoreLink = false;
 	function createResultContentItem(type, label, value, startHidden, rowClass) {
+        var shelfMark = '';
+	    if(type === 'hasInstanceItem' && typeof value === 'object') {
+            shelfMark = value.shelfMark;
+            value = value.hasInstance;
+        }
 		if (!value)
 			return "";
 
@@ -334,7 +368,68 @@ jQuery(document).ready(function($) {
 				return window.pss.createHtmlTag("div", { 'class': klass },
 					window.pss.createHtmlTag("span", { 'class': 'label' }, label) +
 					window.pss.createHtmlTag("span", { 'class': 'value' }, value));
-			case "multiple_item":
+            case "single_item_table":
+                return window.pss.createHtmlTag("div", { 'class': klass },
+                    window.pss.createHtmlTag("td", { 'class': 'label' }, label) + window.pss.createHtmlTag("td", { 'class': 'label' }, value));
+
+            // handle holding information
+            case "hasInstanceItem":
+                // The code below was used to convert the plain text url to the shelfmark of the item for
+                // display.  It needs to be moved so that it only performs the operation when the 'more' link
+                // is pressed.
+                //
+                var html = "";
+                for (var i = 0; i < value.length; i++) {
+                    var plainTextURL = value[i];
+                    var splitted_url = plainTextURL.split('/');
+                    var item_identifier = splitted_url[splitted_url.length-1];
+
+                    var final_value = '';
+
+                    if (i > 0) {
+                        html += "<br>";
+                    }
+
+                    if(shelfMark === undefined) {
+                        final_value = item_identifier;
+                    }
+                    else {
+                        final_value = shelfMark;
+                    }
+                    html += "<a target='_blank' style=\"text-decoration: none;\" href=\"http://estc21.ucr.edu/fullrecord?action=fullrecord&uri=" + plainTextURL + "\">" + window.pss.createHtmlTag("span", {'class': 'value'}, final_value) + "</a>";
+                }
+                return window.pss.createHtmlTag("div", { 'class': klass }, window.pss.createHtmlTag("td", { 'class': 'label' }, label) + window.pss.createHtmlTag("td", { 'class': 'label' }, html));
+
+            case "instanceOfItem":
+                // The code below was used to convert the plain text url to the shelfmark of the item for
+                // display.  It needs to be moved so that it only performs the operation when the 'more' link
+                // is pressed.
+                //
+                var html = "";
+                for (var i = 0; i < value.length; i++) {
+                    var plainTextURL = value[i];
+                    var splitted_url = plainTextURL.split('/');
+                    var item_identifier = splitted_url[splitted_url.length-1];
+
+                    if (i > 0) {
+                        html += "<br>";
+                    }
+                    html += "<a target='_blank' style=\"text-decoration: none;\" href=\"http://estc21.ucr.edu/fullrecord?action=fullrecord&uri=" + plainTextURL + "\">" + window.pss.createHtmlTag("span", { 'class': 'value' }, item_identifier) + "</a>";
+                }
+                return window.pss.createHtmlTag("div", { 'class': klass }, window.pss.createHtmlTag("td", { 'class': 'label' }, label) + window.pss.createHtmlTag("td", { 'class': 'label' }, html));
+
+            // hanlde holdiing information
+            case "hasInstanceItem_backup":
+            case "instanceOfItem_backup":
+                var html = "Item: " + window.pss.createHtmlTag("span ", { 'class': 'value' }, value[0]);
+                for (var i = 0; i < value.length; i++) {
+                    html += "<br>Item: " + window.pss.createHtmlTag("span", { 'class': 'value' }, value[i])
+                }
+
+                return window.pss.createHtmlTag("div", { 'class': klass },
+                    window.pss.createHtmlTag("td", { 'class': 'label' }, label) + window.pss.createHtmlTag("td", { 'class': 'label' }, html));
+
+            case "multiple_item":
 				var html = window.pss.createHtmlTag("span ", { 'class': 'value' }, value[0]);
 				for (var i = 1; i < value.length; i++) {
 					html += "<br>" + window.pss.createHtmlTag("span", { 'class': 'value' }, value[i]);
