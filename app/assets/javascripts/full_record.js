@@ -292,7 +292,7 @@ jQuery(document).ready(function($) {
 		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Shelf Mark:', obj.shelfMark, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Contributor:', obj.contributor, true));
 		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Instance of:', obj.instanceof, true));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Description:', obj.description, true));
+		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Description:', obj.description, true));
 		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'URL:', obj.url, true));
 
 		var exhibits;
