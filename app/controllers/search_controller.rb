@@ -130,7 +130,10 @@ class SearchController < ApplicationController
 	   constraints = []
 	   return constraints if query.blank?
 
-	   legal_constraints = [ 'q', 'f', 'o', 'g', 'a', 't', 'aut', 'ed', 'pub', 'r_art', 'r_own', 'fuz_q', 'fuz_t', 'y', 'lang', 'doc_type', 'discipline', 'fuz_q', 'fuz_t', 'fq', 'uri' ]
+	   legal_constraints = [ 'q', 'f', 'o', 'g', 'a', 't', 'aut', 'ed', 'pub',
+													 'r_art', 'r_own', 'fuz_q', 'fuz_t', 'y', 'lang',
+													 'doc_type', 'discipline', 'fuz_q', 'fuz_t', 'fq',
+													 'uri', 'coverage' ]
 	   @searchable_roles.each { |role|
 		   legal_constraints.push(role[0])
 	   }
@@ -238,7 +241,8 @@ class SearchController < ApplicationController
 		 ["role_RPS", "Repository"],
 		 ["role_SCR", "Scribe"],
 		 ["role_TRL", "Translator"],
-		 ["role_WDE", "Wood Engraver"]
+		 ["role_WDE", "Wood Engraver"],
+		 ["coverage", "Coverage"]
 	 ]
 	 return true
    end

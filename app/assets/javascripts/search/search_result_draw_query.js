@@ -8,6 +8,7 @@ jQuery(document).ready(function($) {
 			discipline: 'Discipline',
 			g: 'Genre',
 			q: 'Search Term',
+            coverage: 'Coverage',
 			doc_type: 'Format',
 			t: "Title",
 			aut: "Author",
@@ -62,7 +63,7 @@ jQuery(document).ready(function($) {
 	}
 
 	function newSearchTerm(roles, disabled ) {
-		var searchTypes = [ ['Search Term', 'q'], ['ESTC ID', 'uri'], ['Title', 't'] ];
+		var searchTypes = [ ['Search Term', 'q'], ['ESTC ID', 'uri'], ['Title', 't'], ['Coverage', 'coverage'] ];
 		if (window.collex.hasLanguage)
 			searchTypes.push(['Language', 'lang']);
 
