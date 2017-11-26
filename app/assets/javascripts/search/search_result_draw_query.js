@@ -9,6 +9,11 @@ jQuery(document).ready(function($) {
 			g: 'Genre',
 			q: 'Search Term',
             coverage: 'Coverage',
+            publisher: 'Imprint',
+            abbreviatedTitle: 'Abbreviated Title',
+            variantTitle: 'Variant Title',
+            earlierTitleProper: 'Earlier Title',
+            titleProperOfSeries: 'Series Title',
 			doc_type: 'Format',
 			t: "Title",
 			aut: "Author",
@@ -63,7 +68,13 @@ jQuery(document).ready(function($) {
 	}
 
 	function newSearchTerm(roles, disabled ) {
-		var searchTypes = [ ['Search Term', 'q'], ['ESTC ID', 'uri'], ['Title', 't'], ['Coverage', 'coverage'] ];
+		var searchTypes = [ ['Search Term', 'q'], ['ESTC ID', 'uri'],
+                            ['Title', 't'], ['Coverage', 'coverage'],
+                            ['Imprint', 'publisher'],
+                            ['Abbreviated Title', 'abbreviatedTitle'],
+                            ['Variant Title', 'variantTitle'],
+                            ['Earlier Title', 'earlierTitleProper'],
+                            ['Series Title', 'titleProperOfSeries']];
 		if (window.collex.hasLanguage)
 			searchTypes.push(['Language', 'lang']);
 
@@ -154,7 +165,11 @@ jQuery(document).ready(function($) {
 					var displayedValue = value;
 					if (displayedValue && displayedValue[0] === '-')
 						displayedValue = displayedValue.substr(1);
-					if (key === 'q' || key === 't' || key === 'aut' || key === 'ed' || key === 'pub' || key === 'r_art' || key === 'r_own' || key === 'y') {
+					if (key === 'q' || key === 't' || key === 'aut' || key === 'ed' ||
+                        key === 'pub' || key === 'r_art' || key === 'r_own' || key === 'y' ||
+                        key == 'publisher' || key == 'abbreviatedTitle' || key == 'variantTitle' ||
+                        key == 'earlierTitleProper' || key == 'titleProperOfSeries') {
+
 						displayedValue = window.pss.createHtmlTag("a", {'class': "modify_link query-editable", href: '#', 'data-type': key}, displayedValue);
 					}
 					if (key === 'lang') {

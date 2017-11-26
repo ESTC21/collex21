@@ -133,7 +133,8 @@ class SearchController < ApplicationController
 	   legal_constraints = [ 'q', 'f', 'o', 'g', 'a', 't', 'aut', 'ed', 'pub',
 													 'r_art', 'r_own', 'fuz_q', 'fuz_t', 'y', 'lang',
 													 'doc_type', 'discipline', 'fuz_q', 'fuz_t', 'fq',
-													 'uri', 'coverage' ]
+													 'uri', 'coverage', 'publisher', 'abbreviatedTitle',
+													 'variantTitle']
 	   @searchable_roles.each { |role|
 		   legal_constraints.push(role[0])
 	   }
@@ -148,8 +149,8 @@ class SearchController < ApplicationController
 	   if query.key?("uri")
 	     
 	     #constraints.push({key: 'q', val: ''})
-	     #fulluri = "http://estc.bl.uk/" + query['uri']
-	     #fullquery = "uri:\"#{fulluri}\""
+	     # fulluri = "http://estc.bl.uk/" + query['uri']
+	     # fullquery = "uri:\"#{fulluri}\""
 	     #constraints.push({key: 'q', val: 'king'})
 	     fullquery = "uri:*" + query['uri']
 	     constraints.push({key: 'q', val: fullquery})
@@ -162,8 +163,12 @@ class SearchController < ApplicationController
   		   found_federation = true if key == 'f'
   		   if legal_constraints.include?(key) && val.present?
   			   #if key == 'q' || key == 't' || key == 'aut' || key == 'pub' || key == 'ed' || key == 'r_own' || key == 'r_art' || key == 'uri'
-  				 if key == 'q' || key == 't' || key == 'aut' || key == 'pub' || key == 'ed' || key == 'r_own' || key == 'r_art'
-  				   val = process_q_param(val)
+  				 if key == 'q' || key == 't' || key == 'aut' || key == 'pub' ||
+							 key == 'ed' || key == 'r_own' || key == 'r_art' ||
+							 key == 'publisher' || key == 'abbreviatedTitle' || key == 'variantTitle' ||
+							 key == 'earlierTitleProper' || key == 'titleProperOfSeries'
+
+							 val = process_q_param(val)
   			   end
   			   # if we were passed fuzzy constraints, make sure that the corresponding other value is set
   			   if key == 'fuz_q'
@@ -242,7 +247,12 @@ class SearchController < ApplicationController
 		 ["role_SCR", "Scribe"],
 		 ["role_TRL", "Translator"],
 		 ["role_WDE", "Wood Engraver"],
-		 ["coverage", "Coverage"]
+		 ["coverage", "Coverage"],
+		 ["imprint", "Imprint"],
+		 ["abbreviatedTitle", "Abbreviated Title"],
+		 ["variantTitle", "Variant Title"],
+		 ["earlierTitleProper", "Earlier Title"],
+		 ["titleProperOfSeries", "Series Title"],
 	 ]
 	 return true
    end
