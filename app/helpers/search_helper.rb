@@ -523,12 +523,6 @@ module SearchHelper
     
     html = raw('<table class="limit_to facet-new-role">')
     html += raw("<tr><th>Roles</th><th class=\"num_objects\">See All</th></tr>")
-    html += facet_tree_node_row("2", 1, 0, 0, true, "Artist", 23, true)
-    html += facet_tree_node_row("2", 1, 0, 0, true, "Author", 23, false)
-    html += facet_tree_node_row("2", 1, 0, 0, true, "Book Designer", 23, false)
-    html += facet_tree_node_row("2", 1, 0, 0, true, "Binder", 23, false)
-    html += facet_tree_node_row("2", 1, 0, 0, true, "Calligrapher", 23, false)
-    html += raw("<tr><td class=\"limit_to_lvl1\"><a href=\"#\">More...</a></td><td>&nbsp;</td></tr>")
     html += raw('</table>')
 
     return raw(html)
@@ -599,6 +593,17 @@ module SearchHelper
 
     html = raw('<table id="genre_table" class="limit_to facet-genre">')
     html += raw("<tr><th id=\"genre_table_header\">Genre/Format</th><th class=\"num_objects\"># of Objects</th></tr>")
+    html += raw('</table>')
+
+    return raw(html)
+  end
+
+  def create_coverage_table( genre_data )
+
+    logger.info "This is from create_coverage_table"
+
+    html = raw('<table id="coverage_table" class="limit_to facet-coverage">')
+    html += raw("<tr><th id=\"coverage_table_header\">Coverage</th><th class=\"num_objects\"># of Objects</th></tr>")
     html += raw('</table>')
 
     return raw(html)
