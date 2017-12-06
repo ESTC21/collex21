@@ -75,10 +75,10 @@ jQuery(document).ready(function($) {
                             ['Variant Title', 'variantTitle'],
                             ['Earlier Title', 'earlierTitleProper'],
                             ['Series Title', 'titleProperOfSeries'],
-                            ['Creation Date', 'created'],];
+                            ['Creation Date', 'created'],
                             ['Imprint', 'publisher'],
                             ['Note', 'description'],
-                            ['Coverage', 'coverage'],
+                            ['Coverage', 'coverage']];
 		if (window.collex.hasLanguage)
 			searchTypes.push(['Language', 'lang']);
 
