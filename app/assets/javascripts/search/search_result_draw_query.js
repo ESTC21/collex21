@@ -14,6 +14,8 @@ jQuery(document).ready(function($) {
             variantTitle: 'Variant Title',
             earlierTitleProper: 'Earlier Title',
             titleProperOfSeries: 'Series Title',
+            description: 'Note',
+            created: 'Creation Date',
 			doc_type: 'Format',
 			t: "Title",
 			aut: "Author",
@@ -26,7 +28,7 @@ jQuery(document).ready(function($) {
 			fuz_q: 'Search Term Fuzziness',
 			fuz_t: 'Title Fuzziness',
 			pages: 'Pages of',
-			uri: 'ESCT ID'
+			uri: 'ESTC ID'
 			
 		};
 		if (types[key])
@@ -69,12 +71,14 @@ jQuery(document).ready(function($) {
 
 	function newSearchTerm(roles, disabled ) {
 		var searchTypes = [ ['Search Term', 'q'], ['ESTC ID', 'uri'],
-                            ['Title', 't'], ['Coverage', 'coverage'],
-                            ['Imprint', 'publisher'],
-                            ['Abbreviated Title', 'abbreviatedTitle'],
+                            ['Title', 't'], ['Abbreviated Title', 'abbreviatedTitle'],
                             ['Variant Title', 'variantTitle'],
                             ['Earlier Title', 'earlierTitleProper'],
-                            ['Series Title', 'titleProperOfSeries']];
+                            ['Series Title', 'titleProperOfSeries'],
+                            ['Creation Date', 'created'],];
+                            ['Imprint', 'publisher'],
+                            ['Note', 'description'],
+                            ['Coverage', 'coverage'],
 		if (window.collex.hasLanguage)
 			searchTypes.push(['Language', 'lang']);
 

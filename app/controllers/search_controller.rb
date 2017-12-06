@@ -134,7 +134,7 @@ class SearchController < ApplicationController
 													 'r_art', 'r_own', 'fuz_q', 'fuz_t', 'y', 'lang',
 													 'doc_type', 'discipline', 'fuz_q', 'fuz_t', 'fq',
 													 'uri', 'coverage', 'publisher', 'abbreviatedTitle',
-													 'variantTitle']
+													 'variantTitle', 'titleProperOfSeries', 'description', 'created']
 	   @searchable_roles.each { |role|
 		   legal_constraints.push(role[0])
 	   }
