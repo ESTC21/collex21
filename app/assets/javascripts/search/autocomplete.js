@@ -29,7 +29,7 @@ jQuery(document).ready(function($) {
 		request.field = fieldSelector ? $(fieldSelector).val() : 'q';
 		request.term = window.collex.sanitizeString(request.term);
 		request[csrf_param] = csrf_token;
-		var autoCompleteFields = [ 'q', 't', 'aut', 'ed', 'pub', 'publisher', 'uri', 'titleProperOfSeries', 'earlierTitleProper', 'description', 'variantTitle', 'abbreviatedTitle', 'created'];
+		var autoCompleteFields = [ 'q', 't', 'aut', 'ed', 'pub', 'coverage', 'g', 'lang', 'doc_type', 'r_own', 'r_art' ];
 		var autoCompleteOk = false;
 		for (var i = 0; !autoCompleteOk && i < autoCompleteFields.length; i++)
 			if (request.field === autoCompleteFields[i])
