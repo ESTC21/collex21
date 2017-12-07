@@ -345,20 +345,23 @@ class SearchController < ApplicationController
    end
 
    def auto_complete_for_q
-	   other = params[:other]
-	   other = process_constraints(other)
-	   field = params[:field]
-	   if field.nil? || field == 'q'
-	   	field = 'content'
-	   elsif field == 'aut'
-		   field = 'author'
-	   elsif field == 't'
-		   field = 'title'
-	   elsif field == 'ed'
-		   field = 'editor'
-	   elsif field == 'pub'
-		   field = 'publisher'
-		end
+     other = process_constraints(other)
+     field = params[:field]
+     if field.nil? || field == 'q'
+      field = 'content'
+     elsif field == 'aut'
+       field = 'author_sort'
+     elsif field == 't'
+       field = 'title'
+     elsif field == 'ed'
+       field = 'editor'
+     elsif field == 'pub'
+       field = 'publisher'
+     elsif field == 'g'
+      field = 'genre'
+     elsif field == 'doc_type'
+      field = 'format'
+     end
 	   respond_to do |format|
 		   format.json {
 			   values = auto_complete(params['term'], field, other) if params['term']  # google bot will hit this without parameters, so check for that

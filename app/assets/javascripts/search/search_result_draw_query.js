@@ -77,8 +77,11 @@ jQuery(document).ready(function($) {
                             ['Series Title', 'titleProperOfSeries'],
                             ['Creation Date', 'created'],
                             ['Imprint', 'publisher'],
-                            ['Note', 'description'],
-                            ['Coverage', 'coverage']];
+                            ['Author', 'aut'],
+                            ['Format', 'doc_type'],
+                            ['Genre', 'g'],
+                            ['Coverage', 'coverage'],
+                            ['Note', 'description'] ];
 		if (window.collex.hasLanguage)
 			searchTypes.push(['Language', 'lang']);
 
