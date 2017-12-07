@@ -134,54 +134,71 @@ jQuery(document).ready(function($) {
 		var labels = "";
 
 		var hash_genre = obj.facets.genre;
+		var hash_coverage = obj.facets.coverage;
 		var hash_discipline = obj.facets.discipline;
 		var hash_format = obj.facets.doc_type;
 		var hash_access = obj.facets.access;
 
-		for (var key in hash_genre) {
-			if (hash_genre.hasOwnProperty(key)) {
-				selected = obj.query.g;
-				if (typeof selected === 'string') selected = [ selected ];
-				var selectedIndex = $.inArray(key, selected);
-				var label = key;
-				if (labels) label = labels[key];
-				html += createFacetRow(key, hash_genre[key], 'g', selectedIndex !== -1, label);
-			}
-		}
 
-		for (var key in hash_discipline) {
-			if (hash_discipline.hasOwnProperty(key)) {
-				selected = obj.query.discipline;
-				if (typeof selected === 'string') selected = [ selected ];
-				var selectedIndex = $.inArray(key, selected);
-				var label = key;
-				if (labels) label = labels[key];
-				html += createFacetRow(key, hash_discipline[key], 'discipline', selectedIndex !== -1, label);
-			}
-		}
+		if(facet_class == 'facet-coverage') {
+            for (var key in hash_coverage) {
+                if (hash_coverage.hasOwnProperty(key)) {
+                    selected = obj.query.coverage;
+                    if (typeof selected === 'string') selected = [selected];
+                    var selectedIndex = $.inArray(key, selected);
+                    var label = key;
+                    if (labels) label = labels[key];
+                    html += createFacetRow(key, hash_coverage[key], 'coverage', selectedIndex !== -1, label);
+                }
+            }
+        }
 
-		for (var key in hash_format) {
-			if (hash_format.hasOwnProperty(key)) {
-				selected = obj.query.doc_type;
-				if (typeof selected === 'string') selected = [ selected ];
-				var selectedIndex = $.inArray(key, selected);
-				var label = key;
-				if (labels) label = labels[key];
-				html += createFacetRow(key, hash_format[key], 'doc_type', selectedIndex !== -1, label);
-			}
-		}
+        if(facet_class == 'facet-genre') {
+            for (var key in hash_genre) {
+                if (hash_genre.hasOwnProperty(key)) {
+                    selected = obj.query.g;
+                    if (typeof selected === 'string') selected = [selected];
+                    var selectedIndex = $.inArray(key, selected);
+                    var label = key;
+                    if (labels) label = labels[key];
+                    html += createFacetRow(key, hash_genre[key], 'g', selectedIndex !== -1, label);
+                }
+            }
 
-		for (var key in hash_access) {
-			if (hash_access.hasOwnProperty(key)) {
-				selected = obj.query.o;
-				labels = window.collex.facetNames.access;
-				if (typeof selected === 'string') selected = [ selected ];
-				var selectedIndex = $.inArray(key, selected);
-				var label = key;
-				if (labels) label = labels[key];
-				html += createFacetRow(key, hash_access[key], 'o', selectedIndex !== -1, label);
-			}
-		}
+            for (var key in hash_discipline) {
+                if (hash_discipline.hasOwnProperty(key)) {
+                    selected = obj.query.discipline;
+                    if (typeof selected === 'string') selected = [selected];
+                    var selectedIndex = $.inArray(key, selected);
+                    var label = key;
+                    if (labels) label = labels[key];
+                    html += createFacetRow(key, hash_discipline[key], 'discipline', selectedIndex !== -1, label);
+                }
+            }
+
+            for (var key in hash_format) {
+                if (hash_format.hasOwnProperty(key)) {
+                    selected = obj.query.doc_type;
+                    if (typeof selected === 'string') selected = [selected];
+                    var selectedIndex = $.inArray(key, selected);
+                    var label = key;
+                    if (labels) label = labels[key];
+                    html += createFacetRow(key, hash_format[key], 'doc_type', selectedIndex !== -1, label);
+                }
+            }
+
+            for (var key in hash_access) {
+                if (hash_access.hasOwnProperty(key)) {
+                    selected = obj.query.o;
+                    labels = window.collex.facetNames.access;
+                    if (typeof selected === 'string') selected = [selected];
+                    var selectedIndex = $.inArray(key, selected);
+                    var label = key;
+                    if (labels) label = labels[key];
+                    html += createFacetRow(key, hash_access[key], 'o', selectedIndex !== -1, label);
+                }
+            }
+        }
 
 		var block = $("."+facet_class);
 		var header = window.pss.createHtmlTag("tr", {}, block.find("tr:first-of-type").html());
@@ -280,6 +297,7 @@ jQuery(document).ready(function($) {
 	}
 
 	window.collex.createFacets = function(obj) {
+		createFacetBlock('facet-coverage', obj);
 		createFacetBlock('facet-genre', obj);
 		/*createFacetBlock('facet-genre', obj.facets.discipline, 'discipline', obj.query.discipline);
 		createFacetBlock('facet-genre', obj.facets.doc_type, 'doc_type', obj.query.doc_type);
