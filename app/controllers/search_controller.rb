@@ -131,10 +131,10 @@ class SearchController < ApplicationController
 	   return constraints if query.blank?
 
 	   legal_constraints = [ 'q', 'f', 'o', 'g', 'a', 't', 'aut', 'ed', 'pub',
-													 'r_art', 'r_own', 'fuz_q', 'fuz_t', 'y', 'lang',
+													 'r_art', 'r_own', 'r_rps', 'fuz_q', 'fuz_t', 'y', 'lang',
 													 'doc_type', 'discipline', 'fuz_q', 'fuz_t', 'fq',
 													 'uri', 'coverage', 'publisher', 'abbreviatedTitle',
-													 'variantTitle', 'titleProperOfSeries', 'description', 'created']
+													 'variantTitle', 'titleProperOfSeries', 'description', 'created', 'subject']
 	   @searchable_roles.each { |role|
 		   legal_constraints.push(role[0])
 	   }
@@ -240,6 +240,7 @@ class SearchController < ApplicationController
 		 ["role_ILU", "Illuminator"],
 		 ["role_LTG", "Lithographer"],
 		 ["r_own", "Owner"],
+     ["r_rps", "Repository"],
 		 ["pub", "Publisher"],
 		 ["role_POP", "Printer of plates"],
 		 ["role_PRT", "Printer"],
@@ -360,8 +361,12 @@ class SearchController < ApplicationController
      elsif field == 'g'
       field = 'genre'
      elsif field == 'doc_type'
-      field = 'format'
-     end
+      field = 'type'
+    elsif field == 'r_own'
+      field = 'role_OWN'
+    elsif field == 'r_rps'
+      field = 'role_RPS'
+    end
 	   respond_to do |format|
 		   format.json {
 			   values = auto_complete(params['term'], field, other) if params['term']  # google bot will hit this without parameters, so check for that

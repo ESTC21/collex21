@@ -16,19 +16,21 @@ jQuery(document).ready(function($) {
             titleProperOfSeries: 'Series Title',
             description: 'Note',
             created: 'Creation Date',
-			doc_type: 'Format',
+			doc_type: 'Type',
 			t: "Title",
 			aut: "Author",
 			ed: 'Editor',
 			pub: "Publisher",
 			r_art: 'Artist',
 			r_own: 'Owner',
+			r_rps: 'Repository',
 			y: 'Year',
 			lang: 'Language',
 			fuz_q: 'Search Term Fuzziness',
 			fuz_t: 'Title Fuzziness',
 			pages: 'Pages of',
-			uri: 'ESTC ID'
+			uri: 'ESTC ID',
+			subject: 'Subject'
 			
 		};
 		if (types[key])
@@ -78,7 +80,11 @@ jQuery(document).ready(function($) {
                             ['Creation Date', 'created'],
                             ['Imprint', 'publisher'],
                             ['Author', 'aut'],
-                            ['Format', 'doc_type'],
+                            ['Owner', 'r_own'],
+                            ['Repository','r_rps'],
+                            ['Subject', 'subject'],
+                            ['Format', 'format'],
+                            ['Type', 'doc_type'],
                             ['Genre', 'g'],
                             ['Coverage', 'coverage'],
                             ['Note', 'description'] ];
