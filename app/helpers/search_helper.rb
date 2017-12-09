@@ -610,6 +610,17 @@ module SearchHelper
     return raw(html)
   end
 
+  def create_imprint_table(imprint_data)
+
+    logger.info "This is from create_imprint_table"
+
+    html = raw('<table id="imprint_table" class="limit_to facet-imprint">')
+    html += raw("<tr><th id=\"coverage_table_header\">Imprint</th><th class=\"num_objects\"># of Objects</th></tr>")
+    html += raw('</table>')
+
+    return raw(html)
+  end
+
 
 
   #def create_access_table( freeculture_count, fulltext_count, typewright_count )

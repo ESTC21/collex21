@@ -58,6 +58,8 @@ jQuery(document).ready(function($) {
         for(var role in obj.facets.role) {
             var values = _.pluck(obj.hits, role).flatten();
             values = _.reject(values, function(val){ return val == undefined });
+            // remove digits ',' '.' & '-'
+            values = _.map(values, function(val){ return val.replace(/[0-9?.,-]/g, ''); });
 
             if(values.length > 0) {
                 consolidated_role_params[role] = _.uniq(values);
@@ -134,11 +136,24 @@ jQuery(document).ready(function($) {
 		var labels = "";
 
 		var hash_genre = obj.facets.genre;
+		var hash_publisher = obj.facets.publisher;
 		var hash_coverage = obj.facets.coverage;
 		var hash_discipline = obj.facets.discipline;
 		var hash_format = obj.facets.doc_type;
 		var hash_access = obj.facets.access;
 
+        if(facet_class == 'facet-imprint') {
+            for (var key in hash_publisher) {
+                if (hash_publisher.hasOwnProperty(key)) {
+                    selected = obj.query.publisher;
+                    if (typeof selected === 'string') selected = [selected];
+                    var selectedIndex = $.inArray(key, selected);
+                    var label = key;
+                    if (labels) label = labels[key];
+                    html += createFacetRow(key, hash_coverage[key], 'publisher', selectedIndex !== -1, label);
+                }
+            }
+        }
 
 		if(facet_class == 'facet-coverage') {
             for (var key in hash_coverage) {
@@ -297,6 +312,7 @@ jQuery(document).ready(function($) {
 	}
 
 	window.collex.createFacets = function(obj) {
+		createFacetBlock('facet-imprint', obj);
 		createFacetBlock('facet-coverage', obj);
 		createFacetBlock('facet-genre', obj);
 		/*createFacetBlock('facet-genre', obj.facets.discipline, 'discipline', obj.query.discipline);
