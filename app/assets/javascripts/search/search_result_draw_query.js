@@ -118,10 +118,10 @@ jQuery(document).ready(function($) {
 			searchTypes.push(['Owner', 'r_own']);
 		}
 		searchTypes.push(['Year (YYYY)', 'y']);
-		
+
 		// try adding more facets here
-		
-		
+
+
 		
 		var selectTypeOptions = "";
 		for (var i = 0; i < searchTypes.length; i++)

@@ -594,6 +594,7 @@ module SearchHelper
 
     html = raw('<table id="genre_table" class="limit_to facet-genre">')
     html += raw("<tr><th id=\"genre_table_header\">Genre/Format</th><th class=\"num_objects\"># of Objects</th></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\">Not enough data to show this facet</td><td>&nbsp;</td></tr>")
     html += raw('</table>')
 
     return raw(html)
@@ -605,6 +606,7 @@ module SearchHelper
 
     html = raw('<table id="coverage_table" class="limit_to facet-coverage">')
     html += raw("<tr><th id=\"coverage_table_header\">Coverage</th><th class=\"num_objects\"># of Objects</th></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\">Not enough data to show this facet</td><td>&nbsp;</td></tr>")
     html += raw('</table>')
 
     return raw(html)
@@ -615,7 +617,8 @@ module SearchHelper
     logger.info "This is from create_imprint_table"
 
     html = raw('<table id="imprint_table" class="limit_to facet-imprint">')
-    html += raw("<tr><th id=\"coverage_table_header\">Imprint</th><th class=\"num_objects\"># of Objects</th></tr>")
+    html += raw("<tr><th id=\"imprint_table_header\">Imprint</th><th class=\"num_objects\"># of Objects</th></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\">Not enough data to show this facet</td><td>&nbsp;</td></tr>")
     html += raw('</table>')
 
     return raw(html)

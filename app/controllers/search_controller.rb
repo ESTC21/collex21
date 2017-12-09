@@ -370,6 +370,8 @@ class SearchController < ApplicationController
 	   respond_to do |format|
 		   format.json {
 			   values = auto_complete(params['term'], field, other) if params['term']  # google bot will hit this without parameters, so check for that
+				 values = values.map { |val, num| [val.delete('0-9?,.-').strip, num] } if params[:field] == 'aut'
+
 			   render json: values
 		   }
 	   end
