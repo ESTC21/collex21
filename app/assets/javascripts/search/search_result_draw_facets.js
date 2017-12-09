@@ -47,6 +47,20 @@ jQuery(document).ready(function($) {
         block.html(header + html);
     }
 
+    // helper for createRoleFacetBlock()
+    function data_key_and_header_text(key) {
+        var data_key = 'aut';
+        var header_label = 'Author';
+        if(key == 'role_OWN'){
+            data_key = 'r_own';
+            header_label = 'Owner';
+        }
+        else if(key == 'role_RPS'){
+            data_key = 'role_RPS';
+            header_label = 'Repository';
+        }
+        return [data_key, header_label]
+    }
     function createRoleFacetBlock(facet_class, obj) {
         var html = "";
         var selected = "";
@@ -77,14 +91,7 @@ jQuery(document).ready(function($) {
                 var selectedIndex = $.inArray(key, selected);
                 var label = key;
                 if (labels) label = labels[key];
-
-                var data_key = 'aut';
-                if(key == 'role_OWN'){
-                    data_key = 'r_own'
-                }
-                else if(key == 'role_RPS'){
-                    data_key = 'role_RPS'
-                }
+                var data_key = data_key_and_header_text(key)[0];
 
                 html += createRoleFacetRow(key, consolidated_role_params[key].length, data_key, selectedIndex !== -1, label, false, idx);
                 _.map(consolidated_role_params[key], function(role_desc){ return html += createRoleFacetRow(key, role_desc, data_key, selectedIndex !== -1, label, true, idx); });
@@ -99,8 +106,10 @@ jQuery(document).ready(function($) {
 
     function createRoleFacetRow(name, count, dataKey, isSelected, label, isSubmenu, index) {
         if (!label) label = name;
+        var header_text = data_key_and_header_text(name)[1];
+
         if (isSelected) {
-            var remove = window.collex.create_facet_button('[X]', name, "remove", dataKey);
+            var remove = window.collex.create_facet_button('[X]', header_text, "remove", dataKey);
             return window.pss.createHtmlTag("tr", { 'class': "limit_to_selected" },
                 window.pss.createHtmlTag("td", { 'class': "limit_to_lvl1" }, label + "&nbsp;&nbsp;" + remove) +
                 window.pss.createHtmlTag("td", { 'class': "num_objects" }, window.collex.number_with_delimiter(count)));
@@ -116,13 +125,12 @@ jQuery(document).ready(function($) {
                 var arrow = (index == 0 ? 'hidden' : '');
                 var down = (index == 0 ? '' : 'hidden');
                 var menu_style = (index == 0 ? 'expanded' : 'collapsed');
-
-                var button = window.collex.create_facet_button(label, name, "add", dataKey);
+                
                 var arrow_html = '<span class="exp-arrow "' + arrow + '><img alt="Arrow" src="/assets/arrow.gif">' +
                                  '</span><span class="col-arrow"' + down + '><img alt="Arrow_dn" src="/assets/arrow_dn.gif"></span>';
 
                 return window.pss.createHtmlTag("tr", {'class': 'category-btn ' + menu_style, 'data-key': dataKey},
-                    window.pss.createHtmlTag("td", {'class': "limit_to_lvl0"}, arrow_html + '<span class="nav_link">' + name + '</span>') +
+                    window.pss.createHtmlTag("td", {'class': "limit_to_lvl0"}, arrow_html + '<span class="nav_link">' + header_text + '</span>') +
                     window.pss.createHtmlTag("td", {'class': "num_objects"}, window.collex.number_with_delimiter(count)));
             }
         }
