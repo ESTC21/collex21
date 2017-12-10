@@ -5,6 +5,7 @@ jQuery(document).ready(function($) {
 	function callback(request, response) {
 		var self = this.element;
 		var url = self.attr('data-autocomplete-url') + '.json';
+		var field = self.attr('data-type');
 		var fieldSelector = self.attr('data-autocomplete-field');
 		var csrf_param = $('meta[name=csrf-param]')[0].content;
 		var csrf_token = $('meta[name=csrf-token]')[0].content;
@@ -26,7 +27,11 @@ jQuery(document).ready(function($) {
 		}
 
 		request.other = window.collex.removeSortAndPageFromQueryObject();
-		request.field = fieldSelector ? $(fieldSelector).val() : 'q';
+		request.field = field ? field : undefined
+
+		if (request && request.field === undefined)
+			request.field = fieldSelector ? $(fieldSelector).val() : 'q';
+
 		request.term = window.collex.sanitizeString(request.term);
 		request[csrf_param] = csrf_token;
 		var autoCompleteFields = [ 'q', 'aut', 'ed', 'pub', 'coverage', 'g', 'lang', 'doc_type', 'r_own', 'r_rps', 'format', 'subject' ];

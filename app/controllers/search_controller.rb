@@ -166,7 +166,7 @@ class SearchController < ApplicationController
 				 if key == 'q' || key == 't' ||  key == 'pub' ||
 							 key == 'ed' || key == 'r_own' || key == 'r_art' || key == 'r_rps' ||
 							 key == 'publisher' || key == 'abbreviatedTitle' || key == 'variantTitle' ||
-							 key == 'earlierTitleProper' || key == 'titleProperOfSeries'
+							 key == 'earlierTitleProper' || key == 'titleProperOfSeries' || key == 'aut' ||  key == 'coverage' || key == 'doc_type' || key == 'g' || titleProperOfSeries
 
 							 val = process_q_param(val)
   			   end
@@ -370,7 +370,6 @@ class SearchController < ApplicationController
 		   format.json {
 			   values = auto_complete(params['term'], field, other) if params['term']  # google bot will hit this without parameters, so check for that
 				 values = values.map { |val, num| [val.delete('0-9?,.-').strip, num] } if params[:field] == 'aut'
-
 			   render json: values
 		   }
 	   end

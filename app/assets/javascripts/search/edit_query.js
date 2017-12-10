@@ -23,6 +23,7 @@ jQuery(document).ready(function($) {
 		var key = e.which;
 		if (key === 13 || key === 10 || key === 27)
 			return false;
+
 	});
 
 	body.on("keyup", ".query-editing", function(e) {
@@ -48,7 +49,14 @@ jQuery(document).ready(function($) {
 		var parent = el.closest('td');
 		var type = el.attr("data-type");
 		var value = el.text();
-		parent.html("<input type='text' data-original='" + value + "' data-type='" + type + "' value='" + value + "' class='query-editing' />");
+
+		if(jQuery.inArray(type, ['q', 'aut', 'ed', 'pub', 'coverage', 'g', 'lang', 'doc_type', 'r_own', 'r_rps', 'format', 'subject'])) {
+      parent.html(window.pss.createHtmlTag("input", { 'class': "add-autocomplete regular-input query-editing", type: 'text', placeholder: "click here to add new search term", 'data-autocomplete-url': "/search/auto_complete_for_q", 'data-autocomplete-field': ".query_type_select", 'data-type': type, autocomplete: 'off', 'data-original': value, 'value': value }) + window.pss.createHtmlTag("div", {'class': "auto_complete", id: "search_phrase_auto_complete", style: "display: none;" }, ''));
+      window.collex.initAutoComplete(parent.find(".query-editing"));
+    }
+    else
+      parent.html("<input type='text' data-original='" + value + "' data-type='" + type + "' value='" + value + "' class='query-editing' />");
+
 		parent.find(".query-editing").focus();
 		return false;
 	});

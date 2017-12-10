@@ -474,9 +474,9 @@ jQuery(document).ready(function($) {
 
 	// This modifies the current search.
 	body.bind('ModifySearch', function(ev, obj) {
-      if (obj.key === "y") {
-         obj.newValue = window.collex.formatYearString(obj.newValue);
-      }
+    if (obj.key === "y") {
+       obj.newValue = window.collex.formatYearString(obj.newValue);
+    }
 		var query = modifyInQueryObject(obj.key, obj.original, window.collex.sanitizeString(obj.newValue));
 		changePage("/search?" + window.collex.makeQueryString(query));
 	});
