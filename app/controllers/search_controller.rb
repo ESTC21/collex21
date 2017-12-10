@@ -166,7 +166,7 @@ class SearchController < ApplicationController
 				 if key == 'q' || key == 't' ||  key == 'pub' ||
 							 key == 'ed' || key == 'r_own' || key == 'r_art' || key == 'r_rps' ||
 							 key == 'publisher' || key == 'abbreviatedTitle' || key == 'variantTitle' ||
-							 key == 'earlierTitleProper' || key == 'titleProperOfSeries' || key == 'aut' ||  key == 'coverage' || key == 'doc_type' || key == 'g' || titleProperOfSeries
+							 key == 'earlierTitleProper' || key == 'titleProperOfSeries' || key == 'aut' ||  key == 'coverage' || key == 'doc_type' || key == 'g'
 
 							 val = process_q_param(val)
   			   end
