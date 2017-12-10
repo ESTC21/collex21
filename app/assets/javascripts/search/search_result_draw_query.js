@@ -31,7 +31,6 @@ jQuery(document).ready(function($) {
 			pages: 'Pages of',
 			uri: 'ESTC ID',
 			subject: 'Subject'
-			
 		};
 		if (types[key])
 			return types[key];
@@ -72,24 +71,17 @@ jQuery(document).ready(function($) {
 	}
 
 	function newSearchTerm(roles, disabled ) {
-		var searchTypes = [ ['Search Term', 'q'], ['ESTC ID', 'uri'],
-                            ['Title', 't'], ['Abbreviated Title', 'abbreviatedTitle'],
-                            ['Variant Title', 'variantTitle'],
-                            ['Earlier Title', 'earlierTitleProper'],
-                            ['Series Title', 'titleProperOfSeries'],
-                            ['Creation Date', 'created'],
-                            ['Imprint', 'publisher'],
-                            ['Author', 'aut'],
-                            ['Owner', 'r_own'],
-                            ['Repository','r_rps'],
-                            ['Subject', 'subject'],
-                            ['Format', 'format'],
-                            ['Type', 'doc_type'],
-                            ['Genre', 'g'],
-                            ['Coverage', 'coverage'],
-                            ['Note', 'description'] ];
-		if (window.collex.hasLanguage)
-			searchTypes.push(['Language', 'lang']);
+		var searchTypes = [ ['Search Term', 'q'],
+                        ['ESTC ID', 'uri'],
+                        ['Title', 't'],
+                        ['Abbreviated Title', 'abbreviatedTitle'],
+                        ['Variant Title', 'variantTitle'],
+                        ['Earlier Title', 'earlierTitleProper'],
+                        ['Series Title', 'titleProperOfSeries'],
+                        ['Year (YYYY)', 'y'],
+                        ['Creation Date', 'created'],
+                        ['Imprint', 'publisher'],
+                        ['Author', 'aut'] ];
 
 		if (window.collex.hasManyRoles) {
 			if (roles) {
@@ -97,9 +89,7 @@ jQuery(document).ready(function($) {
 					if (roles.hasOwnProperty(role)) {
 						var roleSubstitution = {
 							role_ART: 'r_art',
-							role_AUT: 'aut',
 							role_EDT: 'ed',
-							role_OWN: 'r_own',
 							role_PBL: 'pub'
 						};
 						if (roleSubstitution[role])
@@ -110,14 +100,21 @@ jQuery(document).ready(function($) {
 					}
 				}
 			}
-		} else {
-			searchTypes.push(['Author', 'aut']);
-			searchTypes.push(['Editor', 'ed']);
-			searchTypes.push(['Publisher', 'pub']);
+    } else {
 			searchTypes.push(['Artist', 'r_art']);
-			searchTypes.push(['Owner', 'r_own']);
+      searchTypes.push(['Editor', 'ed']);
+      searchTypes.push(['Publisher', 'pub']);
 		}
-		searchTypes.push(['Year (YYYY)', 'y']);
+
+    searchTypes.push(['Owner', 'r_own']);
+    searchTypes.push(['Repository','r_rps']);
+    searchTypes.push(['Subject', 'subject']);
+    searchTypes.push(['Format', 'format']);
+    searchTypes.push(['Type', 'doc_type']);
+    searchTypes.push(['Genre', 'g']);
+    searchTypes.push(['Language', 'lang']);
+    searchTypes.push(['Coverage', 'coverage']);
+    searchTypes.push(['Note', 'description']);
 
 		// try adding more facets here
 
@@ -181,7 +178,8 @@ jQuery(document).ready(function($) {
 					if (key === 'q' || key === 't' || key === 'aut' || key === 'ed' ||
                         key === 'pub' || key === 'r_art' || key === 'r_own' || key === 'y' ||
                         key == 'publisher' || key == 'abbreviatedTitle' || key == 'variantTitle' ||
-                        key == 'earlierTitleProper' || key == 'titleProperOfSeries') {
+                        key == 'earlierTitleProper' || key == 'titleProperOfSeries' || key == 'coverage' || key == 'g' || key == 'doc_type' ||  key == 'r_rps' || key == 'format' || key == 'subject' || key == 'description') {
+
 
 						displayedValue = window.pss.createHtmlTag("a", {'class': "modify_link query-editable", href: '#', 'data-type': key}, displayedValue);
 					}

@@ -134,7 +134,8 @@ class SearchController < ApplicationController
 													 'r_art', 'r_own', 'r_rps', 'fuz_q', 'fuz_t', 'y', 'lang',
 													 'doc_type', 'discipline', 'fuz_q', 'fuz_t', 'fq',
 													 'uri', 'coverage', 'publisher', 'abbreviatedTitle',
-													 'variantTitle', 'titleProperOfSeries', 'description', 'created', 'subject']
+													 'variantTitle', 'titleProperOfSeries', 'description', 'subject']
+                           # add  'created' once Catalog has the key at its end
 	   @searchable_roles.each { |role|
 		   legal_constraints.push(role[0])
 	   }
