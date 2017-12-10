@@ -107,7 +107,6 @@ class SearchController < ApplicationController
 				results['facets']['doc_type'] = {} if results['facets']['doc_type'].blank?
 				results['facets']['discipline'] = {} if results['facets']['discipline'].blank?
 				results['facets']['role'] = {} if results['facets']['role'].blank?
-				
 
 				render :json => results
 			end
@@ -164,8 +163,8 @@ class SearchController < ApplicationController
   		   found_federation = true if key == 'f'
   		   if legal_constraints.include?(key) && val.present?
   			   #if key == 'q' || key == 't' || key == 'aut' || key == 'pub' || key == 'ed' || key == 'r_own' || key == 'r_art' || key == 'uri'
-  				 if key == 'q' || key == 't' || key == 'aut' || key == 'pub' ||
-							 key == 'ed' || key == 'r_own' || key == 'r_art' ||
+				 if key == 'q' || key == 't' ||  key == 'pub' ||
+							 key == 'ed' || key == 'r_own' || key == 'r_art' || key == 'r_rps' ||
 							 key == 'publisher' || key == 'abbreviatedTitle' || key == 'variantTitle' ||
 							 key == 'earlierTitleProper' || key == 'titleProperOfSeries'
 
@@ -203,7 +202,6 @@ class SearchController < ApplicationController
   	   # fqconstraint = "-instanceof:http*"
   	   # constraints.push({key: 'fq', val: fqconstraint})
 	   end
-	   
 	   return constraints
    end
 
