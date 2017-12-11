@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
 
 	window.collex.create_facet_button = function(label, value, action, key) {
 		return window.pss.createHtmlTag("button",
-            { 'class': 'select-facet nav_link', 'data-action': action, 'data-key': key, 'data-value': value }, label);
+            { 'class': 'select-facet nav_link crop', 'data-action': action, 'data-key': key, 'data-value': value }, label);
 	};
 
 	window.collex.number_with_delimiter = function(number) {

@@ -479,3 +479,13 @@ span.advanced_search_field_tooltip {
 .no-display {
   display: none;
 }
+
+.limit_to {
+  .crop {
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    text-overflow: ellipsis;
+    width: 12em;
+  }
+}
