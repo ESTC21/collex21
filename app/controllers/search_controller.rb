@@ -156,30 +156,25 @@ class SearchController < ApplicationController
 	     constraints.push({key: 'q', val: fullquery})
 	     
 	   else
-	     
-	     #query['q'] = "uri:*T164511"
-
-  	   query.each { |key, val|
-  		   found_federation = true if key == 'f'
-  		   if legal_constraints.include?(key) && val.present?
-  			   #if key == 'q' || key == 't' || key == 'aut' || key == 'pub' || key == 'ed' || key == 'r_own' || key == 'r_art' || key == 'uri'
-				 if key == 'q' || key == 't' ||  key == 'pub' ||
-							 key == 'ed' || key == 'r_own' || key == 'r_art' || key == 'r_rps' ||
-							 key == 'publisher' || key == 'abbreviatedTitle' || key == 'variantTitle' ||
-							 key == 'earlierTitleProper' || key == 'titleProperOfSeries' || key == 'aut' ||  key == 'coverage' || key == 'doc_type' || key == 'g'
-
-							 val = process_q_param(val)
-  			   end
-  			   # if we were passed fuzzy constraints, make sure that the corresponding other value is set
-  			   if key == 'fuz_q'
-  				   constraints.push({key: key, val: "#{val.to_i-1}"}) if query['q']
-  			   elsif key == 'fuz_t'
-  				   constraints.push({key: key, val: "#{val.to_i-1}"}) if query['t']			
-  				 elsif key != 'uri'
-  				   constraints.push({key: key, val: val})
-  			   end
-  		   end
-  	   }
+      #query['q'] = "uri:*T164511"
+      query.each { |key, val|
+        found_federation = true if key == 'f'
+        if legal_constraints.include?(key) && val.present?
+        #if key == 'q' || key == 't' || key == 'aut' || key == 'pub' || key == 'ed' || key == 'r_own' || key == 'r_art' || key == 'uri'
+          q_param_keys = ['q', 't', 'pub', 'ed', 'r_own', 'r_art', 'r_rps', 'publisher', 'abbreviatedTitle', 'variantTitle', 'earlierTitleProper', 'titleProperOfSeries', 'aut', 'coverage', 'doc_type', 'g', 'description', 'subject']
+          if q_param_keys.include?(key)
+            val = process_q_param(val)
+          end
+          # if we were passed fuzzy constraints, make sure that the corresponding other value is set
+          if key == 'fuz_q'
+            constraints.push({key: key, val: "#{val.to_i-1}"}) if query['q']
+          elsif key == 'fuz_t'
+            constraints.push({key: key, val: "#{val.to_i-1}"}) if query['t']
+          elsif key != 'uri'
+            constraints.push({key: key, val: val})
+          end
+        end
+      }
 	  
   	   #################################################################
   	   # This is where I might want to add my exclusion of child records
