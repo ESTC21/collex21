@@ -50,7 +50,7 @@ jQuery(document).ready(function($) {
 		var type = el.attr("data-type");
 		var value = el.text();
 
-		if(jQuery.inArray(type, ['q', 'aut', 'ed', 'pub', 'coverage', 'g', 'lang', 'doc_type', 'r_own', 'r_rps', 'format', 'subject'])) {
+		if(jQuery.inArray(type, ['q', 'aut', 'ed', 'pub', 'coverage', 'g', 'lang', 'doc_type', 'r_own', 'r_rps', 'record_format', 'subject'])) {
       parent.html(window.pss.createHtmlTag("input", { 'class': "add-autocomplete regular-input query-editing", type: 'text', placeholder: "click here to add new search term", 'data-autocomplete-url': "/search/auto_complete_for_q", 'data-autocomplete-field': ".query_type_select", 'data-type': type, autocomplete: 'off', 'data-original': value, 'value': value }) + window.pss.createHtmlTag("div", {'class': "auto_complete", id: "search_phrase_auto_complete", style: "display: none;" }, ''));
       window.collex.initAutoComplete(parent.find(".query-editing"));
     }

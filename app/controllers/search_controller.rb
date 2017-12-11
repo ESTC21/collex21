@@ -133,7 +133,7 @@ class SearchController < ApplicationController
 													 'r_art', 'r_own', 'r_rps', 'fuz_q', 'fuz_t', 'y', 'lang',
 													 'doc_type', 'discipline', 'fuz_q', 'fuz_t', 'fq',
 													 'uri', 'coverage', 'publisher', 'abbreviatedTitle',
-													 'variantTitle', 'titleProperOfSeries', 'description', 'subject']
+													 'variantTitle', 'titleProperOfSeries', 'description', 'subject', 'record_format']
                            # add  'created' once Catalog has the key at its end
 	   @searchable_roles.each { |role|
 		   legal_constraints.push(role[0])
@@ -161,7 +161,8 @@ class SearchController < ApplicationController
         found_federation = true if key == 'f'
         if legal_constraints.include?(key) && val.present?
         #if key == 'q' || key == 't' || key == 'aut' || key == 'pub' || key == 'ed' || key == 'r_own' || key == 'r_art' || key == 'uri'
-          q_param_keys = ['q', 't', 'pub', 'ed', 'r_own', 'r_art', 'r_rps', 'publisher', 'abbreviatedTitle', 'variantTitle', 'earlierTitleProper', 'titleProperOfSeries', 'aut', 'coverage', 'doc_type', 'g', 'description', 'subject']
+          q_param_keys = ['q', 't', 'pub', 'ed', 'r_own', 'r_art', 'r_rps', 'publisher', 'abbreviatedTitle', 'variantTitle', 'earlierTitleProper', 'titleProperOfSeries', 'aut', 'coverage', 'doc_type', 'g', 'description', 'subject', 'record_format']
+
           if q_param_keys.include?(key)
             val = process_q_param(val)
           end
@@ -248,6 +249,8 @@ class SearchController < ApplicationController
 		 ["variantTitle", "Variant Title"],
 		 ["earlierTitleProper", "Earlier Title"],
 		 ["titleProperOfSeries", "Series Title"],
+		 ["record_format", "Format"],
+
 	 ]
 	 return true
    end

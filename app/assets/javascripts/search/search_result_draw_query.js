@@ -16,6 +16,7 @@ jQuery(document).ready(function($) {
             titleProperOfSeries: 'Series Title',
             description: 'Note',
             created: 'Creation Date',
+            record_format: 'Format',
 			doc_type: 'Type',
 			t: "Title",
 			aut: "Author",
@@ -109,7 +110,7 @@ jQuery(document).ready(function($) {
     searchTypes.push(['Owner', 'r_own']);
     searchTypes.push(['Repository','r_rps']);
     searchTypes.push(['Subject', 'subject']);
-    searchTypes.push(['Format', 'format']);
+    searchTypes.push(['Format', 'record_format']);
     searchTypes.push(['Type', 'doc_type']);
     searchTypes.push(['Genre', 'g']);
     searchTypes.push(['Language', 'lang']);
@@ -178,7 +179,7 @@ jQuery(document).ready(function($) {
 					if (key === 'q' || key === 't' || key === 'aut' || key === 'ed' ||
                         key === 'pub' || key === 'r_art' || key === 'r_own' || key === 'y' ||
                         key == 'publisher' || key == 'abbreviatedTitle' || key == 'variantTitle' ||
-                        key == 'earlierTitleProper' || key == 'titleProperOfSeries' || key == 'coverage' || key == 'g' || key == 'doc_type' ||  key == 'r_rps' || key == 'format' || key == 'subject' || key == 'description') {
+                        key == 'earlierTitleProper' || key == 'titleProperOfSeries' || key == 'coverage' || key == 'g' || key == 'doc_type' ||  key == 'r_rps' || key == 'record_format' || key == 'subject' || key == 'description') {
 
 
 						displayedValue = window.pss.createHtmlTag("a", {'class': "modify_link query-editable", href: '#', 'data-type': key}, displayedValue);
