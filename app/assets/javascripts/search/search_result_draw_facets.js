@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
 
 	window.collex.create_facet_button = function(label, value, action, key) {
 		return window.pss.createHtmlTag("button",
-            { 'class': 'select-facet nav_link crop', 'data-action': action, 'data-key': key, 'data-value': value }, label);
+            { 'class': 'select-facet nav_link crop', 'data-action': action, 'data-key': key, 'data-value': value , 'title': value}, label);
 	};
 
 	window.collex.number_with_delimiter = function(number) {
@@ -137,7 +137,6 @@ jQuery(document).ready(function($) {
     }
 
 	function createFacetBlock(facet_class, obj) {
-
 		var html = "";
 		
 		var selected = "";
@@ -158,7 +157,7 @@ jQuery(document).ready(function($) {
                     var selectedIndex = $.inArray(key, selected);
                     var label = key;
                     if (labels) label = labels[key];
-                    html += createFacetRow(key, hash_coverage[key], 'publisher', selectedIndex !== -1, label);
+                    html += createFacetRow(key, hash_publisher[key], 'publisher', selectedIndex !== -1, label);
                 }
             }
         }
