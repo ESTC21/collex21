@@ -148,6 +148,9 @@ jQuery(document).ready(function($) {
 		var hash_discipline = obj.facets.discipline;
 		var hash_format = obj.facets.doc_type;
 		var hash_access = obj.facets.access;
+		var hash_subject = obj.facets.subject;
+		var hash_language = obj.facets.language;
+		var hash_publication_year = obj.facets.year
 
         if(facet_class == 'facet-imprint') {
             for (var key in hash_publisher) {
@@ -218,6 +221,45 @@ jQuery(document).ready(function($) {
                     var label = key;
                     if (labels) label = labels[key];
                     html += createFacetRow(key, hash_access[key], 'o', selectedIndex !== -1, label);
+                }
+            }
+        }
+
+        if(facet_class == 'facet-subject') {
+            for (var key in hash_subject) {
+                if (hash_subject.hasOwnProperty(key)) {
+                    selected = obj.query.subject;
+                    if (typeof selected === 'string') selected = [selected];
+                    var selectedIndex = $.inArray(key, selected);
+                    var label = key;
+                    if (labels) label = labels[key];
+                    html += createFacetRow(key, hash_subject[key], 'subject', selectedIndex !== -1, label);
+                }
+            }
+        }
+
+        if(facet_class == 'facet-language') {
+            for (var key in hash_language) {
+                if (hash_language.hasOwnProperty(key)) {
+                    selected = obj.query.language;
+                    if (typeof selected === 'string') selected = [selected];
+                    var selectedIndex = $.inArray(key, selected);
+                    var label = key;
+                    if (labels) label = labels[key];
+                    html += createFacetRow(key, hash_language[key], 'language', selectedIndex !== -1, label);
+                }
+            }
+        }
+
+        if(facet_class == 'facet-publication-year') {
+            for (var key in hash_publication_year) {
+                if (hash_publication_year.hasOwnProperty(key)) {
+                    selected = obj.query.y;
+                    if (typeof selected === 'string') selected = [selected];
+                    var selectedIndex = $.inArray(key, selected);
+                    var label = key;
+                    if (labels) label = labels[key];
+                    html += createFacetRow(key, hash_publication_year[key], 'y', selectedIndex !== -1, label);
                 }
             }
         }
@@ -322,6 +364,10 @@ jQuery(document).ready(function($) {
 		createFacetBlock('facet-imprint', obj);
 		createFacetBlock('facet-coverage', obj);
 		createFacetBlock('facet-genre', obj);
+		createFacetBlock('facet-subject', obj);
+		createFacetBlock('facet-language', obj);
+		createFacetBlock('facet-publication-year', obj);
+
 		/*createFacetBlock('facet-genre', obj.facets.discipline, 'discipline', obj.query.discipline);
 		createFacetBlock('facet-genre', obj.facets.doc_type, 'doc_type', obj.query.doc_type);
 		createFacetBlock('facet-genre', obj.facets.access, 'o', obj.query.o, window.collex.facetNames.access);*/

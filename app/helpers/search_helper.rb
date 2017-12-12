@@ -624,6 +624,38 @@ module SearchHelper
     return raw(html)
   end
 
+  def create_subject_table(subject_data)
+    logger.info "This is from create_subject_table"
+
+    html = raw('<table id="subject_table" class="limit_to facet-subject">')
+    html += raw("<tr><th id=\"subject_table_header\">Subject</th><th class=\"num_objects\"># of Objects</th></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\">Not enough data to show this facet</td><td>&nbsp;</td></tr>")
+    html += raw('</table>')
+
+    return raw(html)
+  end
+
+  def create_language_table(language_data)
+    logger.info "This is from create_language_table"
+
+    html = raw('<table id="language_table" class="limit_to facet-language">')
+    html += raw("<tr><th id=\"language_table_header\">Language</th><th class=\"num_objects\"># of Objects</th></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\">Not enough data to show this facet</td><td>&nbsp;</td></tr>")
+    html += raw('</table>')
+
+    return raw(html)
+  end
+
+  def create_publication_year_table(publication_year)
+    logger.info "This is from create_publication_year_table"
+
+    html = raw('<table id="publication_year_table" class="limit_to facet-publication-year">')
+    html += raw("<tr><th id=\"publication_year_table_header\">Publication Date(YYYY)</th><th class=\"num_objects\"># of Objects</th></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\">Not enough data to show this facet</td><td>&nbsp;</td></tr>")
+    html += raw('</table>')
+
+    return raw(html)
+  end
 
 
   #def create_access_table( freeculture_count, fulltext_count, typewright_count )
