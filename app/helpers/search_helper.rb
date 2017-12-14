@@ -522,7 +522,7 @@ module SearchHelper
   def create_roles_table( _data )
     
     html = raw('<table class="limit_to facet-new-role">')
-    html += raw("<tr><th>Roles</th><th class=\"num_objects\">See All</th></tr>")
+    html += raw("<tr><th colspan=2>Roles</th></tr>")
     html += raw("<tr><td class=\"limit_to_lvl1\">Not enough data to show this facet</td><td>&nbsp;</td></tr>")
     html += raw('</table>')
 
