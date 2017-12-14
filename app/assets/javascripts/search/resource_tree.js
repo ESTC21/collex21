@@ -37,14 +37,19 @@ jQuery(document).ready(function($) {
 
         var data_key = el.data('key');
 
-        var current_rows_key = 'role_AUT';
-        if(data_key == 'r_own'){
-            current_rows_key = 'role_OWN'
-        }
-        else if(data_key == 'role_RPS'){
-            current_rows_key = 'role_RPS'
-        }
+        var key_header = {
+            'aut': 'aut',
+            'r_own': 'role_OWN',
+            'role_RPS': 'role_RPS',
+            'publisher': 'publisher',
+            'subject': 'subject',
+            'coverage': 'coverage',
+            'g': 'g',
+            'language': 'language',
+            'y': 'y'
+        };
 
+        var current_rows_key = key_header[data_key];
         if (el.hasClass("expanded") ) {
         // just collapsed
         el.removeClass("expanded");
