@@ -657,6 +657,17 @@ module SearchHelper
     return raw(html)
   end
 
+  def create_format_table(format_data)
+    logger.info "This is from create_format_table"
+
+    html = raw('<table id="format_table" class="limit_to facet-format">')
+    html += raw("<tr><th colspan=\"2\" id=\"format_table_header\">Format</th></tr>")
+    html += raw("<tr><td class=\"limit_to_lvl1\">Not enough data to show this facet</td><td>&nbsp;</td></tr>")
+    html += raw('</table>')
+
+    return raw(html)
+  end
+
 
   #def create_access_table( freeculture_count, fulltext_count, typewright_count )
    # html = raw('<table class="limit_to facet-access">')

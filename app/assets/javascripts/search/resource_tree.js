@@ -46,7 +46,8 @@ jQuery(document).ready(function($) {
             'coverage': 'coverage',
             'g': 'g',
             'language': 'language',
-            'y': 'y'
+            'y': 'y',
+            'record_format': 'record_format',
         };
 
         var current_rows_key = key_header[data_key];
