@@ -136,7 +136,7 @@ jQuery(document).ready(function($) {
         var hash_discipline = obj.facets.discipline;
         var hash_format = obj.facets.doc_type;
         var hash_access = obj.facets.access;
-        var hash_subject = obj.facets.subject;
+        var hash_subject = obj.facets.subjectFacet;
         var hash_language = obj.facets.language;
         var hash_publication_year = obj.facets.year;
 

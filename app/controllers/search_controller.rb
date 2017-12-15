@@ -363,7 +363,10 @@ class SearchController < ApplicationController
       field = 'role_OWN'
     elsif field == 'r_rps'
       field = 'role_RPS'
+    elsif field == 'subject'
+      field = 'subjectFacet'
     end
+
 	   respond_to do |format|
 		   format.json {
 			   values = auto_complete(params['term'], field, other) if params['term']  # google bot will hit this without parameters, so check for that
