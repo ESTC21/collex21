@@ -48,6 +48,7 @@ jQuery(document).ready(function($) {
             'language': 'language',
             'y': 'y',
             'record_format': 'record_format',
+            'doc_type': 'doc_type',
         };
 
         var current_rows_key = key_header[data_key];
