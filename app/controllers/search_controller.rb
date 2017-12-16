@@ -17,6 +17,8 @@
 class SearchController < ApplicationController
    #before_filter :authorize, :only => [:collect, :save_search, :remove_saved_search]
    before_filter :init_view_options
+   before_filter :verify_auto_complete_for_tags, only: [:auto_complete_for_q]
+
    def initialize
 
    end
@@ -90,7 +92,6 @@ class SearchController < ApplicationController
 				results['page_size'] = items_per_page
 
 				# process all the returned hits to insert all non-solr info
-
 				results['collected'] = view_context.add_non_solr_info_to_results(results['hits'], results["highlighting"])
 
 				# This fixes the format of the access facet.
@@ -424,5 +425,10 @@ class SearchController < ApplicationController
      return @solr.search(constraints, (page - 1) * items_per_page, items_per_page, sort_param, sort_ascending)
    end
 
-   
+    def verify_auto_complete_for_tags
+      return unless params[:field] == 'tag'
+      @values = Tag.find_matching_records(params[:term])
+      render json: @values
+    end
+
 end

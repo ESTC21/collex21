@@ -31,7 +31,8 @@ jQuery(document).ready(function($) {
 			fuz_t: 'Title Fuzziness',
 			pages: 'Pages of',
 			uri: 'ESTC ID',
-			subject: 'Subject'
+			subject: 'Subject',
+			tag: 'Tag'
 		};
 		if (types[key])
 			return types[key];
@@ -116,6 +117,7 @@ jQuery(document).ready(function($) {
     searchTypes.push(['Language', 'lang']);
     searchTypes.push(['Coverage', 'coverage']);
     searchTypes.push(['Note', 'description']);
+    searchTypes.push(['Tag', 'tag']);
 
 		// try adding more facets here
 
@@ -179,7 +181,7 @@ jQuery(document).ready(function($) {
 					if (key === 'q' || key === 't' || key === 'aut' || key === 'ed' ||
                         key === 'pub' || key === 'r_art' || key === 'r_own' || key === 'y' ||
                         key == 'publisher' || key == 'abbreviatedTitle' || key == 'variantTitle' ||
-                        key == 'earlierTitleProper' || key == 'titleProperOfSeries' || key == 'coverage' || key == 'g' || key == 'doc_type' ||  key == 'r_rps' || key == 'record_format' || key == 'subject' || key == 'description') {
+                        key == 'earlierTitleProper' || key == 'titleProperOfSeries' || key == 'coverage' || key == 'g' || key == 'doc_type' ||  key == 'r_rps' || key == 'record_format' || key == 'subject' || key == 'description' || key == 'tag') {
 
 
 						displayedValue = window.pss.createHtmlTag("a", {'class': "modify_link query-editable", href: '#', 'data-type': key}, displayedValue);

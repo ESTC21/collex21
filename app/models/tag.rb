@@ -174,5 +174,15 @@ class Tag < ActiveRecord::Base
     tag = tag.gsub('?', '_')
     return tag.gsub('/', '_')
   end
+
+  def self.find_matching_records(term)
+    str = ["%", term, "%"].join()
+    matches = Tag.where("name like ?", str).group(:name).count
+    values = []
+    matches.each do |key, value|
+      values.push( [key, value] )
+    end
+    values
+  end
   
 end
