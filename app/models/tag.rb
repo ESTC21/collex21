@@ -177,10 +177,10 @@ class Tag < ActiveRecord::Base
 
   def self.find_matching_records(term)
     str = ["%", term, "%"].join()
-    matches = Tag.where("name like ?", str).group(:name).count
+    matches = Tag.joins(:tagassigns).where("name like ?", str).select("name, COUNT(tagassigns.id) as count").group(:name)
     values = []
-    matches.each do |key, value|
-      values.push( [key, value] )
+    matches.each do |tag|
+      values.push( [tag.name, tag.count] )
     end
     values
   end
