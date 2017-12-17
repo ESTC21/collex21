@@ -57,7 +57,7 @@ jQuery(document).ready(function($) {
         var key_header = {
             'role_AUT': ['aut', 'Author'],
             'role_OWN': ['r_own', 'Owner'],
-            'role_RPS': ['role_RPS', 'Repository'],
+            'role_RPS': ['r_rps', 'Repository'],
         };
         return key_header[key]
     }

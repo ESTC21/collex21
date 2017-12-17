@@ -39,8 +39,8 @@ jQuery(document).ready(function($) {
 
         var key_header = {
             'aut': 'aut',
-            'r_own': 'role_OWN',
-            'role_RPS': 'role_RPS',
+            'r_own': 'r_own',
+            'r_rps': 'r_rps',
             'publisher': 'publisher',
             'subject': 'subject',
             'coverage': 'coverage',
