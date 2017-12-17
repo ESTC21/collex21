@@ -75,7 +75,7 @@ jQuery(document).ready(function($) {
             var role_members = obj.facets[role];
             if (role_members) {
                 var stripped_values = _.object(_.map(role_members, function (value, key) {
-                    return [key.replace(/[0-9?.,-]/g, '').strip(), value]
+                    return [key.replace(/[0-9.,/(/)-]/g, '').strip(), value]
                 }));
                 consolidated_role_params[role] = stripped_values;
             }
@@ -84,23 +84,23 @@ jQuery(document).ready(function($) {
         var idx = 0;
         for (var key in consolidated_role_params) {
             if (consolidated_role_params.hasOwnProperty(key)) {
-                selected = obj.query.aut;
+                var data_key = data_key_and_header_text(key)[0];
+                var data_value = data_key_and_header_text(key)[1];
+
+                selected = obj.query[data_key];
+
                 if (typeof selected === 'string') selected = [ selected ];
                 var selectedIndex = $.inArray(key, selected);
                 var label = key;
                 if (labels) label = labels[key];
-                var data_key = data_key_and_header_text(key)[0];
-                var data_value = data_key_and_header_text(key)[1]
-
-                html += createFacetCountRow(data_value, totalFacetCount(consolidated_role_params[key]), data_key, selectedIndex !== -1, label, false, idx);
+                html += createFacetCountRow(data_value, totalFacetCount(consolidated_role_params[key]), data_key, selectedIndex !== -1, label, false, (idx != 0 && selected == undefined));
 
                 for (var _key in consolidated_role_params[key]) {
-                    selected = obj.query[data_key];
                     if (typeof selected === 'string') selected = [selected];
                     var selectedIndex = $.inArray(_key.strip(), selected);
                     var label = _key;
                     if (labels) label = labels[_key];
-                    html += createFacetRow(_key, consolidated_role_params[key][_key], data_key, selectedIndex !== -1, _key, false);
+                    html += createFacetRow(_key, consolidated_role_params[key][_key], data_key, selectedIndex !== -1, _key, (idx != 0 && selected == undefined));
                 }
             }
             idx++;
@@ -111,11 +111,11 @@ jQuery(document).ready(function($) {
         block.html(header + html);
     }
 
-    function createFacetCountRow(name, count, dataKey, isSelected, label, isSubmenu, index) {
+    function createFacetCountRow(name, count, dataKey, isSelected, label, isSubmenu, hide) {
         var header_text = name;
-        var arrow = (index == 0 ? 'hidden' : '');
-        var down = (index == 0 ? '' : 'hidden');
-        var menu_style = (index == 0 ? 'expanded' : 'collapsed');
+        var arrow = (hide == true ? '' : 'hidden');
+        var down = (hide == true ? 'hidden' : '');
+        var menu_style = (hide == true ? 'collapsed' : 'expanded');
         var arrow_html = '<span class="exp-arrow "' + arrow + '><img alt="Arrow" src="/assets/arrow.gif">' +
                          '</span><span class="col-arrow"' + down + '><img alt="Arrow_dn" src="/assets/arrow_dn.gif"></span>';
 

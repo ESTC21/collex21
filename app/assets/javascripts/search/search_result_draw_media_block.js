@@ -760,15 +760,15 @@ jQuery(document).ready(function($) {
 		var hiddenRecord = "";
 		var showRecord = "";
 		var count = 0;
-		for (var i = 0; i < obj.hits.length; i++) {
+    for (var i = 0; i < obj.hits.length; i++) {
 			var isCollected = obj.collected[obj.hits[i].uri] !== undefined;
 			var hasPredicate = obj.hits[i].hasPart !== undefined;
-			if(obj.hits[i].instanceof === undefined) {
+			// if(obj.hits[i].instanceof === undefined) {
 				showRecord += window.collex.createMediaBlock(obj.hits[i], i, isCollected, obj.collected[obj.hits[i].uri], hasPredicate, false);
 			//else{
 				//count += 1;
 				//hiddenRecord += window.collex.createMediaBlock(obj.hits[i], i, isCollected, obj.collected[obj.hits[i].uri], hasPredicate, true);
-			}
+			// }
 		}
 //		if(hiddenRecord != ""){
 //			html += window.pss.createHtmlTag("hr", { 'class': 'search_results_hr' });
