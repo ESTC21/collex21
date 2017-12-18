@@ -184,5 +184,10 @@ class Tag < ActiveRecord::Base
     end
     values
   end
-  
+
+  def self.find_uris_for_tags(terms)
+    keys = terms.instance_of?(Array) ? terms.reject(&:blank?).join("|") : terms
+    matches = Tag.joins(tagassigns: :cached_resource).where("name RLIKE ?", keys).collect(&:cached_resources).flatten.uniq
+    matches.collect(&:uri)
+  end
 end

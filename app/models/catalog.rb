@@ -744,25 +744,30 @@ end
    end
 
    def parse_constraints(constraints)
-	   params = []
-	   constraints.each { |constraint|
-		   val = constraint[:val]
-		   if constraint[:key] == 'f'
-			   if constraint[:val].kind_of?(Array)
-				   params.push(format_federation_constraint(constraint[:val]))
-			   else
-				   params.push("#{constraint[:key]}=+federation:#{val}")
-			   end
-		   else
-			   if constraint[:val].kind_of?(Array)
-				   val = val.map { |v| v[0] == '-' ? v : '+'+v }
-				   val = val.join("")
-			   end
-			   val = val[0] == '-' || val[0] == '+' ? val : '+'+val
-			   params.push("#{constraint[:key]}=#{val}")
-		   end
-	   }
-
+      params = []
+      constraints.each { |constraint|
+         val = constraint[:val]
+         if constraint[:key] == 'f'
+            if constraint[:val].kind_of?(Array)
+               params.push(format_federation_constraint(val))
+            else
+               params.push("#{constraint[:key]}=+federation:#{val}")
+            end
+         elsif constraint[:key] == 'tag'
+            if val.present?
+               params.push("#{constraint[:key]}=#{val.join(',')}")
+            else
+               params.push("#{constraint[:key]}=#{val}")
+            end
+         else
+            if constraint[:val].kind_of?(Array)
+               val = val.map { |v| v[0] == '-' ? v : '+'+v }
+               val = val.join("")
+            end
+            val = val[0] == '-' || val[0] == '+' ? val : '+'+val
+            params.push("#{constraint[:key]}=#{val}")
+         end
+      }
       return params
    end
 

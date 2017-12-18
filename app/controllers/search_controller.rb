@@ -18,6 +18,7 @@ class SearchController < ApplicationController
    #before_filter :authorize, :only => [:collect, :save_search, :remove_saved_search]
    before_filter :init_view_options
    before_filter :verify_auto_complete_for_tags, only: [:auto_complete_for_q]
+   before_filter :add_uri_filter_for_tags, only: [:index]
 
    def initialize
 
@@ -134,7 +135,7 @@ class SearchController < ApplicationController
 													 'r_art', 'r_own', 'r_rps', 'fuz_q', 'fuz_t', 'y', 'lang',
 													 'doc_type', 'discipline', 'fuz_q', 'fuz_t', 'fq',
 													 'uri', 'coverage', 'publisher', 'abbreviatedTitle',
-													 'variantTitle', 'titleProperOfSeries', 'description', 'subject', 'record_format']
+													 'variantTitle', 'titleProperOfSeries', 'description', 'subject', 'record_format', 'tag']
                            # add  'created' once Catalog has the key at its end
 	   @searchable_roles.each { |role|
 		   legal_constraints.push(role[0])
@@ -172,6 +173,8 @@ class SearchController < ApplicationController
             constraints.push({key: key, val: "#{val.to_i-1}"}) if query['q']
           elsif key == 'fuz_t'
             constraints.push({key: key, val: "#{val.to_i-1}"}) if query['t']
+          elsif key == 'tag'
+            constraints.push({key: 'tag', val: @uris})
           elsif key != 'uri'
             constraints.push({key: key, val: val})
           end
@@ -429,6 +432,12 @@ class SearchController < ApplicationController
       return unless params[:field] == 'tag'
       @values = Tag.find_matching_records(params[:term])
       render json: @values
+    end
+
+    def add_uri_filter_for_tags
+      return unless params[:format] == 'json'
+      return unless params.has_key?(:tag)
+      @uris = Tag.find_uris_for_tags(params[:tag])
     end
 
 end
