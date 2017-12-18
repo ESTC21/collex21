@@ -32,7 +32,7 @@ jQuery(document).ready(function($) {
 		if (request && request.field === undefined)
 			request.field = fieldSelector ? $(fieldSelector).val() : 'q';
 
-		request.term = window.collex.sanitizeString(request.term);
+		request.term = request.field == 'tag' ? request.term : window.collex.sanitizeString(request.term);
 		request[csrf_param] = csrf_token;
 		var autoCompleteFields = [ 'q', 'aut', 'ed', 'pub', 'coverage', 'g', 'lang', 'doc_type', 'r_own', 'r_rps', 'record_format', 'subject', 'tag' ];
 		var autoCompleteOk = false;

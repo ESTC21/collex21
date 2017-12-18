@@ -356,7 +356,7 @@ jQuery(document).ready(function($) {
          term = window.collex.formatYearString(term);
       }
 		// Remove non-word characters. Unfortunately, JavaScript doesn't do this, so approximate it by including some unicode chars directly.
-		term = window.collex.sanitizeString(term);
+		term = type == 'tag' ? term : window.collex.sanitizeString(term);
 		if (type === 'lang')
 			term = parent.find(".query_term select").val();
 		var not = parent.find(".new-query_and-not select").val();
@@ -464,7 +464,7 @@ jQuery(document).ready(function($) {
 	body.bind('SetSearch', function(ev, obj) {
 		for (var key in obj) {
 			if (obj.hasOwnProperty(key)) {
-				obj[key] = window.collex.sanitizeString(obj[key]);
+				obj[key] = key == 'tag' ? obj[key] : window.collex.sanitizeString(obj[key]);
 			}
 		}
 		var existingSort = getSortAndFederationFromQueryObject();
@@ -477,7 +477,8 @@ jQuery(document).ready(function($) {
     if (obj.key === "y") {
        obj.newValue = window.collex.formatYearString(obj.newValue);
     }
-		var query = modifyInQueryObject(obj.key, obj.original, window.collex.sanitizeString(obj.newValue));
+    var new_val = obj.key == 'tag' ? obj.newValue : window.collex.sanitizeString(obj.newValue);
+		var query = modifyInQueryObject(obj.key, obj.original, new_val);
 		changePage("/search?" + window.collex.makeQueryString(query));
 	});
 
