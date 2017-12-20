@@ -761,7 +761,6 @@ end
             end
          else
             if constraint[:val].kind_of?(Array)
-               val = val.map { |v| v[0] == '-' ? v : '+'+v }
                val = val.join("")
             end
             val = val[0] == '-' || val[0] == '+' ? val : '+'+val

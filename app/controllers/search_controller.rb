@@ -121,8 +121,21 @@ class SearchController < ApplicationController
 	   # This will receive either a string or an array of strings.
 	   # The strings need to be split on white space.
 	   if value.kind_of?(Array)
-		   value = value.join(' ')
-	   end
+        value.each_with_index do |val, index|
+          if val.starts_with?('-')
+            value[index] = val[1..-1].scan(/(?:"(?:\\.|[^"])*"|[^" ])+/).map{|a| "-(#{a})"}
+          else
+            value[index] = val.scan(/(?:"(?:\\.|[^"])*"|[^" ])+/).map{|a| "+(#{a})"}
+          end
+        end
+     else
+       if value.starts_with?('-')
+         value = value[1..-1].scan(/(?:"(?:\\.|[^"])*"|[^" ])+/).map{|a| "-(#{a})"}
+       else
+         value = value.scan(/(?:"(?:\\.|[^"])*"|[^" ])+/).map{|a| "+(#{a})"}
+       end
+     end
+     value = value.join(' ') if value.instance_of? Array
 	   arr = value.scan(/(?:"(?:\\.|[^"])*"|[^" ])+/) # this splits the string, but respects double quotes.
 	   return arr
    end
@@ -374,7 +387,7 @@ class SearchController < ApplicationController
 	   respond_to do |format|
 		   format.json {
 			   values = auto_complete(params['term'], field, other) if params['term']  # google bot will hit this without parameters, so check for that
-				 values = values.map { |val, num| [val.delete('0-9?,.-').strip, num] } if params[:field] == 'aut'
+         # values = values.map { |val, num| [val.delete('0-9?,.').strip, num] } if params[:field] == 'aut'
 			   render json: values
 		   }
 	   end

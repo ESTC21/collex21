@@ -9,12 +9,14 @@ jQuery(document).ready(function($) {
 
 	body.on("blur", ".query-editing", function() {
 		var el = $(this);
+		var parent = el.closest('td');
 		var type = el.attr("data-type");
 		var original = el.attr("data-original");
 		var value = el.val();
+		var action = parent.siblings('.query_and-not').find('select').val();
 		var processing = el.attr("data-processing");
 		if (!processing && original !== value)
-			body.trigger('ModifySearch', { key: type, original: original, newValue: value });
+			body.trigger('ModifySearch', { key: type, original: original, newValue: value, action: action });
 		var parent = el.closest('td');
 		restoreLine(parent, type, value);
 	});
@@ -33,9 +35,10 @@ jQuery(document).ready(function($) {
 		var original = el.attr("data-original");
 		var value = el.val();
 		var type = el.attr("data-type");
+		var action = parent.siblings('.query_and-not').find('select').val();
 		if (key === 13 || key === 10) {
 			el.attr("data-processing", 'true');
-			body.trigger('ModifySearch', { key: type, original: original, newValue: value });
+			body.trigger('ModifySearch', { key: type, original: original, newValue: value, action: action });
 			return false;
 		} else if (key === 27) {
 			el.attr("data-processing", 'true');

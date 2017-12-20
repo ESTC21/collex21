@@ -474,9 +474,17 @@ jQuery(document).ready(function($) {
 
 	// This modifies the current search.
 	body.bind('ModifySearch', function(ev, obj) {
-    if (obj.key === "y") {
-       obj.newValue = window.collex.formatYearString(obj.newValue);
-    }
+    if (obj.key === "y")
+      obj.newValue = window.collex.formatYearString(obj.newValue);
+    if (obj.action === 'AND' && obj.newValue[0] === '-')
+      obj.newValue = obj.newValue.substr(1);
+    if (obj.action === 'NOT' && obj.newValue[0] !== '-')
+      obj.newValue = '-' + obj.newValue;
+    if (obj.action === 'AND' && obj.original[0] === '-')
+      obj.original = obj.original.substr(1);
+    if (obj.action === 'NOT' && obj.original[0] !== '-')
+      obj.original = '-' + obj.original;
+
     var new_val = obj.key == 'tag' ? obj.newValue : window.collex.sanitizeString(obj.newValue);
 		var query = modifyInQueryObject(obj.key, obj.original, new_val);
 		changePage("/search?" + window.collex.makeQueryString(query));

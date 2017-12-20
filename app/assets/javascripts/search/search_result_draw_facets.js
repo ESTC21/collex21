@@ -75,7 +75,7 @@ jQuery(document).ready(function($) {
             var role_members = obj.facets[role];
             if (role_members) {
                 var stripped_values = _.object(_.map(role_members, function (value, key) {
-                    return [key.replace(/[0-9.,/(/)-]/g, '').strip(), value]
+                    return [key.replace(/[0-9.,/(/)-]/g, ' ').strip(), value]
                 }));
                 consolidated_role_params[role] = stripped_values;
             }
