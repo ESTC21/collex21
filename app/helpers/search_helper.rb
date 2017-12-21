@@ -593,7 +593,7 @@ module SearchHelper
     logger.info "This is from create_genre_table"
 
     html = raw('<table id="genre_table" class="limit_to facet-genre">')
-    html += raw("<tr><th colspan=\"2\" id=\"genre_table_header\">Genre/Format</th></tr>")
+    html += raw("<tr><th colspan=\"2\" id=\"genre_table_header\">Genre</th></tr>")
     html += raw("<tr><td class=\"limit_to_lvl1\">Not enough data to show this facet</td><td>&nbsp;</td></tr>")
     html += raw('</table>')
 
