@@ -85,28 +85,28 @@ jQuery(document).ready(function($) {
                         ['Imprint', 'publisher'],
                         ['Author', 'aut'] ];
 
-		if (window.collex.hasManyRoles) {
-			if (roles) {
-				for (var role in roles) {
-					if (roles.hasOwnProperty(role)) {
-						var roleSubstitution = {
-							role_ART: 'r_art',
-							role_EDT: 'ed',
-							role_PBL: 'pub'
-						};
-						if (roleSubstitution[role])
-							role = roleSubstitution[role];
-						var displayedKey = getDisplayedKeyFromRole(role);
-						if (displayedKey.indexOf('role_') !== 0 && displayedKey.length > 0)
-							searchTypes.push([displayedKey,role]);
-					}
-				}
-			}
-    } else {
-			searchTypes.push(['Artist', 'r_art']);
-      searchTypes.push(['Editor', 'ed']);
-      searchTypes.push(['Publisher', 'pub']);
-		}
+		// if (window.collex.hasManyRoles) {
+		// 	if (roles) {
+		// 		for (var role in roles) {
+		// 			if (roles.hasOwnProperty(role)) {
+		// 				var roleSubstitution = {
+		// 					role_ART: 'r_art',
+		// 					role_EDT: 'ed',
+		// 					role_PBL: 'pub'
+		// 				};
+		// 				if (roleSubstitution[role])
+		// 					role = roleSubstitution[role];
+		// 				var displayedKey = getDisplayedKeyFromRole(role);
+		// 				if (displayedKey.indexOf('role_') !== 0 && displayedKey.length > 0)
+		// 					searchTypes.push([displayedKey,role]);
+		// 			}
+		// 		}
+		// 	}
+  //   } else {
+		// 	searchTypes.push(['Artist', 'r_art']);
+  //     searchTypes.push(['Editor', 'ed']);
+  //     searchTypes.push(['Publisher', 'pub']);
+		// }
 
     searchTypes.push(['Owner', 'r_own']);
     searchTypes.push(['Repository','r_rps']);
