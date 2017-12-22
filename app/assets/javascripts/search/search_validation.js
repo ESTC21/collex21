@@ -117,6 +117,10 @@ jQuery(document).ready(function($) {
 				delete searchHash.y;
 		}
 
+		var u_action = $('input:hidden[name=u_action]');
+		if (u_action) {
+			searchHash['u_action'] = u_action.val();
+		}
 		// We've passed all the tests, so send the search to the searcher. We still short-circuit the browser's submit.
 
 		body.trigger('SetSearch', searchHash);

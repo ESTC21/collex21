@@ -94,6 +94,9 @@
 			<td>
 			  <input id="search_year" name="y" type="text" class="search_entry_box" <%= "value='#{@yphrs}'" if @yphrs %> />
 		  </div>
+      <% if params[:u_action].present? %>
+        <%= hidden_field_tag 'u_action', params[:u_action] %>
+      <% end %>
 		  <input id="search_submit2" type="submit" value="Search"/>
 	  </form>
 
@@ -160,30 +163,10 @@
              </td>
            </tr>
         <% end %>
-        <% if SKIN.upcase == 'MESA' %>
-            <tr><td>Role:</td><td><%= select_tag( :search_role_type, options_from_collection_for_select([ ['', '(Select a role)'] ] + @searchable_roles, :first, :last), :class => 'search_role_type' ) %>
-           <input name="search_role" id="search_role" type="text" class="search_entry_box_short" placeholder="Please select a role."/>
-            </td>
-            <td>
-              <span class="tooltip advanced_search_field_tooltip">
-                   <%= image_tag("#{SKIN}/help_thumb.gif", { alt: 'help', height: 13, style: "padding-left:5px" }) %>
-                   <span class="search_help_tooltip">
-                     <b>Search by Role</b><br />In addition to searching roles, you should also try your search in the key terms field above.
-                   </span>
-                 </span>
-            </td></tr>
-         <% else %>
-           <tr><td>Author:</td><td><input name="aut" type="text" class="search_entry_box" <%= "value='#{@aphrs}'" if @aphrs %> /></td></tr>
-           <tr><td>Editor:</td><td><input name="ed" type="text" class="search_entry_box" <%= "value='#{@ephrs}'" if @ephrs %> /></td></tr>
-           <tr><td>Publisher:</td><td><input name="pub" type="text" class="search_entry_box" <%= "value='#{@pphrs}'" if @pphrs %> /></td></tr>
-        <% end %>
-        <% if SKIN.upcase == 'MESA' %>
-           <tr>
-             <td>Language:</td>
-             <td><%= select_tag( :lang, options_from_collection_for_select([IsoLanguage.new(:english_name => "(Select a language)")] + Catalog.factory_create(false).get_languages(), :alpha3, :first_english_name), :class => 'search_language' ) %></td>
-           </tr>
-        <% end %>
         <tr><td>Year (YYYY):</td><td><input id="search_year" name="y" type="text" class="search_entry_box" <%= "value='#{@yphrs}'" if @yphrs %> /></td></tr>
+        <% if params[:u_action].present? %>
+          <%= hidden_field_tag 'u_action', params[:u_action] %>
+        <% end %>
         <tr><td colspan="3" style="text-align: right;"><input id="search_submit2" type="submit" value="Search" /></td></tr>
     </table>
 	</form>
