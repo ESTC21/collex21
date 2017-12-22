@@ -452,7 +452,7 @@ function doCollect(partial, uri, row_num, row_id, is_logged_in, hasEdit)
 }
 
 function onMatchSuccess(resp) {
-	newwindow = window.open("/search?action=match", '_blank', "height= " + screen.height * (0.9) + ",width=" + screen.width * (0.9) + " ");
+	newwindow = window.open("/search?u_action=match", '_blank', "height= " + screen.height * (0.9) + ",width=" + screen.width * (0.9) + " ");
     newwindow.moveTo(20, 20);
 }
 

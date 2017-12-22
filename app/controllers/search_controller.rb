@@ -36,11 +36,10 @@ class SearchController < ApplicationController
 		get_annotate_match_button_info()
 		get_predicate_info()
 		get_site_info()
-
 		if params[:match]
 			session[:title] = params[:match][:title]
-		    session[:uri] = params[:match][:uri]
-		    session[:url] = params[:match][:url]
+		  session[:uri] = params[:match][:uri]
+		  session[:url] = params[:match][:url]
 		end
 
 		if params[:annotate]
@@ -82,7 +81,7 @@ class SearchController < ApplicationController
    				begin
    					@solr = Catalog.factory_create(session[:use_test_index] == "true") if @solr == nil
 						puts constraints
-   					results = @solr.search_direct(constraints, (page.to_i - 1) * items_per_page, nil, sort_param, sort_ascending)
+					  results = @solr.search_direct(constraints, (page.to_i - 1) * items_per_page, nil, sort_param, sort_ascending, params[:u_action])
 					Catalog.log_catalog("Results info: ", "#{results}")
 				results['message'] = ''
    				rescue Catalog::Error => e

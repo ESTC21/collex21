@@ -37,8 +37,9 @@ jQuery(document).ready(function($) {
       // That is, given "?q=tree&gen=2&gen=5", the return object is: { q: "tree", gen: [ "2", "5" ] }
 		var params = {};
 		var query = ""+window.location.search;
-		if(query.search("action=match") > -1){
-			query = "";
+
+    var query_params = new URLSearchParams(window.location.search);
+    if (query_params.has('u_action') && query_params.get('u_action') == 'match') {
 			sessionStorage.setItem('match', true);
 			var $j = jQuery.noConflict();
 			$j("#matchtitle").text("Search for your Match:");
@@ -46,7 +47,7 @@ jQuery(document).ready(function($) {
 			$j("#nav_container").hide();
 			$j(".my_collex_link").hide();
 			$j("#subnav_container").hide();
-            $j(".search-close-btn").show();
+        $j(".search-close-btn").show();
 		}
 		else{
 		}
@@ -129,7 +130,7 @@ jQuery(document).ready(function($) {
    		   }
 			}
 		}
-		return arr.join('&');
+    return arr.join('&');
 	};
 
 	function onSuccess(resp) {
@@ -166,7 +167,7 @@ jQuery(document).ready(function($) {
 	}
 
 	function doSearch() {
-      window.showProgressDialog('Searching...');
+    window.showProgressDialog('Searching...');
 		var existingQuery = window.collex.getUrlVars();
 		$.ajax({ url: "/search.json",
 			data: existingQuery,
@@ -282,11 +283,11 @@ jQuery(document).ready(function($) {
 		window.collex.resetNameFacet();
 		if (supports_history_api()) {
 			var pageTitle = document.title; // For now, don't change the page title depending on the search.
-         if (replace === true) {
-            History.replaceState(null, pageTitle, url);
-         } else {
-            History.pushState(null, pageTitle, url);
-         }
+      if (replace === true) {
+        History.replaceState(null, pageTitle, url);
+      } else {
+        History.pushState(null, pageTitle, url);
+      }
 		} else {
 			window.location = url;
 		}
@@ -298,13 +299,13 @@ jQuery(document).ready(function($) {
 	});
 
 	body.on("click", ".ajax-style .select-facet", function () {
-		var el = $(this);
-		var newQueryKey = el.attr("data-key");
-		var newQueryValue = el.attr("data-value");
-		//newQueryValue = encodeURIComponent(newQueryValue);
-		var action = el.attr("data-action");
-		var url = createNewUrl(newQueryKey, newQueryValue, action);
-		changePage(url);
+    var el = $(this);
+    var newQueryKey = el.attr("data-key");
+    var newQueryValue = el.attr("data-value");
+    //newQueryValue = encodeURIComponent(newQueryValue);
+    var action = el.attr("data-action");
+    var url = createNewUrl(newQueryKey, newQueryValue, action);
+    changePage(url);
 		return false;
 	});
 
