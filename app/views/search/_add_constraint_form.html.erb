@@ -97,7 +97,6 @@
       <% if params[:u_action].present? %>
         <%= hidden_field_tag 'u_action', params[:u_action] %>
       <% end %>
-		  <input id="search_submit2" class="search-btn" type="submit" value="Search"/>
 	  </form>
 
 	  <% if user_signed_in? -%>
@@ -115,17 +114,17 @@
       <div class="search_federation_checkbox"><input type="checkbox" class="search_all_federations" />Search all federations</div>
    <% end %>
 	<form accept-charset="UTF-8" action="/search" id="add-search-constraint" method="get">
-		<div class="page_header" id = "matchtitle">Search <%= Setup.site_name() %>:</div>
-		<div id = "matchtitle2" style="font-weight:bold;"> </div>
-		
  	<table>
         <tr>
           <td colspan='2'>
-			  <input name="q" type="text" class="search_entry_box_keyword jq-autocomplete" data-autocomplete-url="/search/auto_complete_for_q" autocomplete="off" placeholder="<%= "Search #{Setup.site_name()}..." if SKIN == 'modnets' %>" />
-
+            <div class="page_header" id = "matchtitle">Search <%= Setup.site_name() %>:</div>
+            <div id = "matchtitle2" style="font-weight:bold;"> </div>
           </td>
-          <td>
-            <input id="search_submit" class="search-btn" type="submit" value="Search" />
+        </tr>
+        <tr>
+          <td colspan='2'>
+             <input name="q" type="text" class="search_entry_box_keyword jq-autocomplete" data-autocomplete-url="/search/auto_complete_for_q" autocomplete="off" placeholder="<%= "Search #{Setup.site_name()}..." if SKIN == 'modnets' %>" />
+
           </td>
         </tr>
        <% if HAS_FUZZY %>
@@ -143,6 +142,11 @@
             </td>
           </tr>
        <% end %>
+      <tr>
+        <td colspan='2'>
+          <input id="search_submit" class="search-btn" type="submit" value="Search" />
+        </td>
+      </tr>
 		    <tr><td colspan='2'>
           <div class="search_help_icon">
 					<a href="/about/help/" class="tooltip"><%= image_tag("#{SKIN}/help_thumb.gif", { alt: 'help', height: 18, style: "padding-left:5px" }) %><span class="search_help_tooltip"><b>Need help?</b><br />Click to learn more about searching in <%= Setup.site_name() %>.</span></a>

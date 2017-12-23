@@ -72,7 +72,7 @@ body.pg-search {
 	font-size: 20px;
 }
 .search_entry_box_keyword {
-	width:455px;
+	width:100%;
   height: 25px;
   border: 2px solid;
   &:focus {
@@ -104,7 +104,11 @@ body.pg-search {
 
 #search_submit2 {
   float: right;
-  margin-right: 153px;
+  margin-right: 210px;
+}
+#search_submit {
+  float: right;
+  margin-right: 210px;
 }
 .search_entry_visible {
 }
@@ -120,7 +124,7 @@ body.pg-search {
 
 .search_entry_instructions {
 	border-bottom: 1px solid black;
-	text-align: left;
+	text-align: center;
 	padding-top: 18px;
   font-size: 20px;
 }
@@ -213,7 +217,9 @@ table.hiddeninfo td {
 	border-right:1px solid #C7C8CB;
 	border-bottom:1px solid #C7C8CB;
 }
-
+#saved-searches {
+  width: 482px;
+}
 #saved-searches table.query {
 	width:inherit;
 }
@@ -402,6 +408,7 @@ div.auto_complete ul li .frequency {
 .add_constraint_form {
 	width: 520px;
 	text-align: left;
+  margin-left: 35px;
 }
 
 .search_help_icon {
