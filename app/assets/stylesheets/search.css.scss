@@ -62,6 +62,7 @@ body.pg-search {
 	}
 .search_entry_box {
 	width:365px;
+  height: 25px;
 }
 .search_entry_box_short {
     width:236px;
@@ -72,8 +73,39 @@ body.pg-search {
 }
 .search_entry_box_keyword {
 	width:455px;
+  height: 25px;
+  border: 2px solid;
+  &:focus {
+    border: 2px solid;
+  }
+}
+.search-btn {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  display: inline-block;
+  padding: 5px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
 }
 
+#search_submit2 {
+  float: right;
+  margin-right: 153px;
+}
 .search_entry_visible {
 }
 
@@ -90,6 +122,7 @@ body.pg-search {
 	border-bottom: 1px solid black;
 	text-align: left;
 	padding-top: 18px;
+  font-size: 20px;
 }
 
 .search_federation_checkbox2 {
