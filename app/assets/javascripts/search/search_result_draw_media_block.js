@@ -458,7 +458,10 @@ jQuery(document).ready(function($) {
 		else
 			html += createBlankResultContentItem('row collected-on');
 
-		var enable_site = (window.gon.enable_site)[0].value;
+		var enable_site = 'off';
+		if(window.gon.enable_site !== undefined){
+		    (window.gon.enable_site)[0].value;
+        }
 
 		if (enable_site == 'on'){
 			var site = window.collex.getSite(obj.archive);
