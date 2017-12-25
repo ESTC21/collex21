@@ -217,18 +217,18 @@ end
 		   return nil_return()
 	   end
 
-	   results = results['search']
+	   results = results['results']
 
-      ret = { 'total_hits' => results['total'], 'hits' => normalize_hits(results['results']['result']), 'facets' => {} }
-	   results['facets'].each { |typ,facets|
+      ret = { 'total_hits' => results['total'], 'hits' => normalize_hits(results['hits']), 'facets' => {} }
+      results['facets'].each { |typ,facets|
 		   h = {}
-		   if facets['facet'].kind_of?(Array)
-			   facets['facet'].each { |facet|
+		   if facets.kind_of?(Array)
+			   facets.each { |facet|
 				   h[facet['name']] = facet['count']
 			   }
 		   else
-			   if facets['facet']
-				   h[facets['facet']['name']] = facets['facet']['count']
+			   if facets
+				   h[facets['name']] = facets['count']
 			   end
 		   end
 		   ret['facets'][typ] = h
@@ -788,8 +788,8 @@ end
    def call_solr(url, verb, params = [])
       params.push("test_index=true") if @use_test_index
       args = params.length > 0 ? "#{params.collect { |item| esc_arg(item) }.join('&')}" : ""
-      
-      request = "/#{url}.xml"
+
+      request = url == 'search' ? "/#{url}.json" : "/#{url}.xml"
       url = URI.parse(Setup.solr_url())
       puts "Request URL"
       puts url
@@ -823,7 +823,11 @@ end
          raise Catalog::Error.new(msg)
       end
       begin
-         results = Hash.from_xml(res.body)
+         if request == '/search.json'
+            results = JSON.parse(res.body)
+         else
+            results = Hash.from_xml(res.body)
+         end
 
 Catalog.log_catalog("Results Info", results)
 
