@@ -1,5 +1,4 @@
 $(document).on('click', ".nav_link", function(e){
-    console.log(e.target);
     var target_div = e.target.textContent;
     // $('.' + target_div).toggle();
 });
@@ -118,7 +117,6 @@ jQuery(document).ready(function($) {
 
    body.bind('RedrawSearchResults', function(ev, obj) {
       if (!obj || !obj.hits || !obj.facets || !obj.query) {
-         window.console.log("error redrawing search results", obj);
          return;
       }
       if (timeoutHandle) {

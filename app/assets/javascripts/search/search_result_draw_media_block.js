@@ -181,7 +181,6 @@ jQuery(document).ready(function($) {
 			uriLink = window.pss.createHtmlTag("a",
 				{ 'class': 'uri_link', 'href': '#' }, 'uri') +
 			window.pss.createHtmlTag("span", { 'style': 'display:none;' }, obj.uri+ "&nbsp;");
-//console.log(obj.uri);
 		var a = createTitleLink(obj.title, "/fullrecord?action=fullrecord&uri="+obj.uri+"");
 
 		var titleEl = window.pss.createHtmlTag("div", { 'class': 'search_result_header' }, uriLink+a);
@@ -443,7 +442,6 @@ jQuery(document).ready(function($) {
 	}
 
 	function createResultContents(obj, index, collectedDate) {
-		console.log(obj);
 		needShowMoreLink = false;
 		var html = "";
 		html += createResultContentItem('one_col', '', obj.alternative, false);
