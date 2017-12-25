@@ -2,10 +2,6 @@ jQuery(document).ready(function($) {
 	"use strict";
 
 	window.collex.createPagination = function(curr_page, total, page_size, core) {
-		/*console.log(curr_page);
-		console.log(total);
-		console.log(page_size);
-		console.log(core);*/
 		var html = "";
 		total = parseInt(total, 10);
 		page_size = parseInt(page_size, 10);

@@ -158,7 +158,7 @@ jQuery(document).ready(function($) {
 			}
 		}
 		body.trigger('RedrawSearchResults', resp);
-      window.cancelProgressDialog();
+    window.cancelProgressDialog();
 	}
 
 	function onError(resp) {

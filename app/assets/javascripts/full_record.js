@@ -195,7 +195,6 @@ jQuery(document).ready(function($) {
 	
 	
 	function createResultContents(obj, index) {
-		console.log(obj);
 		needShowMoreLink = false;
 		var html = "";
 		html += createResultContentItem('one_col', '', obj.alternative, false);
@@ -695,8 +694,7 @@ jQuery(document).ready(function($) {
 			window.cancelProgressDialog();
 		};
 		var onError = function(resp) {
-	      	window.cancelProgressDialog();
-			window.console.error(resp.responseText);
+	    window.cancelProgressDialog();
 		};
 		serverAction({action:{actions: "/get_fullrecord_info", els: [], onSuccess:onSuccess, onError:onError}});	
 	} 

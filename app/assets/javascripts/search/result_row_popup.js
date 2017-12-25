@@ -438,7 +438,7 @@ function doCollect(partial, uri, row_num, row_id, is_logged_in, hasEdit)
 	}
 
 	var params = { partial: partial, uri: uri, row_num: row_num, full_text: '' };
-	console.log(params);
+
 	var onSuccess = function(resp) {
 		var json = JSON.parse(resp.responseText);
 		window.collex.setCollected(row_num, json.collected_on, hasEdit);
@@ -650,7 +650,6 @@ function doAnnotation(uri, row_num, row_id, curr_annotation_id, populate_collex_
 	};
 
 	var title = existing_note.length > 0 ? "Edit Private Annotation" : "Add Private Annotation";
-	//console.log(progress_img);
 	new RteInputDlg({
 		title: title,
 		value: existing_note,
@@ -692,15 +691,12 @@ var StartDiscussionWithObject = Class.create({
 					// We got all the topics. Now put them on the dialog.
 					var sel_arr = $$('.discussion_topic_select');
 					var select = sel_arr[0];
-					console.log(select);
 					select.update('');
 					topics = topics.sortBy(function(topic) { return topic.text; });
 					topics.each(function(topic) {
 						select.appendChild(new Element('option', { value: topic.value }).update(topic.text));
 					});
-					console.log(topics);
-					console.log(topics[0].value);
-					
+
 					$('topic_id').writeAttribute('value', topics[0].value);
 				};
 			serverRequest({ url: url_get_topics, onSuccess: onSuccess});
