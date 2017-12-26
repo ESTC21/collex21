@@ -246,7 +246,7 @@ class ResultsController < ApplicationController
 	 bulk_tag = params[:bulk_tag_text]
     if user_signed_in? && params[:bulk_collect] != nil
       uris = params[:bulk_collect]
-      uris.each do | key,uri |
+      uris.each do |uri|
         CollectedItem.collect_item(current_user, uri, nil)
         if bulk_tag != nil && bulk_tag.length > 0
             Tag.add(current_user, uri, {'name' => bulk_tag} )
@@ -269,13 +269,13 @@ class ResultsController < ApplicationController
     
     if user_signed_in? && params[:bulk_collect] != nil
       uris = params[:bulk_collect]
-      uris.each do |key,uri|
+      uris.each do |uri|
         CollectedItem.remove_collected_item(current_user, uri)
       end
     end
 
-	# refresh the posed page with the new collection
-	redirect_to :back
+	  # refresh the posed page with the new collection
+	  redirect_to :back
   end
 	
   def resend_exhibited_objects

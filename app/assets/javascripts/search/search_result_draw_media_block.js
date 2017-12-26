@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
 		var check = "";
 		var isLoggedIn = window.collex.currentUserId && window.collex.currentUserId > 0;
 		if (isLoggedIn)
-			check = window.pss.createHtmlTag("input", { 'type': 'checkbox', 'id': "bulk_collect_"+index, 'name': hit.title, 'value': hit.uri });
+			check = window.pss.createHtmlTag("input", { 'type': 'checkbox', 'id': "bulk_collect_"+index, 'name': 'bulk_collect[]', 'value': hit.uri });
 		var image = thumbnailImageTag(hit);
 		var icons = "";
 		if (hit.freeculture === 'true')
