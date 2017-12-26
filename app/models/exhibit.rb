@@ -1301,8 +1301,7 @@ class Exhibit < ActiveRecord::Base
 		return paragraphs
 	end
 
-	def self.get_referencing_exhibits(uri, curr_user)
-		exhibits = ExhibitObject.where({uri: uri})
+	def self.get_referencing_exhibits(exhibits, curr_user)
 		user_name = curr_user ? curr_user.fullname : ''
 		rows = []
 		for exhibit in exhibits
