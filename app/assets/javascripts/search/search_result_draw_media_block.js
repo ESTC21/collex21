@@ -458,7 +458,7 @@ jQuery(document).ready(function($) {
 
 		var enable_site = 'off';
 		if(window.gon.enable_site !== undefined){
-		    (window.gon.enable_site)[0].value;
+            enable_site = (window.gon.enable_site)[0].value;
         }
 
 		if (enable_site == 'on'){
