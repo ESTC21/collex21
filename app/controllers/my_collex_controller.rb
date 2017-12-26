@@ -39,8 +39,7 @@ class MyCollexController < ApplicationController
     @results = CachedResource.get_newest_collections(user, 5)
     more_results = CachedResource.get_newest_collections(user, 6)
     @has_more = @results.length < more_results.length
-	@collected = view_context.add_non_solr_info_to_results(@results, nil)
-
+    @collected = view_context.add_non_solr_info_to_results(@results, nil)
 	# if COLLEX_PLUGINS['typewright']
 	# 	@my_typewright_documents = Typewright::DocumentUser.document_list(Setup.default_federation(), user.id)
 	# end

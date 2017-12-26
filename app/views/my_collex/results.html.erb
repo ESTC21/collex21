@@ -22,7 +22,9 @@
 	</div>
 <% else -%>
 	<div class="subpage_nav"> 
-		<%= link_to Setup.my_collex(), { :action => 'index' }, :class => 'nav_link' %><%= link_separator() %>&nbsp;My objects&nbsp;<br />
+    <div class="collex-index">
+      <%= link_to Setup.my_collex(), { :action => 'index' }, :class => 'nav_link' %><%= link_separator() %>&nbsp;My objects&nbsp;
+    </div>
 	</div> 
 	
 	<div class="inner_content_container">
@@ -55,7 +57,7 @@
 				<% end -%>
 			</div>
 		</div>
-		<div class="right_column">
+		<div class="right_column hide">
 			<div id="exhibited_objects_container">
 			</div>
 		</div>

@@ -832,9 +832,10 @@ module SearchHelper
 	def add_non_solr_info_to_results(hits, highlighting)
 		# process all the returned hits to insert all non-solr info
 		all_uris = []
-    hits_uris = hits.collect{|hit| hit['uri']}
+    hits_uris = hits.collect{|hit| hit['uri']}.compact
     all_exhibit_objects = ExhibitObject.where({uri: hits_uris})
-		hits.each { |hit|
+		hits.each do |hit|
+      next if hit['uri'].nil?
 			# make a list of all uris so that we can find the collected ones and any annotations
 			all_uris.push(hit['uri'])
 
@@ -851,7 +852,7 @@ module SearchHelper
 			# Add any referencing exhibits
 			exhibits = Exhibit.get_referencing_exhibits(exhibit_objects, current_user)
 			hit['exhibits'] = exhibits if exhibits.length > 0
-		}
+		end
 
 		if all_uris.length > 0
 			my_tags, tags = Tag.items_in_uri_list(all_uris, get_curr_user_id)

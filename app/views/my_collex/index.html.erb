@@ -22,12 +22,15 @@
 	</div>
 <% else -%>
 	<div class="subpage_nav">
-		<%= Setup.my_collex() %><%= link_separator() %>&nbsp;<%= link_to "My objects", "/#{MY_COLLEX_URL}/results?view=all_collected", :class => 'nav_link' %>&nbsp;<br />
+    <div class="collex-index">
+		  <%= Setup.my_collex() %><%= link_separator() %>&nbsp;<%= link_to "My Objects", "/#{MY_COLLEX_URL}/results?view=all_collected", :class => 'nav_link' %>&nbsp;
+    </div>
 	</div>
 		
 	<div class="inner_content_container">
 		<div class="left_column post-style" data-controller="<%= MY_COLLEX_URL %>">
 			<div class="page_header">Profile</div>
+      <hr>
 			<div id="profile">
 				<%= render :partial => 'profile', :locals => { :user => current_user, :can_edit => true } %>
 			</div>

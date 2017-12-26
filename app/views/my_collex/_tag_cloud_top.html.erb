@@ -16,24 +16,25 @@
     # ---------------------------------------------------------------------------- -%>
 <%# tag_cloud_sidebar params: array cloud_info, enum view { 'tag', 'untagged', 'all_collected' }, string tag -%>
 <div class="page_header">My Tags</div>
-<% if cloud_info[:cloud_freq].length == 0 -%>
-	<div class="empty_list_text">You have not tagged any items (yet!) Use tags to categorize the items you collect and help other <%= Setup.site_name() %> users find them. Your tagged items will remain anonymous.</div>
-<% else -%>
-	<% selected_tag = (view == 'tag') ? 'tag' : '' -%>
-	<div id="tag_cloud_div">
-		<%= render :partial => '/tag/cloud', :locals => { :cloud_info => cloud_info, :selected_tag => selected_tag, :controller_for_tags => MY_COLLEX_URL, :hide_some => false  } %>
-	</div>
-	<div class="subpage_nav">
-		<% if view == 'untagged' -%>
-		<span class="sidebar_tag_link_selected">List All Untagged Objects</span>
-		<% else -%>
-		<span class="sidebar_tag_link"><%= link_to "List All Untagged Objects", { :action => 'results', :view => 'untagged', :anchor => "top_of_results" }, :class => 'nav_link' %></span>
-		<% end -%>
-		&nbsp;
-		<% if view == 'all_collected' -%>
-		<span class="sidebar_tag_link_selected">List All Collected Objects</span>
-		<% else -%>
-		<span class="sidebar_tag_link"><%= link_to "List All Collected Objects", { :action => 'results', :view => 'all_collected', :anchor => "top_of_results" }, :class => 'nav_link' %></span>
-		<% end -%>
-	</div>
-<% end -%>
+<div class="tags-result-body">
+  <% if cloud_info[:cloud_freq].length == 0 -%>
+  	<div class="empty_list_text">You have not tagged any items (yet!) Use tags to categorize the items you collect and help other <%= Setup.site_name() %> users find them. Your tagged items will remain anonymous.</div>
+  <% else -%>
+    <% selected_tag = (view == 'tag') ? 'tag' : '' -%>
+    <div id="tag_cloud_div">
+      <%= render :partial => '/tag/cloud', :locals => { :cloud_info => cloud_info, :selected_tag => selected_tag, :controller_for_tags => MY_COLLEX_URL, :hide_some => false  } %>
+    </div>
+    <div class='results-tabs'>
+      <% if view == 'untagged' -%>
+        <li class="sidebar_tag_link_selected">List All Untagged Objects</li>
+      <% else -%>
+        <li class="sidebar_tag_link"><%= link_to "List All Untagged Objects", { :action => 'results', :view => 'untagged', :anchor => "top_of_results" }, :class => 'nav_link' %></li>
+      <% end -%>
+      <% if view == 'all_collected' -%>
+        <li class="sidebar_tag_link_selected">List All Collected Objects</li>
+      <% else -%>
+        <li class="sidebar_tag_link"><%= link_to "List All Collected Objects", { :action => 'results', :view => 'all_collected', :anchor => "top_of_results" }, :class => 'nav_link' %></li>
+      <% end -%>
+    </div>
+  <% end -%>
+</div>

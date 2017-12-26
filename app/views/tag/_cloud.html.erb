@@ -17,7 +17,8 @@
 <%#cloud: parameters: cloud_info, selected_tag, controller_for_tags, bool hide_some (should only the first few tags be shown with an option to show all?) -%>
 <center>
   <div class="tag_filter">
-	<form onsubmit="return false;">&nbsp;<input id="sidebar_search" onFocus="if (this.value == 'filter tags') this.value = ''" type="text" value="filter tags"/>&nbsp;
+	<form onsubmit="return false;">
+      <input id="sidebar_search" onFocus="if (this.value == 'Filter Tags') this.value = ''" type="text" placeholder="Filter Tags" class="cloud-tag-search"/>
     	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" />
 	</form>
   </div>

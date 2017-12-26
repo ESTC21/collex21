@@ -39,32 +39,54 @@
 		} catch(e) {};
 	</script>
 <% end -%>
-</div>
 <% if can_edit -%>
-	<div class="profile_edit"><%= link_to_function "Edit Profile", "new EditProfileDialog('profile', '/my_collex/update_profile', #{user.to_json()}, '#{get_user_picture(user.id, :full)}');", :class => 'nav_link' %></div>
+  <div class="profile_edit">
+    <%= link_to_function "Edit Profile", "new EditProfileDialog('profile', '/my_collex/update_profile', #{user.to_json()}, '#{get_user_picture(user.id, :full)}');", :class => 'btn' %>
+  </div>
 <% end -%>
-<div class="profile_div"><span class="profile_label">Username:</span><span><%= user.username %></span><span>&nbsp;</span></div>
-<div class="profile_div"><span class="profile_label">Full name:</span><span><%= user.fullname %></span><span>&nbsp;</span></div>
-<% if can_edit || user.hide_email != 'true' %>
-<div class="profile_div"><span class="profile_label">Email:</span><span><%= user.email %></span><span>&nbsp;</span></div>
-<% end %>
-<% if can_edit %>
-<div class="profile_div"><span class="profile_label">&nbsp;</span><span><%= user.hide_email == 'true' ? '(Email address is hidden from other users)' : '(Email address is visible)' %></span><span>&nbsp;</span></div>
-<% end %>
-<div class="profile_div"><span class="profile_label">Institution:</span><span><%= user.institution %></span><span>&nbsp;</span></div>
-<div class="profile_div"><span class="profile_label">Link:</span><span><%= user.link != nil && user.link.length > 0 ? make_ext_link(user.link) : "" %></span><span>&nbsp;</span></div>
-<div class="profile_div">
-	<span class="profile_label">About me:</span>
-	
-	<% if !user.about_me.nil? && user.about_me.length > 0 %>
-		<span class="profile_paragraph"><%= user.about_me %></span>
-	<%else%>
-        <%if can_edit %>
+</div>
+
+<table class='table-bordered'>
+  <tr>
+    <td>Username:</td>
+    <td><%= user.username %></td>
+  </tr>
+  <tr>
+    <td>Full name:</td>
+    <td><%= user.fullname %></td>
+  </tr>
+  <% if can_edit || user.hide_email != 'true' %>
+    <tr>
+      <td>Email:</td>
+      <td><%= user.email %></td>
+    </tr>
+  <% end %>
+  <% if can_edit %>
+    <tr>
+      <td>&nbsp;</td>
+      <td><%= user.hide_email == 'true' ? '(Email address is hidden from other users)' : '(Email address is visible)' %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>Institution:</td>
+    <td><%= user.institution %></td>
+  </tr>
+  <tr>
+    <td>Link:</td>
+    <td><%= user.link != nil && user.link.length > 0 ? make_ext_link(user.link) : "" %></td>
+  </tr>
+  <tr>
+    <td>About me:</td>
+    <td>
+      <% if !user.about_me.nil? && user.about_me.length > 0 %>
+        <span class="profile_paragraph"><%= user.about_me %></span>
+      <% else %>
+        <% if can_edit %>
             <span class="profile_hint">You have not entered any information about yourself. Click
                 <%= link_to_function "here", "new EditProfileDialog('profile', '/my_collex/update_profile', #{user.to_json()}, '#{get_user_picture(user.id, :full)}');", :class => 'nav_link' %>
                  to add a brief description.</span>
-        <%end%>
-	<%end%>
-	
-	<span>&nbsp;</span>
-</div>
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+</table>
