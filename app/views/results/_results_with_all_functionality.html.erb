@@ -35,9 +35,9 @@
    <%= render( :partial => 'results/results', :locals => { :user_id => !user_signed_in? ? -1 : get_curr_user_id, :hits => results } ) %>
 </form>
 
-<div class="page-results">
+<!-- <div class="page-results">
 </div>
-
+ -->
 <div class="clear_both"></div>
 <hr class="search_results_hr" />
 <div class="expand_all_link"><%# render( :partial => 'results/bulkcollect', :locals => {:mode => mode, :page => page}  ) %></div>
