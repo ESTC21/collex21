@@ -395,9 +395,12 @@ class CachedResource < ActiveRecord::Base
 	  # We want to return all the CollectedItems that that don't have a corresponding Tagassigns
     return { :results => [], :total => 0 } if user == nil
     all_items = CollectedItem.where({user_id: user.id})
+    cached_resource_ids = all_items.collect(&:cached_resource_id)
+    tag_assigns = Tagassign.where(cached_resource_id: cached_resource_ids, user_id: user.id)
+
     items = []
     all_items.each { |item|
-      first_tag = Tagassign.find_by_cached_resource_id_and_user_id(item.cached_resource_id, item.user_id)
+      first_tag = tag_assigns.find { |tagassign| tagassign.cached_resource_id == item.cached_resource_id }
       if !first_tag
 				if sort_field
 					item = add_sort_field(item, sort_field)
@@ -485,25 +488,21 @@ class CachedResource < ActiveRecord::Base
 			return out_item
 		end
 
-	def self.field_has_value(field)
-		return false if field == nil
-		if field.class == 'String'
-			return field.length > 0
-		end
-		return true
+	def self.field_has_value?(field)
+		return field.to_s.length > 0
 	end
 
 	def self.sort_algorithm(results, field)
-			results = results.sort { |a,b|
-				if field_has_value(a[field]) && field_has_value(b[field])
-					a[field] <=> b[field]
-				elsif field_has_value(a[field])
-					1 <=> 2
-				else
-					2 <=> 1
-				end
-			}
-			return results
+		results = results.sort { |a,b|
+			if field_has_value?(a[field]) && field_has_value?(b[field])
+				a[field] <=> b[field]
+			elsif field_has_value?(a[field])
+				1 <=> 2
+			else
+				2 <=> 1
+			end
+		}
+		return results
   end
 
   def self.fill_hit(resource_id)
