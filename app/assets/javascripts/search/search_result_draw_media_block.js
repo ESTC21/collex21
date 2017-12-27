@@ -692,7 +692,7 @@ jQuery(document).ready(function($) {
 		var el = $("#search_result_"+index);
 		if (el.length) {
 			var value = el.find('.annotation-row');
-			var container = el.closest(".search_result_data_container");
+			var container = el.children().find('.search_result_data_container');
 			var uri = container.attr("data-uri");
 			var annotation = createAnnotationBody(index, uri, text);
 			value.html(annotation);
