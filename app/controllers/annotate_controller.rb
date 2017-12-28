@@ -69,6 +69,10 @@ class AnnotateController < ApplicationController
             params[:documents].each { |document|
               time_footprint = Time.now.to_formatted_s(:number)
               uniq_name = (0...10).map { (65 + rand(26)).chr }.join
+
+              directory = Rails.root.join('public', 'uploads')
+              FileUtils.mkdir_p(directory) unless File.exists?(directory)
+
               File.open(Rails.root.join('public', 'uploads', document.original_filename), 'wb') do |file|
                 file.write(document.read)
                 uniq_filename = (lastrecord + 1).to_s + "_" + uniq_name + "_" + time_footprint + File.extname(file)
