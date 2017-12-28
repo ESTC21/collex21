@@ -847,7 +847,7 @@ module SearchHelper
 				hit['text'] = t.gsub("&lt;em&gt;", "<em>").gsub("&lt;/em&gt;", "</em>").gsub('AmPeRsAnD', '&')
 			end
 
-      exhibit_objects = all_exhibit_objects.select {|exhibit_object| exhibit_object.uri == hits['uri']}
+      exhibit_objects = all_exhibit_objects.select {|exhibit_object| exhibit_object.uri == hit['uri']}
 
 			# Add any referencing exhibits
 			exhibits = Exhibit.get_referencing_exhibits(exhibit_objects, current_user)
