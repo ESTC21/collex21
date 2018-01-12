@@ -75,7 +75,14 @@ jQuery(document).ready(function($) {
             var role_members = obj.facets[role];
             if (role_members) {
                 var stripped_values = _.object(_.map(role_members, function (value, key) {
-                    return [key.replace(/[0-9.,/(/)-]/g, ' ').strip(), value]
+                    var stripped_value = key.replace(/[^0-9a-z'\-, ]/i, ' ').strip();
+                    var year = stripped_value.replace(/[\D]+/, "");
+                    var gsub_value = ""
+                    if (year != "")
+                        gsub_value = stripped_value.gsub(year, "(" + year + ")");
+                    else
+                        gsub_value = stripped_value
+                    return [stripped_value, {'gsub_value': gsub_value, 'count': value }]
                 }));
                 consolidated_role_params[role] = stripped_values;
             }
@@ -93,14 +100,16 @@ jQuery(document).ready(function($) {
                 var selectedIndex = $.inArray(key, selected);
                 var label = key;
                 if (labels) label = labels[key];
-                html += createFacetCountRow(data_value, totalFacetCount(consolidated_role_params[key]), data_key, selectedIndex !== -1, label, false, (idx != 0 && selected == undefined));
+
+                var count = _.chain(consolidated_role_params[key]).values().reduce(function(m,x) { return parseInt(m) + parseInt(x['count']); }, 0).value();
+                html += createFacetCountRow(data_value, count, data_key, selectedIndex !== -1, label, false, (idx != 0 && selected == undefined));
 
                 for (var _key in consolidated_role_params[key]) {
                     if (typeof selected === 'string') selected = [selected];
                     var selectedIndex = $.inArray(_key.strip(), selected);
                     var label = _key;
                     if (labels) label = labels[_key];
-                    html += createFacetRow(_key, consolidated_role_params[key][_key], data_key, selectedIndex !== -1, _key, (idx != 0 && selected == undefined));
+                    html += createFacetRow(_key, consolidated_role_params[key][_key]['count'], data_key, selectedIndex !== -1, consolidated_role_params[key][_key]['gsub_value'], (idx != 0 && selected == undefined));
                 }
             }
             idx++;
