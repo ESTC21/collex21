@@ -54,15 +54,11 @@ jQuery(document).ready(function($) {
 	}
 
 	function showResultSections(obj) {
-		if (hasSearch(obj.query)) {
-			// this is a blank page, with no search.
-			$(".has-results").hide();
-			$(".search_div").show();
-			$(".add_constraint_form").show();
-		} else {
-			$(".search_div").hide();
-			$(".add_constraint_form").hide();
-			$(".has-results").show();
+    $(".search_div").hide();
+    $(".add_constraint_form").hide();
+    $(".has-results").show();
+
+		if (!hasSearch(obj.query)) {
 			if (obj.hits.length === 0) {
 				// there was a search, but there were no results.
 				$(".not-empty").hide();
@@ -72,12 +68,14 @@ jQuery(document).ready(function($) {
 				$(".not-empty").show();
 				$(".no_results_msg").hide();
 			}
-		}
+		} else {
+      $(".not-empty").show();
+      $(".no_results_msg").hide();
+    }
 
 		if(sessionStorage.getItem('match') == 'true'){
 			$(".right_column").hide();
 		}
-
 		var isPageResults = (obj.page_results === true);
       if ( isPageResults ) {
          $(".bulkcollect").hide();
