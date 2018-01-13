@@ -34,7 +34,7 @@ jQuery(document).ready(function($) {
 
 		request.term = request.field == 'tag' ? request.term : window.collex.sanitizeString(request.term);
 		request[csrf_param] = csrf_token;
-		var autoCompleteFields = [ 'q', 't', 'aut', 'ed', 'pub', 'publisher', 'coverage', 'g', 'lang', 'doc_type', 'r_own', 'r_rps', 'record_format', 'subject', 'tag' ];
+		var autoCompleteFields = [ 'q', 't', 'aut', 'ed', 'pub', 'publisher', 'coverage', 'g', 'lang', 'doc_type', 'r_own', 'r_rps', 'record_format', 'subject', 'tag', 'abbreviatedTitle', 'variantTitle', 'earlierTitleProper', 'titleProperOfSeries' ];
 		var autoCompleteOk = false;
 		for (var i = 0; !autoCompleteOk && i < autoCompleteFields.length; i++)
 			if (request.field === autoCompleteFields[i])
