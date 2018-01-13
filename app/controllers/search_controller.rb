@@ -366,7 +366,7 @@ class SearchController < ApplicationController
      elsif field == 'aut'
        field = 'author_sort'
      elsif field == 't'
-       field = 'title'
+       field = 'title_sort'
      elsif field == 'ed'
        field = 'editor'
      elsif field == 'pub'
