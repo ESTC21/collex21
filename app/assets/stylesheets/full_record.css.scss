@@ -301,10 +301,10 @@ table.review-result-table td {
 
 .thumb-width {
 	width: 30px;
-	margin: 0 10px 0px 11px;
+	//margin: 0 10px 0px 11px;
 }
 .margin-bottom-3 {
-	margin-bottom: -3px;
+	margin-bottom: -9px;
 }
 
 .text-center {
@@ -335,4 +335,17 @@ table.review-result-table td {
   text-decoration: none;
 }
 
+  span.number_circle {
+    background: #CCAC63;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 5px;
+    text-align: center;
+    width: 1.6em;
+  }
 }
