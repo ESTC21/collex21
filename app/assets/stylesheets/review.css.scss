@@ -265,5 +265,29 @@ table.hiddeninfo td {
 	border-bottom:1px solid #C7C8CB;
 }
 
+.thumb-width {
+	width: 30px;
+}
+.margin-bottom-13 {
+	margin-bottom: -13px;
+}
+
+table.review-result-table {
+	border-top:1px solid #C7C8CB;
+	border-left:1px solid #C7C8CB;
+	width:40%;
+	margin-top:10px;
+	margin-left: 138px;
+}
+
+table.review-result-table tr {
+	border-right:1px solid #C7C8CB;
+	border-bottom:1px solid #C7C8CB;
+}
+
+table.review-result-table td {
+	border-right:1px solid #C7C8CB;
+	border-bottom:1px solid #C7C8CB;
+}
 
 }

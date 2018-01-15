@@ -31,39 +31,40 @@ jQuery(document).ready(function($) {
 
 				var subjecturi = "";
 				var object = "";
-				
+
 				html += window.pss.createHtmlTag("div", {'id': (obj.hits[i])['annotationid'], 'class':'annotationid'});
-				for (var key in obj.hits[i]) {
-					if(key == 'predicate'){				
-						var predicateinfo = window.pss.createHtmlTag("span", { 'class': 'label' }, (obj.hits[i])[key]);	
-						html += window.pss.createHtmlTag("div", { 'class': 'review_result_right' }, predicateinfo);
-						html+= window.pss.createHtmlTag("br");		
-					}
-					else if(key == 'totalAgree'){
-							totalagreeinfo += window.pss.createHtmlTag("span", { 'class': 'label', 'style': 'font-weight: normal;' }, ((obj.hits[i])[key]).toString());
-							totalagreeinfo += window.pss.createHtmlTag("img", { alt: 'Permalink', src: "/assets/thumbs-up.png"});
-					}
-					else if(key == 'totalDisagree'){ 
-							totaldisagreeinfo += window.pss.createHtmlTag("span", { 'class': 'label', 'style': 'font-weight: normal;' }, ((obj.hits[i])[key]).toString());
-							totaldisagreeinfo += window.pss.createHtmlTag("img", { alt: 'Permalink', src: "/assets/thumbs-down.png"});
-							html += window.pss.createHtmlTag("div", { 'class': 'review_result_right' }, totalagreeinfo + totaldisagreeinfo);
-					}	
-					else if(key == 'subject' || key == 'object') {
-						if (key == 'object'){
-							var objinfo = (obj.hits[i])[key];
-							html += (obj.hits[i])["predicateid"] > 2 ? window.pss.createHtmlTag("span", { 'class': 'review_result_right' }, objinfo) : window.collex.createReviewMediaBlock(objinfo, j);						
-							object = (obj.hits[i])["predicateid"] > 2 ? objinfo : objinfo['uri'];
-						}
-						else if (key == 'subject'){
-						    if((obj.hits[i])[key] != null) {
-                                subjecturi = ((obj.hits[i])[key])['uri'];
-                                html += window.collex.createReviewMediaBlock((obj.hits[i])[key], j);
-                            }
-						}
-						j += 1;
-					}	
-				}	
-				
+        if((obj.hits[i])['subject'] != null) {
+          subjecturi = ((obj.hits[i])['subject'])['uri'];
+          html += window.collex.createReviewMediaBlock((obj.hits[i])['subject'], i);
+        }
+
+        var table = ""
+        var totalagreeinfo =""
+        var totaldisagreeinfo = "";
+
+        if (obj.hits[i]['predicate'] != null) {
+          table += window.pss.createHtmlTag("tr", {}, window.pss.createHtmlTag("td", {}, 'Attributed being Annotated') + window.pss.createHtmlTag("td", {}, obj.hits[i]['predicate']));
+         }
+
+         if (obj.hits[i]['totalAgree'] != null && obj.hits[i]['totalDisagree'] != null) {
+          totalagreeinfo += window.pss.createHtmlTag("span", { 'class': 'label', 'style': 'font-weight: normal;' }, ((obj.hits[i])['totalAgree']).toString());
+          totalagreeinfo += window.pss.createHtmlTag("img", { 'class': 'thumb-width', alt: 'Permalink', src: "/assets/thumbs-up-new.png"});
+
+          totaldisagreeinfo += window.pss.createHtmlTag("img", { 'class': 'thumb-width margin-bottom-13', alt: 'Permalink', src: "/assets/thumbs-down-new.png"});
+          totaldisagreeinfo += window.pss.createHtmlTag("span", { 'class': 'label', 'style': 'font-weight: normal;' }, ((obj.hits[i])['totalDisagree']).toString());
+          table += window.pss.createHtmlTag("tr", {}, window.pss.createHtmlTag("td", {}, totalagreeinfo) + window.pss.createHtmlTag("td", {}, totaldisagreeinfo));
+        }
+
+
+        if ((obj.hits[i])["predicateid"] !=  null) {
+          var objinfo = (obj.hits[i])['object'];
+
+          table += window.pss.createHtmlTag("tr", {}, window.pss.createHtmlTag("td", {}, 'Value After Update') + window.pss.createHtmlTag("td", {}, (obj.hits[i])["predicateid"] > 2 ? window.pss.createHtmlTag("span", { 'class': '' }, objinfo) : window.collex.createReviewMediaBlock(objinfo, i)));
+          object = (obj.hits[i])["predicateid"] > 2 ? objinfo : objinfo['uri'];
+        }
+
+        html += window.pss.createHtmlTag("table", { class: 'review-result-table'}, table);
+
 				html+= window.pss.createHtmlTag("br");
 				var reviewbtn = ""
 				if (window.collex.isBibliographer || window.collex.isAdmin) 
