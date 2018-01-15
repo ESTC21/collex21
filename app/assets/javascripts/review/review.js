@@ -43,24 +43,23 @@ jQuery(document).ready(function($) {
         var totaldisagreeinfo = "";
 
         if (obj.hits[i]['predicate'] != null) {
-          table += window.pss.createHtmlTag("tr", {}, window.pss.createHtmlTag("td", {}, 'Attributed being Annotated') + window.pss.createHtmlTag("td", {}, obj.hits[i]['predicate']));
+          table += window.pss.createHtmlTag("tr", {}, window.pss.createHtmlTag("td", {}, 'Verb being Annotated') + window.pss.createHtmlTag("td", {}, obj.hits[i]['predicate']));
          }
-
-         if (obj.hits[i]['totalAgree'] != null && obj.hits[i]['totalDisagree'] != null) {
-          totalagreeinfo += window.pss.createHtmlTag("span", { 'class': 'label', 'style': 'font-weight: normal;' }, ((obj.hits[i])['totalAgree']).toString());
-          totalagreeinfo += window.pss.createHtmlTag("img", { 'class': 'thumb-width', alt: 'Permalink', src: "/assets/thumbs-up-new.png"});
-
-          totaldisagreeinfo += window.pss.createHtmlTag("img", { 'class': 'thumb-width margin-bottom-13', alt: 'Permalink', src: "/assets/thumbs-down-new.png"});
-          totaldisagreeinfo += window.pss.createHtmlTag("span", { 'class': 'label', 'style': 'font-weight: normal;' }, ((obj.hits[i])['totalDisagree']).toString());
-          table += window.pss.createHtmlTag("tr", {}, window.pss.createHtmlTag("td", {}, totalagreeinfo) + window.pss.createHtmlTag("td", {}, totaldisagreeinfo));
-        }
-
 
         if ((obj.hits[i])["predicateid"] !=  null) {
           var objinfo = (obj.hits[i])['object'];
 
           table += window.pss.createHtmlTag("tr", {}, window.pss.createHtmlTag("td", {}, 'Value After Update') + window.pss.createHtmlTag("td", {}, (obj.hits[i])["predicateid"] > 2 ? window.pss.createHtmlTag("span", { 'class': '' }, objinfo) : window.collex.createReviewMediaBlock(objinfo, i)));
           object = (obj.hits[i])["predicateid"] > 2 ? objinfo : objinfo['uri'];
+        }
+
+         if (obj.hits[i]['totalAgree'] != null && obj.hits[i]['totalDisagree'] != null) {
+          totalagreeinfo += window.pss.createHtmlTag("span", { 'class': 'label', 'style': 'font-weight: normal; font-size: 20px;' }, ((obj.hits[i])['totalAgree']).toString());
+          totalagreeinfo += window.pss.createHtmlTag("img", { 'class': 'thumb-width', alt: 'Permalink', src: "/assets/thumbs-up-new.png"});
+
+          totaldisagreeinfo += window.pss.createHtmlTag("img", { 'class': 'thumb-width margin-bottom-3', alt: 'Permalink', src: "/assets/thumbs-down-new.png"});
+          totaldisagreeinfo += window.pss.createHtmlTag("span", { 'class': 'label', 'style': 'font-weight: normal; font-size: 20px;' }, ((obj.hits[i])['totalDisagree']).toString());
+          table += window.pss.createHtmlTag("tr", {}, window.pss.createHtmlTag("td", { 'colspan': '2', 'class': 'text-center'}, totalagreeinfo + totaldisagreeinfo));
         }
 
         html += window.pss.createHtmlTag("table", { class: 'review-result-table'}, table);

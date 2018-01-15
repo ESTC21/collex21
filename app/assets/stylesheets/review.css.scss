@@ -267,9 +267,10 @@ table.hiddeninfo td {
 
 .thumb-width {
 	width: 30px;
+	margin: 0 10px 0px 11px;
 }
-.margin-bottom-13 {
-	margin-bottom: -13px;
+.margin-bottom-3 {
+	margin-bottom: -3px;
 }
 
 table.review-result-table {
@@ -288,6 +289,10 @@ table.review-result-table tr {
 table.review-result-table td {
 	border-right:1px solid #C7C8CB;
 	border-bottom:1px solid #C7C8CB;
+}
+
+.text-center {
+	text-align: center;
 }
 
 }
