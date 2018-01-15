@@ -579,49 +579,55 @@ jQuery(document).ready(function($) {
 
 		if(json.annotations.length > 0)
 		{	for (var i = 0; i < json.annotations.length; i++) {
-			var reviewinfo = "";
-			var objuri = "";
-			var annotationid =  ((json.annotations[i])['matchfeedback'])[0]['annotationid'];
-				for (var key in json.annotations[i]) {	
-					if(key == 'predicate'){									
-						reviewinfo += window.pss.createHtmlTag("div", {'id': annotationid});
-						reviewinfo += window.pss.createHtmlTag("span", { 'class': 'label', 'style': 'font-weight: bold;' }, (json.annotations[i])[key]);
-					}
-					else if(key == 'annotationStatus'){
-						if((json.annotations[i])[key] == 1 && (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar) )
-						{	
-							var object_uri = (json.annotations[i])["predicateid"] > 2 ? (json.annotations[i])['object'] : json.annotations[i].object.uri;
-							var matchfeedbackinfo = "matchFeedbackinfo('"+ annotationid + "'); return false;";
-							reviewinfo+= window.pss.createHtmlTag("button", { 'class': 'reviewAnnotation', 'onclick': matchfeedbackinfo }, "Provide your feedback"); 								
-						}
-					}
-					else if(key == 'object'){
-						var obj = (json.annotations[i])[key];
-						var resultHeader = (json.annotations[i])["predicateid"] > 2 ? obj : createResultHeader(obj);
-						
-						var klass = "object_info";
-						reviewinfo += window.pss.createHtmlTag("div", { 'id': 'object_info_'+ i, 'class': klass, 'data-index': i, 'data-uri': obj.uri, 'data-url': obj.url, 'data-title': obj.title }, resultHeader);
-					}
-					else if(key == 'totalAgree'){
-						reviewinfo += window.pss.createHtmlTag("span", { 'class': 'label', 'style': 'font-weight: normal;' }, ((json.annotations[i])[key]).toString());
-						reviewinfo += window.pss.createHtmlTag("img", { alt: 'Permalink', src: "/assets/thumbs-up.png"});
-					}
-					else if(key == 'totalDisagree'){ 
-						reviewinfo += window.pss.createHtmlTag("span", { 'class': 'label', 'style': 'font-weight: normal;' }, ((json.annotations[i])[key]).toString());
-						reviewinfo += window.pss.createHtmlTag("img", { alt: 'Permalink', src: "/assets/thumbs-down.png"});
-						reviewinfo += window.pss.createHtmlTag("br");
-					}	
-					else if(key == 'matchfeedback'){						
-						reviewinfo += createFeedbackInfo((json.annotations[i])[key]);						
-						reviewinfo+= window.pss.createHtmlTag("br");
-					}	
-					else if(key == 'reviewfeedback'){
-						if((json.annotations[i])[key].length > 0){
-							reviewinfo += window.pss.createHtmlTag("hr", { 'class': 'review_results_hr' });
-							reviewinfo += window.pss.createHtmlTag("div", { 'class': 'review_result_right' },createFeedbackInfo((json.annotations[i])[key]));							
-						}
-					}
+				var reviewinfo = "";
+				var objuri = "";
+				var totalagreeinfo = "";
+				var totaldisagreeinfo = "";
+				var annotationid =  ((json.annotations[i])['matchfeedback'])[0]['annotationid'];
+
+				html += window.pss.createHtmlTag("div", {'id': (json.annotations[i])['annotationid'], 'class':'annotationid'});
+
+				var table = "";
+				var feedback_btn = "";
+				if (json.annotations[i]['predicate'] != null) {
+				  table += window.pss.createHtmlTag("tr", {}, window.pss.createHtmlTag("td", {}, 'Verb being Annotated') + window.pss.createHtmlTag("td", {}, json.annotations[i]['predicate']));
+				 }
+
+				if ((json.annotations[i])["object"] !=  null) {
+				  var obj = (json.annotations[i])['object'];
+				  var resultHeader = (json.annotations[i])["predicateid"] > 2 ? obj : createResultHeader(obj);
+				  var klass = "object_info";
+				  var resultHeadDiv = window.pss.createHtmlTag("div", { 'id': 'object_info_'+ i, 'class': klass, 'data-index': i, 'data-uri': obj.uri, 'data-url': obj.url, 'data-title': obj.title }, resultHeader);
+
+				  table += window.pss.createHtmlTag("tr", {}, window.pss.createHtmlTag("td", {}, 'Value After Update') + window.pss.createHtmlTag("td", {}, resultHeadDiv));
 				}
+
+				if (json.annotations[i]['totalAgree'] != null && json.annotations[i]['totalDisagree'] != null) {
+				  totalagreeinfo += window.pss.createHtmlTag("span", { 'class': 'label', 'style': 'font-weight: normal; font-size: 20px;' }, ((json.annotations[i])['totalAgree']).toString());
+				  totalagreeinfo += window.pss.createHtmlTag("img", { 'class': 'thumb-width', alt: 'Permalink', src: "/assets/thumbs-up-new.png"});
+
+				  totaldisagreeinfo += window.pss.createHtmlTag("img", { 'class': 'thumb-width margin-bottom-3', alt: 'Permalink', src: "/assets/thumbs-down-new.png"});
+				  totaldisagreeinfo += window.pss.createHtmlTag("span", { 'class': 'label', 'style': 'font-weight: normal; font-size: 20px;' }, ((json.annotations[i])['totalDisagree']).toString());
+				  table += window.pss.createHtmlTag("tr", {}, window.pss.createHtmlTag("td", { 'colspan': '2', 'class': 'text-center'}, totalagreeinfo + totaldisagreeinfo));
+				}
+
+				if((json.annotations[i])['annotationStatus'] == 1 && (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar) ) {
+				  var object_uri = (json.annotations[i])["predicateid"] > 2 ? (json.annotations[i])['object'] : json.annotations[i].object.uri;
+				  var matchfeedbackinfo = "matchFeedbackinfo('"+ annotationid + "'); return false;";
+				  feedback_btn= window.pss.createHtmlTag("button", { 'class': 'reviewAnnotation', 'onclick': matchfeedbackinfo }, "Provide your feedback");
+				  table += window.pss.createHtmlTag("tr", {}, window.pss.createHtmlTag("td", { 'colspan': '2', 'class': 'text-center'}, feedback_btn));
+				}
+
+				if (json.annotations[i]['matchfeedback'] !=  null) {
+				  table += window.pss.createHtmlTag("tr", {}, window.pss.createHtmlTag("td", {}, 'Match Feedback') + window.pss.createHtmlTag("td", {}, createFeedbackInfo((json.annotations[i])['matchfeedback'])));
+				}
+
+				if (json.annotations[i]['reviewfeedback'] != null) {
+				  table += window.pss.createHtmlTag("tr", {}, window.pss.createHtmlTag("td", {}, 'Review Feedback') + window.pss.createHtmlTag("td", {}, createFeedbackInfo((json.annotations[i])['reviewfeedback'])));
+				}
+
+				reviewinfo += window.pss.createHtmlTag("table", { class: 'review-result-table'}, table);
+
 				var reviewKlass = "odd";
 				if (i % 2 == 0)
 					reviewKlass = "even";
@@ -649,10 +655,10 @@ jQuery(document).ready(function($) {
 		var html = "";
 		for(var i = 0; i < obj.length; i++) {
 			if (obj[i]['flag'] == 3){
-				html += window.pss.createHtmlTag("img", { alt: 'Permalink', src: "/assets/thumbs-up.png"});
+				html += window.pss.createHtmlTag("img", { 'class': 'thumb-width', alt: 'Permalink', src: "/assets/thumbs-up-new.png"});
 			}
 			else if (obj[i]['flag'] == 4){
-				html += window.pss.createHtmlTag("img", { alt: 'Permalink', src: "/assets/thumbs-down.png"});
+				html += window.pss.createHtmlTag("img", { 'class': 'thumb-width margin-bottom-3', alt: 'Permalink', src: "/assets/thumbs-down-new.png"});
 			}
 			else if (obj[i]['flag'] == "Approved")
 			{
