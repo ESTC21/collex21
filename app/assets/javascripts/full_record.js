@@ -654,11 +654,14 @@ jQuery(document).ready(function($) {
 	function createFeedbackInfo(obj){
 		var html = "";
 		for(var i = 0; i < obj.length; i++) {
+
 			if (obj[i]['flag'] == 3){
 				html += window.pss.createHtmlTag("img", { 'class': 'thumb-width', alt: 'Permalink', src: "/assets/thumbs-up-new.png"});
+				html+= window.pss.createHtmlTag("br");
 			}
 			else if (obj[i]['flag'] == 4){
 				html += window.pss.createHtmlTag("img", { 'class': 'thumb-width margin-bottom-3', alt: 'Permalink', src: "/assets/thumbs-down-new.png"});
+				html+= window.pss.createHtmlTag("br");
 			}
 			else if (obj[i]['flag'] == "Approved")
 			{
@@ -671,15 +674,16 @@ jQuery(document).ready(function($) {
 				html+= window.pss.createHtmlTag("br");
 			}
 
-			html += window.pss.createHtmlTag("span", { 'class': 'label'}, obj[i]['username']);
+			html += window.pss.createHtmlTag("span", { 'class': 'label'}, "Feedback by: " + obj[i]['username']);
 			if (obj[i]['feedback'] != null){				
 				html+= window.pss.createHtmlTag("br");			
-				html += window.pss.createHtmlTag("span", { 'class': 'label'}, obj[i]['feedback']);
+				html += window.pss.createHtmlTag("span", { 'class': 'label'}, "Comments: "  + obj[i]['feedback']);
 			}
 			
 			var attachments = obj[i]['attachment'];
 			if (attachments.length > 0){
 				html+= window.pss.createHtmlTag("br");
+				html += window.pss.createHtmlTag("span", { 'class': 'label'}, "Attachments: " );
 				for(var j = 0; j < attachments.length; j++){
 					html += window.pss.createHtmlTag("a", {'class': 'label', 'href': "/uploads/"+attachments[j], 'download': "file" + (j+1)}, "file" + (j+1));
 					html += window.pss.createHtmlTag("span", { 'class': 'label'}, "&nbsp;&nbsp;");
