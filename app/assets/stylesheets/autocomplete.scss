@@ -29,6 +29,9 @@
   font-size: .9em;
   text-align: left;
 
+  li {
+    width: 520px;
+  }
   li:hover, li:focus, .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
     background: #455CAA;
     color: #FFFFFF;
