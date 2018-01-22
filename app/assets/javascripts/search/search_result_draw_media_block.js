@@ -107,7 +107,7 @@ jQuery(document).ready(function($) {
 			    var collect = !isCollected? collectbutton == "on" ? window.pss.createHtmlTag("button", { 'class': 'collect' }, "Collect") : '': '';
 				var uncollect = isCollected? uncollectbutton == "on" ? window.pss.createHtmlTag("button", { 'class': 'uncollect' }, "Uncollect") : '': '';
 				var discuss = discussbutton == "on" ? window.pss.createHtmlTag("button", { 'class': 'discuss' }, "Discuss") : '';
-				var exhibit = isCollected && exhibitbutton ? window.pss.createHtmlTag("button", { 'class': 'exhibit' }, "Exhibit") : '';
+				// var exhibit = isCollected && exhibitbutton ? window.pss.createHtmlTag("button", { 'class': 'exhibit' }, "Exhibit") : '';
 				var typewright = window.collex.hasTypewright && hit.typewright ? window.pss.createHtmlTag("button", { 'class': 'edit log-in-first-link', 'data-login-prompt': "Please log in to begin editing" }, "Edit") : '';
 				var pages = "";
 				if ( window.collex.hasPageSearch ) {
@@ -115,7 +115,7 @@ jQuery(document).ready(function($) {
 		              pages = window.pss.createHtmlTag("button", { 'class': 'page-search' }, "All Pages");
 		           }
 				}
-				if(collect == '' || uncollect == '' || discuss == '' || exhibit == '')
+				if(collect == '' || uncollect == '' || discuss == '') //|| exhibit == ''
 				{
 					$j('#bulkcollect').hide();
 				}				
@@ -130,7 +130,7 @@ jQuery(document).ready(function($) {
                     annotate = annotatebutton == "on" ? window.pss.createHtmlTag("a", {'class': 'annotate'}, "Contribute") : '';
                 }
 
-			    displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, collect+uncollect+discuss+exhibit+typewright+pages+match+annotate);
+			    displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, collect+uncollect+discuss+typewright+pages+match+annotate);
 		}
 		return displaybuttons;
 	}
