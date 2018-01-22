@@ -121,16 +121,20 @@ jQuery(document).ready(function($) {
 				}				
 
 				var match = "";
+        var watch = "";
 				var annotate = "";
 
 				if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar) {
 					match = matchbutton == "on" ? window.pss.createHtmlTag("a", { 'class': 'match'}, "Match") : '';
 				}
-                if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar || window.collex.isUser) {
-                    annotate = annotatebutton == "on" ? window.pss.createHtmlTag("a", {'class': 'annotate'}, "Contribute") : '';
-                }
+        if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar || window.collex.isUser) {
+            annotate = annotatebutton == "on" ? window.pss.createHtmlTag("a", {'class': 'annotate'}, "Contribute") : '';
+        }
+        if (window.collex.currentUserId && window.collex.currentUserId > 0 && hit.watch != true) {
+          watch = window.pss.createHtmlTag("a", {'class': 'watch'}, "Watch");
+        }
 
-			    displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, collect+uncollect+discuss+exhibit+typewright+pages+match+annotate);
+			    displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, collect+uncollect+discuss+exhibit+typewright+pages+match+annotate+watch);
 		}
 		return displaybuttons;
 	}
@@ -761,10 +765,20 @@ jQuery(document).ready(function($) {
 		var hiddenRecord = "";
 		var showRecord = "";
 		var count = 0;
+    var watching_records = obj.watching_records;
+
     for (var i = 0; i < obj.hits.length; i++) {
 			var isCollected = obj.collected[obj.hits[i].uri] !== undefined;
 			var hasPredicate = obj.hits[i].hasPart !== undefined;
 			// if(obj.hits[i].instanceof === undefined) {
+        _.find(watching_records, function(_obj){
+          if(_obj.uri == obj.hits[i].uri) {
+            return obj.hits[i]['watch'] = true;
+          }
+          else {
+            obj.hits[i]['watch'] =  false;
+          }
+        })
 				showRecord += window.collex.createMediaBlock(obj.hits[i], i, isCollected, obj.collected[obj.hits[i].uri], hasPredicate, false);
 			//else{
 				//count += 1;

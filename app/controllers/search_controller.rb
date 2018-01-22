@@ -108,7 +108,11 @@ class SearchController < ApplicationController
 				results['facets']['doc_type'] = {} if results['facets']['doc_type'].blank?
 				results['facets']['discipline'] = {} if results['facets']['discipline'].blank?
 				results['facets']['role'] = {} if results['facets']['role'].blank?
-
+        results['watching_records'] = if user_signed_in?
+          current_user.watching_records.as_json
+        else
+          []
+        end
 				render :json => results
 			end
 		end		

@@ -475,6 +475,31 @@ function doMatch(uri, url, row_num, row_id, is_logged_in, title)
             });
 }
 
+function onWatchSuccess(resp) {
+  if (resp.saved == true){
+    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .watch").fadeOut("slow");
+  }
+}
+
+function doWatch(uri, title, is_logged_in) {
+  if (!is_logged_in) {
+    var dlg = new SignInDlg();
+    dlg.setInitialMessage("Please log in to match objects");
+    dlg.show('sign_in');
+    return;
+  }
+  var params = {uri: uri, title: title, user_id: is_logged_in};
+
+  var $j = jQuery.noConflict();
+  $j.ajax({
+      type: 'POST',
+      url: '/watch',
+      data: params,
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', jQuery('meta[name="csrf-token"]').attr('content'));},
+      success: onWatchSuccess
+      });
+}
+
 function doAnnotate(uri, url, row_num, row_id, is_logged_in, title)
 {
 	if (!is_logged_in) {
