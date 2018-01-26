@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180121171511) do
+ActiveRecord::Schema.define(:version => 20180126174604) do
 
   create_table "annotations", :force => true do |t|
     t.text     "subject_uri"
@@ -487,8 +487,9 @@ ActiveRecord::Schema.define(:version => 20180121171511) do
     t.string  "institution"
     t.string  "link"
     t.text    "about_me"
-    t.decimal "image_id",      :precision => 10, :scale => 0
+    t.decimal "image_id",           :precision => 10, :scale => 0
     t.string  "hide_email"
+    t.string  "institutional_code"
   end
 
   create_table "vic_conferences", :force => true do |t|

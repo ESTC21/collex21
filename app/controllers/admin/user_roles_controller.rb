@@ -19,7 +19,7 @@ class Admin::UserRolesController < Admin::BaseController
 #    @users = User.all(:order => 'username')
 #    @users = User.paginate(:page => params[:page], :per_page => 30, :order => 'username')
 		page = params[:page]
-		page = '' if page == nil
+		params[:page] = page = 'All' if page == nil
 		lower_case_page = page.downcase()
 		all_users = User.all(order: 'username')
 		@users = []
@@ -56,8 +56,13 @@ class Admin::UserRolesController < Admin::BaseController
     @roles.each { |role| roles_hash["user_role_#{role.name}"] = role }
 
     user_roles = roles_hash.reject { |k,v| !params.has_key? k }.values
+    if user_roles.collect(&:name).include?('Institutional User')
+      @user.institutional_code = params[:institutional_code]
+    else
+      @user.institutional_code = nil
+    end
+
     @user.roles = user_roles
-    
     if @user.save
       flash[:notice] = 'User was successfully updated.'
       redirect_to :action => 'index', :page => params[:page]

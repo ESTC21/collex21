@@ -130,8 +130,11 @@ jQuery(document).ready(function($) {
         if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar || window.collex.isUser) {
             annotate = annotatebutton == "on" ? window.pss.createHtmlTag("a", {'class': 'annotate'}, "Contribute") : '';
         }
-        if (window.collex.currentUserId && window.collex.currentUserId > 0 && hit.watch != true) {
-          watch = window.pss.createHtmlTag("a", {'class': 'watch'}, "Watch");
+        if (window.collex.currentUserId && window.collex.currentUserId > 0) {
+          if (hit.watch != true)
+            watch = window.pss.createHtmlTag("a", {'class': 'watch'}, "Watch");
+          else
+            watch = window.pss.createHtmlTag("a", {'class': 'unwatch'}, "UnWatch");
         }
 
 			    displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, collect+uncollect+discuss+exhibit+typewright+pages+match+annotate+watch);

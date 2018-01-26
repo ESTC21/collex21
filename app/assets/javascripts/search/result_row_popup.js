@@ -477,7 +477,11 @@ function doMatch(uri, url, row_num, row_id, is_logged_in, title)
 
 function onWatchSuccess(resp) {
   if (resp.saved == true){
-    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .watch").fadeOut("slow");
+    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .watch").fadeOut("fast");
+    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .watch").addClass('unwatch');
+    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .watch").removeClass('watch');
+    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .unwatch").text('UnWatch');
+    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .unwatch").fadeIn('slow');
   }
 }
 
@@ -497,6 +501,35 @@ function doWatch(uri, title, is_logged_in) {
       data: params,
       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', jQuery('meta[name="csrf-token"]').attr('content'));},
       success: onWatchSuccess
+      });
+}
+
+function onUnWatchSuccess(resp) {
+  if (resp.destroy == true){
+    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .unwatch").fadeOut("fast");
+    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .unwatch").addClass('watch');
+    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .unwatch").removeClass('unwatch');
+    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .watch").text('Watch');
+    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .watch").fadeIn('slow');
+  }
+}
+
+function doUnWatch(uri, title, is_logged_in) {
+  if (!is_logged_in) {
+    var dlg = new SignInDlg();
+    dlg.setInitialMessage("Please log in to unmatch objects");
+    dlg.show('sign_in');
+    return;
+  }
+  var params = {uri: uri, title: title, user_id: is_logged_in};
+
+  var $j = jQuery.noConflict();
+  $j.ajax({
+      type: 'POST',
+      url: '/unwatch',
+      data: params,
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', jQuery('meta[name="csrf-token"]').attr('content'));},
+      success: onUnWatchSuccess
       });
 }
 

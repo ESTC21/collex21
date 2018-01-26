@@ -11,6 +11,15 @@ class WatchController < ApplicationController
     end
   end
 
+  def delete
+    watching_record = WatchingRecord.where(uri: params[:uri], user_id: params[:user_id]).last
+    if watching_record && watching_record.destroy
+      render json: {uri:  params[:uri], destroy: true}, status: :ok
+    else
+      render json: {uri:  params[:uri], destroy: false}, status: :ok
+    end
+  end
+
   private
 
   def validate_user
