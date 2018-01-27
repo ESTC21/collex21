@@ -477,11 +477,12 @@ function doMatch(uri, url, row_num, row_id, is_logged_in, title)
 
 function onWatchSuccess(resp) {
   if (resp.saved == true){
-    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .watch").fadeOut("fast");
-    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .watch").addClass('unwatch');
-    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .watch").removeClass('watch');
-    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .unwatch").text('UnWatch');
-    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .unwatch").fadeIn('slow');
+    var target = ".record-row-container[data-uri='" + resp.uri + "']";
+    jQuery(target + " .watch").fadeOut("fast");
+    jQuery(target + " .watch").addClass('unwatch');
+    jQuery(target + " .watch").removeClass('watch');
+    jQuery(target + " .unwatch").text('UnWatch');
+    jQuery(target + " .unwatch").fadeIn('slow');
   }
 }
 
@@ -506,11 +507,12 @@ function doWatch(uri, title, is_logged_in) {
 
 function onUnWatchSuccess(resp) {
   if (resp.destroy == true){
-    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .unwatch").fadeOut("fast");
-    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .unwatch").addClass('watch');
-    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .unwatch").removeClass('unwatch');
-    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .watch").text('Watch');
-    jQuery(".result_row_collected[data-uri='" + resp.uri + "'] .watch").fadeIn('slow');
+    var target = ".record-row-container[data-uri='" + resp.uri + "']";
+    jQuery(target + " .unwatch").fadeOut("fast");
+    jQuery(target + " .unwatch").addClass('watch');
+    jQuery(target + " .unwatch").removeClass('unwatch');
+    jQuery(target + " .watch").text('Watch');
+    jQuery(target + " .watch").fadeIn('slow');
   }
 }
 

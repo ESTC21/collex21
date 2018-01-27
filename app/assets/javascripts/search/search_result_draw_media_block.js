@@ -627,7 +627,7 @@ jQuery(document).ready(function($) {
         var hiddenRecord = "";
         var showRecord = "";
 
-        var klass = "search-result";
+        var klass = "search-result record-row-container";
 
         if (isCollected)
             klass += " result_row_collected";
