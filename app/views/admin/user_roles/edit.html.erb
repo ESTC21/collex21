@@ -17,17 +17,16 @@
 <% current_sub_page "User Roles" -%>
 
 <div class="inner_content_container">
-	<div class="page_header">Editing User Roles for <%= @user.username %></div>
+	<div class="page_header">Editing User Roles for <%= @user.username %> (<%= @user.email %>) </div>
+  <hr>
 
-	<p>
-	  Email: <%= content_tag "b", @user.email %>
-	</p>
+  <div class="user_roles_form">
+    <%= form_tag("/admin/user_roles/#{@user.id}", :method => :put) do %>
+    <%= render :partial => 'form' %>
+    <input type='hidden' name='page' id='page' value='<%=@page%>'/>
+      <%= submit_tag 'Edit', class: 'btn' %>
+    <% end %>
+  </div>
 	
-	<%= form_tag("/admin/user_roles/#{@user.id}", :method => :put) do %>
-	  <%= render :partial => 'form' %>
-	  <input type='hidden' name='page' id='page' value='<%=@page%>'/>
-	  <%= submit_tag 'Edit' %>
-	<% end %>
-	
-	<%= link_to 'Return to User List', { :action => 'index',  :page => @page}, { :class => 'nav_link' } %>
+	<%= link_to 'Return to User List', { :action => 'index',  :page => @page}, { :class => 'nav_link pull-right' } %>
 </div>

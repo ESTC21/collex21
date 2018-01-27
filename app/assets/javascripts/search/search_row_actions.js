@@ -37,6 +37,16 @@ jQuery(document).ready(function($) {
 		doMatch(params.uri, params.url, params.index, 'search_result_'+params.index, params.isLoggedIn, params.title, "match");
 	});
 
+	body.on("click", ".search_result_buttons .watch", function (e) {
+		var params = setup(e, this);
+		doWatch(params.uri, params.title, window.collex.currentUserId);
+	});
+
+	body.on("click", ".search_result_buttons .unwatch", function (e) {
+		var params = setup(e, this);
+		doUnWatch(params.uri, params.title, window.collex.currentUserId);
+	});
+
 	body.on("click", ".search_result_buttons .annotate, .contribute_action .annotate ", function (e) {
 		var params = setup(e, this);
 		doAnnotate(params.uri, params.url, params.index, 'search_result_'+params.index, params.isLoggedIn, params.title, "annotate");

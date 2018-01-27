@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160301191200) do
+ActiveRecord::Schema.define(:version => 20180126174604) do
 
   create_table "annotations", :force => true do |t|
     t.text     "subject_uri"
@@ -21,8 +21,9 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.integer  "attachment_no"
     t.integer  "user_id"
     t.integer  "predicate_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "solr_update_mode"
   end
 
   add_index "annotations", ["predicate_id"], :name => "index_annotations_on_predicate_id"
@@ -486,8 +487,9 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.string  "institution"
     t.string  "link"
     t.text    "about_me"
-    t.decimal "image_id",      :precision => 10, :scale => 0
+    t.decimal "image_id",           :precision => 10, :scale => 0
     t.string  "hide_email"
+    t.string  "institutional_code"
   end
 
   create_table "vic_conferences", :force => true do |t|
@@ -515,5 +517,15 @@ ActiveRecord::Schema.define(:version => 20160301191200) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  create_table "watching_records", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.string   "uri",        :null => false
+    t.text     "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "watching_records", ["user_id", "uri"], :name => "index_watching_records_on_user_id_and_uri", :unique => true
 
 end

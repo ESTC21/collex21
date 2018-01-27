@@ -20,11 +20,18 @@
 
 <!--[form:user]-->
 <p>
-  Roles<br/>
-  <% @roles.each do |role| %>
-    <%= content_tag "label", role.name %>
-    <%= check_box_tag "user_role_#{role.name}", role.id, (@user.roles.include? role) %>
-  <% end %>
+  <div>Roles</div>
+  <ul>
+    <% @roles.each do |role| %>
+      <li>
+          <%= check_box_tag "user_role_#{role.name}", role.id, (@user.roles.include? role), class: "user_role_checkbox user_role_#{role.name.parameterize}" %>
+          <%= content_tag "label", role.name %>
+          <% if role.name == 'Institutional User' %>
+            <%= text_field_tag 'institutional_code', @user.institutional_code, placeholder: 'Institutional Code', class: 'hide' %>
+          <% end %>
+      </li>
+    <% end %>
+  </ul>
 </p>
 <!--[eoform:user]-->
 

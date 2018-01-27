@@ -381,6 +381,9 @@ Collex::Application.routes.draw do
   get '/annotate' => 'annotate#index'
   post '/create_annotate' => 'annotate#create'
 
+  post '/watch' => 'watch#create'
+  post '/unwatch' => 'watch#delete'
+
   get '/fullrecord' => 'full_record#index'
   match '/contribute' => 'contribute#index'
   match 'get_fullrecord_info' => 'full_record#get_fullrecord_info'

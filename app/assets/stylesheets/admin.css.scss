@@ -116,16 +116,20 @@ body.pg-admin {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	text-align: left;
+
+	.min-width-109 {
+		min-width: 109px;
+	}
 }
 
-.user_roles th {
-	border: 1px solid #FFFFFF;
-	color: #FFFFFF;
-}
 
-.user_roles td {
-	text-align: left;
-	border-left: 1px solid black;
+.table-bordered {
+  border: 1px solid black;
+  width: 100%;
+
+  th, td {
+    border: 1px solid black;
+  }
 }
 
 .user_roles td:first-child {
@@ -423,4 +427,45 @@ body.pg-admin {
     background-color: #000;
     color: #FFF !important;
   }
+}
+
+.btn {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  display: inline-block;
+  padding: 5px 12px !important;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.user_roles_form {
+	border: 1px solid;
+	padding: 10px;
+}
+
+.pull-right {
+	float: right;
+}
+
+.show {
+	display: inline-block;
+}
+
+.hide {
+	display: none;
 }
