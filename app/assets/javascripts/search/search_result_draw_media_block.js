@@ -130,7 +130,7 @@ jQuery(document).ready(function($) {
             if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar || window.collex.isUser) {
                 annotate = annotatebutton == "on" ? window.pss.createHtmlTag("a", {'class': 'annotate'}, "Contribute") : '';
             }
-            if (window.collex.currentUserId && window.collex.currentUserId > 0) {
+            if (window.collex.currentUserId && window.collex.currentUserId > 0 && annotatematchbuttoninfo != undefined) {
                 if (hit.watch != true)
                     watch = window.pss.createHtmlTag("a", {'class': 'watch'}, "Watch");
                 else
