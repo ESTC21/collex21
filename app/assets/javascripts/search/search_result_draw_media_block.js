@@ -632,7 +632,8 @@ jQuery(document).ready(function($) {
         if (isCollected)
             klass += " result_row_collected";
 
-        html += window.pss.createHtmlTag("div", { 'id': 'search_result_'+ index, 'class': klass, 'data-index': index, 'data-uri': obj.uri, 'data-url': obj.url, 'data-title': obj.title }, imageBlock+actionButtons+results);
+        //TODO: Add lib_code once records have those
+        html += window.pss.createHtmlTag("div", { 'id': 'search_result_'+ index, 'class': klass, 'data-index': index, 'data-uri': obj.uri, 'data-url': obj.url, 'data-title': obj.title, 'data-lib-code': '' }, imageBlock+actionButtons+results);
 
         /*if (hidden){
          klass += " hidden";

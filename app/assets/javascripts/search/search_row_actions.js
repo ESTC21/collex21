@@ -9,10 +9,11 @@ jQuery(document).ready(function($) {
 		var index = parent.attr("data-index");
 		var uri = parent.attr("data-uri");
 		var url = parent.attr("data-url");
+		var lib_code = parent.attr("data-lib-code");
 		var isLoggedIn = window.collex.currentUserId && window.collex.currentUserId > 0;
 		var title = parent.attr("data-title");
 		var hasEdit = parent.find('button.edit').length > 0;		
-		return { uri: uri, url: url, index: index, isLoggedIn: isLoggedIn, title: title, hasEdit: hasEdit};
+		return { uri: uri, url: url, index: index, isLoggedIn: isLoggedIn, title: title, hasEdit: hasEdit, libCode: lib_code};
 	}
 
 	/*body.on("click", ".search_result_buttons .checkAnnotation", function (e) {
@@ -39,7 +40,7 @@ jQuery(document).ready(function($) {
 
 	body.on("click", ".search_result_buttons .watch", function (e) {
 		var params = setup(e, this);
-		doWatch(params.uri, params.title, window.collex.currentUserId);
+		doWatch(params.uri, params.title, window.collex.currentUserId, params.libCode);
 	});
 
 	body.on("click", ".search_result_buttons .unwatch", function (e) {

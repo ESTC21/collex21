@@ -110,6 +110,10 @@ class User < ActiveRecord::Base
     return User.where({email: email} ).first
   end
 
+  def institutional_user?
+    self.role_names.include?('Institutional User')
+  end
+
   private
   def self.generate_password
     len = 8

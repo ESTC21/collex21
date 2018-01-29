@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180126174604) do
+ActiveRecord::Schema.define(:version => 20180129175554) do
 
   create_table "annotations", :force => true do |t|
     t.text     "subject_uri"
@@ -519,11 +519,12 @@ ActiveRecord::Schema.define(:version => 20180126174604) do
   end
 
   create_table "watching_records", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.string   "uri",        :null => false
+    t.integer  "user_id",      :null => false
+    t.string   "uri",          :null => false
     t.text     "title"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "library_code"
   end
 
   add_index "watching_records", ["user_id", "uri"], :name => "index_watching_records_on_user_id_and_uri", :unique => true

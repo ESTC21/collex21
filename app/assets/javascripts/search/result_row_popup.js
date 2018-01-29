@@ -486,14 +486,14 @@ function onWatchSuccess(resp) {
   }
 }
 
-function doWatch(uri, title, is_logged_in) {
+function doWatch(uri, title, is_logged_in, lib_code) {
   if (!is_logged_in) {
     var dlg = new SignInDlg();
     dlg.setInitialMessage("Please log in to match objects");
     dlg.show('sign_in');
     return;
   }
-  var params = {uri: uri, title: title, user_id: is_logged_in};
+  var params = {uri: uri, title: title, user_id: is_logged_in, lib_code: lib_code};
 
   var $j = jQuery.noConflict();
   $j.ajax({

@@ -9,11 +9,16 @@ class Annotation < ActiveRecord::Base
 
   def send_email_to_watching_users
     if self.flag_changed? && self.flag.in?([1, 2])
-      watching_records = WatchingRecord.where(uri: self.subject_uri)
+      watching_records = WatchingRecord.includes(user: :roles).where(uri: self.subject_uri)
+
+      # TODO: uncomment it once records have lib_code
+      # watching_records = watching_records.reject{ |record| record.user.institutional_user? && record.user.institutional_code != record.library_code }
+
       user_ids = watching_records.collect(&:user_id)
       if user_ids.compact.length > 0
-        # TODO for institutional user, check for institutional code
-        user_emails = User.where(id: user_ids).pluck(:email).compact
+        users = User.where(id: user_ids)
+
+        user_emails = users.collect(&:email)
         title = watching_records.first.title
         uri = watching_records.first.uri
         WatchingUsersMailer.annotation_notification_email(user_emails, title, uri).deliver

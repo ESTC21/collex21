@@ -3,7 +3,7 @@ class WatchController < ApplicationController
   before_filter :validate_user
 
   def create
-    watching_record = WatchingRecord.new(uri: params[:uri], title: params[:title], user_id: params[:user_id])
+    watching_record = WatchingRecord.new(uri: params[:uri], title: params[:title], user_id: params[:user_id], library_code: params[:lib_code])
     if watching_record.save
       render json: {uri:  params[:uri], saved: true}, status: :ok
     else
