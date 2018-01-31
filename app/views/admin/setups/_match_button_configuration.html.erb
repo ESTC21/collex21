@@ -1,0 +1,10 @@
+<h1 class="expander" data-target="annotatematch_table"> Contribute and Match Button Configurations</h1>
+<table id="annotatematch_table" class="hidden">
+  <%= setup_checkbox("Annotate:", "enable_annotate_button", @setups, "", "") %>
+  <%= setup_checkbox("Match:", "enable_match_button", @setups, "", "") %>
+</table>
+
+<h1 class="expander" data-target="configure_site"> Enable Site</h1>
+<table id="configure_site" class="hidden">
+  <%= setup_checkbox("Site:", "enable_site", @setups, "", "") %>
+</table>

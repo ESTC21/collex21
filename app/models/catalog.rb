@@ -447,6 +447,7 @@ end
          end
       }
    end
+   archives = archives.instance_of?(Array) ? archives : [archives]
       archives.each { |archive|
          if archive.present? and archive['parent'] == nil
          @@resource_tree.push(archive)

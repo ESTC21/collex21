@@ -1,0 +1,8 @@
+<h1 class="expander" data-target="searchbutton_table">Search Button Configurations</h1>
+<table id="searchbutton_table" class="hidden">
+
+  <%= setup_checkbox("Collect:", "enable_searchresults_collect", @setups, "", "") %>
+  <%= setup_checkbox("Uncollect:", "enable_searchresults_uncollect", @setups, "", "") %>
+  <%= setup_checkbox("Discuss:", "enable_searchresults_discuss", @setups, "", "") %>
+  <%= setup_checkbox("Exhibits:", "enable_searchresults_exhibits", @setups, "", "") %>
+</table>

@@ -15,8 +15,8 @@
 # ----------------------------------------------------------------------------
 module Admin::SetupsHelper
 	def setup_table_header(label)
-		return content_tag(:tr) do
-			content_tag(:td, label, { class: 'heading', colspan: "4" })
+		html = content_tag(:tr, { class: 'tr-bordered center'}) do
+			content_tag(:td, label, { class: 'heading', colspan: "2" })
 		end
 	end
 
@@ -44,7 +44,7 @@ module Admin::SetupsHelper
     value = 1 if rec[field] == 'true' || rec[field] == 'on'
     html = content_tag(:tr, class: 'row hoverable') do
       content_tag(:td, label) +
-          content_tag(:td) do
+          content_tag(:td, {style: 'text-align: center;'}) do
             if value == 1
               content_tag(:input, "", id: "setups_#{field}", name: "setups[#{field}]", checked: 1, type: typ )
             else
@@ -63,10 +63,8 @@ module Admin::SetupsHelper
 		html = content_tag(:tr, class: 'center') do
 			content_tag(:td) +
 				content_tag(:td) do
-					submit_tag(label)
-				end +
-				content_tag(:td) +
-				content_tag(:td)
+					submit_tag(label, class: 'btn pull-right')
+				end
 		end
 		return html
 	end

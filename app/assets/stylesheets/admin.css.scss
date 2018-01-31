@@ -132,6 +132,10 @@ body.pg-admin {
   }
 }
 
+.tr-bordered {
+	border-bottom: 1px solid #000;
+}
+
 .user_roles td:first-child {
 	border-left: none;
 }
@@ -200,12 +204,15 @@ body.pg-admin {
 	font: 15px arial,helvetica,clean,sans-serif;
 }
 
-	.setup_container table textarea {
-		height: 170px;
-	}
-
-.setup_container tr.hoverable:hover {
-    background: #F5F5DC;
+.setup_container table textarea {
+	height: 170px;
+	width: 100%;
+  padding: 2px 2px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .setup_container tr.row td {
@@ -226,18 +233,47 @@ body.pg-admin {
 	padding-top: 0;
 }
 
+.setup_container {
+	input[type=text],
+	input[type=password] {
+	  padding: 8px 20px;
+	  margin: 8px 0;
+	  display: inline-block;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	  box-sizing: border-box;
+	}
+	input[type=checkbox] {
+		cursor: pointer;
+	}
+  table {
+		border-collapse: collapse;
+		overflow: hidden;
+		box-shadow: 0 0 20px rgba(0,0,0,0.1);
+	  width: 100%;
+
+	  th, td {
+	  	width: 65%; 
+			padding: 15px;
+			background-color: rgba(255,255,255,0.2);
+			max-width: 50%
+  	}
+	}
+}
+
 .apply_changes {
-    font: bold 16px arial,helvetica,clean,sans-serif ;
-    padding: 5px !important;
-    -webkit-appearance: button;
-    cursor: hand;
-    cursor: pointer;
+  font: bold 16px arial,helvetica,clean,sans-serif ;
+  padding: 5px !important;
+  -webkit-appearance: button;
+  cursor: hand;
+  cursor: pointer;
 }
 
 .expander {
 	background: image-url('arrow.gif') no-repeat scroll 1px 50% transparent;
 	font-family: arial;
 	padding-left: 13px;
+	cursor: pointer;
 }
 
 .contracter {
