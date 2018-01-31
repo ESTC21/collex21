@@ -1,5 +1,5 @@
 class WatchingRecord < ActiveRecord::Base
-  attr_accessible :uri, :user_id, :title
+  attr_accessible :uri, :user_id, :title, :library_code
 
   belongs_to :user
 
