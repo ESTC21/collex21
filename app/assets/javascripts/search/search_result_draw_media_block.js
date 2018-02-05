@@ -58,7 +58,7 @@ jQuery(document).ready(function($) {
         var matchsession = sessionStorage.getItem('match');
         var buttonInfo= window.gon.searchresultbutton;
 
-        var collectbutton, uncollectbutton, discussbutton, exhibitbutton, matchbutton, annotatebutton;
+        var collectbutton, uncollectbutton, discussbutton, exhibitbutton, matchbutton, annotatebutton, watchbutton, unwatchbutton;
 
         var annotatematchbuttoninfo = window.gon.annotatematchbutton;
         if (buttonInfo != undefined){
@@ -71,6 +71,10 @@ jQuery(document).ready(function($) {
                     discussbutton = buttonInfo[i].value;
                 else if (new RegExp(buttonInfo[i].key).test("enable_searchresults_exhibits"))
                     exhibitbutton = buttonInfo[i].value;
+                else if (new RegExp(buttonInfo[i].key).test("enable_searchresults_watch"))
+                    watchbutton = buttonInfo[i].value;
+                else if (new RegExp(buttonInfo[i].key).test("enable_searchresults_unwatch"))
+                    unwatchbutton = buttonInfo[i].value;
             }
         }
 
@@ -107,7 +111,7 @@ jQuery(document).ready(function($) {
             var collect = !isCollected? collectbutton == "on" ? window.pss.createHtmlTag("button", { 'class': 'collect' }, "Collect") : '': '';
             var uncollect = isCollected? uncollectbutton == "on" ? window.pss.createHtmlTag("button", { 'class': 'uncollect' }, "Uncollect") : '': '';
             var discuss = discussbutton == "on" ? window.pss.createHtmlTag("button", { 'class': 'discuss' }, "Discuss") : '';
-            // var exhibit = isCollected && exhibitbutton ? window.pss.createHtmlTag("button", { 'class': 'exhibit' }, "Exhibit") : '';
+            var exhibit = exhibitbutton == "on" ? window.pss.createHtmlTag("button", { 'class': 'exhibit' }, "Exhibit") : '';
             var typewright = window.collex.hasTypewright && hit.typewright ? window.pss.createHtmlTag("button", { 'class': 'edit log-in-first-link', 'data-login-prompt': "Please log in to begin editing" }, "Edit") : '';
             var pages = "";
             if ( window.collex.hasPageSearch ) {
@@ -115,7 +119,7 @@ jQuery(document).ready(function($) {
                     pages = window.pss.createHtmlTag("button", { 'class': 'page-search' }, "All Pages");
                 }
             }
-            if(collect == '' || uncollect == '' || discuss == '') //|| exhibit == ''
+            if(collect == '' || uncollect == '' || discuss == '' || exhibit == '')
             {
                 $j('#bulkcollect').hide();
             }
@@ -130,15 +134,15 @@ jQuery(document).ready(function($) {
             if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar || window.collex.isUser) {
                 annotate = annotatebutton == "on" ? window.pss.createHtmlTag("a", {'class': 'annotate'}, "Contribute") : '';
             }
-            if (window.collex.currentUserId && window.collex.currentUserId > 0 && annotatematchbuttoninfo != undefined) {
-                if (hit.watch != true)
+            if (window.collex.currentUserId && window.collex.currentUserId > 0) {
+                if (hit.watch != true && watchbutton == 'on')
                     watch = window.pss.createHtmlTag("a", {'class': 'watch'}, "Watch");
-                else
+                else if ((hit.watch == true && unwatchbutton == 'on'))
                     watch = window.pss.createHtmlTag("a", {'class': 'unwatch'}, "UnWatch");
             }
             // commented Exhibit
             // displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, collect+uncollect+discuss+exhibit+typewright+pages+match+annotate+watch);
-            displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, collect+uncollect+discuss+typewright+pages+match+annotate+watch);
+            displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, collect+uncollect+discuss+exhibit+typewright+pages+match+annotate+watch);
         }
         return displaybuttons;
     }

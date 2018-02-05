@@ -68,7 +68,7 @@ class Admin::SetupsController < Admin::BaseController
          end
       }
 
-      searchbuttons_keys = ['enable_searchresults_collect', 'enable_searchresults_uncollect', 'enable_searchresults_discuss', 'enable_searchresults_exhibits']
+      searchbuttons_keys = ['enable_searchresults_collect', 'enable_searchresults_uncollect', 'enable_searchresults_discuss', 'enable_searchresults_exhibits', 'enable_searchresults_watch', 'enable_searchresults_unwatch']
       searchbuttons_keys.each { |key,value|
          rec = Setup.find_by_key(key)
          if rec
@@ -95,6 +95,11 @@ class Admin::SetupsController < Admin::BaseController
          rec = Setup.find_by_key(key)
          if rec
             default_federation = value if key == 'site_default_federation'
+            if key == 'site_solr_url'
+               if (/estc21.ucr.edu:3001/ =~ value) != nil || value.in?(['estc21.ucr.edu', 'http://estc21.ucr.edu', 'https://estc21.ucr.edu'])
+                  value = rec.value
+               end
+            end
             if checkbox_keys.include? rec.key
                rec.value = 'true'
             else

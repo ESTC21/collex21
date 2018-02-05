@@ -176,6 +176,10 @@ class Setup < ActiveRecord::Base
 		return globals()['analytics_id']
   end
 
+  def self.enable_searchresults_exhibits?()
+    return globals()['enable_searchresults_exhibits']
+  end
+
   def self.facet_order()
     order = {}
     facet_order_access = globals()['facet_order_access'] || ''

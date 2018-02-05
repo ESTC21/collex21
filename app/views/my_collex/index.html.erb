@@ -55,7 +55,9 @@
 				<%= render :partial => 'my_discussions_list', :locals => { :user_id => get_curr_user_id } %>
 			</div>
 			<div id="my_exhibits">
-				<%#= render :partial => 'my_exhibits_list', :locals => { :user_id => get_curr_user_id } %>
+        <% if Setup.enable_searchresults_exhibits? %>
+				  <%= render :partial => 'my_exhibits_list', :locals => { :user_id => get_curr_user_id } %>
+        <% end %>
 			</div>
 			<div id="groups" style="display: none;">
 				<%= render :partial => 'my_groups_list', :locals => { :user_id => get_curr_user_id } %>

@@ -232,7 +232,7 @@ class ApplicationController < ActionController::Base
 	end
 
 	def get_search_results_button_info()
-		searchbuttons_keys = ['enable_searchresults_collect', 'enable_searchresults_uncollect', 'enable_searchresults_discuss', 'enable_searchresults_exhibits']
+		searchbuttons_keys = ['enable_searchresults_collect', 'enable_searchresults_uncollect', 'enable_searchresults_discuss', 'enable_searchresults_exhibits', 'enable_searchresults_watch', 'enable_searchresults_unwatch']
 		@searchresult = Setup.where(:key => searchbuttons_keys)
 		gon.searchresultbutton=@searchresult
     end
