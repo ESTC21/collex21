@@ -177,7 +177,8 @@ class Setup < ActiveRecord::Base
   end
 
   def self.enable_searchresults_exhibits?()
-    return globals()['enable_searchresults_exhibits']
+    return true if globals()['enable_searchresults_exhibits'] != 'false'
+    return false
   end
 
   def self.facet_order()
