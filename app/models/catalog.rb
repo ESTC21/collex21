@@ -675,9 +675,11 @@ end
       feds = call_solr("federations", :get)
       ret = {}
       return ret if feds['federations'] == nil || feds['federations']['federation'] == nil
-      feds['federations']['federation'].each { |fed|
-         ret[fed[0]] = fed[1]
-      }
+      feds = feds['federations']['federation'].instance_of?(Array) ? feds['federations']['federation'] : [feds['federations']['federation']]
+
+      feds.each_with_index do |fed, index|
+         ret[fed['name']] = fed
+      end
       return ret
    end
 
