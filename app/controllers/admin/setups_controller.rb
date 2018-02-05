@@ -143,7 +143,7 @@ class Admin::SetupsController < Admin::BaseController
             solr = Catalog.factory_create(session[:use_test_index] == "true")
             federations = solr.get_federations()
             found = false
-            federations.each { |key,val| found = true if default_federation == key }
+            federations.each { |key,val| found = true if default_federation == val }
             if found == true
                msg = "The connection to the Catalog is good."
             else
