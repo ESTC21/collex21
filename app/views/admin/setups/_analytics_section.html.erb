@@ -1,6 +1,5 @@
 <h1 class="expander" data-target="analytics_table">Analytics</h1>
 <table id="analytics_table" class="hidden">
-  <%= setup_table_header("Email settings (SMTP)") %>
   <%= setup_line("Use Google Analytics:", "google_analytics", @setups, "Either true or false if Analytics should be turned on", "true/false") %>
   <%= setup_line("Analytics ID:", "analytics_id", @setups, "The ID that was given to you by Google when you signed up for Analytics.", "AA-99999999-9") %>
 </table>
