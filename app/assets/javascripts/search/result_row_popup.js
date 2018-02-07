@@ -475,6 +475,29 @@ function doMatch(uri, url, row_num, row_id, is_logged_in, title)
             });
 }
 
+function onMatchHoldingMatchSuccess(resp) {
+  newwindow = window.open("/search?u_action=match_holding_match", '_blank', "height= " + screen.height * (0.9) + ",width=" + screen.width * (0.9) + " ");
+    newwindow.moveTo(20, 20);
+}
+
+function doMatchHoldingMatch(uri, url, row_num, row_id, is_logged_in, title) {
+  if (!is_logged_in) {
+    var dlg = new SignInDlg();
+    dlg.setInitialMessage("Please log in to match objects");
+    dlg.setRedirectPageToCurrentWithParam('script=doCollect&uri='+uri+'&row_num='+row_num+'&row_id='+row_id);
+    dlg.show('sign_in');
+    return;
+  }
+
+  var params = {uri: uri, url: url, row_num: row_num, full_text: '', title: title};
+  var $j = jQuery.noConflict();
+  $j.ajax({
+      type: 'GET',
+            data: { match_holding_match: params },
+            success: onMatchHoldingMatchSuccess
+            });
+}
+
 function onWatchSuccess(resp) {
   if (resp.saved == true){
     var target = ".record-row-container[data-uri='" + resp.uri + "']";

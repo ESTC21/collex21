@@ -37,6 +37,7 @@ Setup.create({ key: "enable_publications_tab", value: "true" })
 Setup.create({ key: "enable_classroom_tab", value: "true" })
 Setup.create({ key: "enable_news_tab", value: "true" })
 Setup.create({ key: "enable_review_tab", value: "true" })
+Setup.create({ key: "enable_match_holdings_tab", value: "true" })
 
 Setup.create({ key: "facet_order_access", value: "0" })
 Setup.create({ key: "facet_order_format", value: "1" })

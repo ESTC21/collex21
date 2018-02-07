@@ -33,6 +33,11 @@ jQuery(document).ready(function($) {
 		doViewAnnotation(activeannotation, viewAnnotation, params.uri, params.url, params.index, 'search_result_'+params.index, params.isLoggedIn, params.title, "viewAnnotation");		
 	});
 
+	body.on("click", ".search_result_buttons .match_holding_match", function (e) {
+		var params = setup(e, this);
+		doMatchHoldingMatch(params.uri, params.url, params.index, 'search_result_'+params.index, params.isLoggedIn, params.title, "match_holding_match");
+	});
+
 	body.on("click", ".search_result_buttons .match", function (e) {
 		var params = setup(e, this);
 		doMatch(params.uri, params.url, params.index, 'search_result_'+params.index, params.isLoggedIn, params.title, "match");

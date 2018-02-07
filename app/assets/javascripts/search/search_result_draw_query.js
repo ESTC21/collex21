@@ -159,7 +159,7 @@ jQuery(document).ready(function($) {
 		var htmlBottom = "";
 		var isEmpty = true;
 		for (var key in query) {
-			if (query.hasOwnProperty(key) && key !== 'pages_page' && key !== 'page' && key !== 'srt' && key !== 'dir' && key !== 'f' && key !== 'u_action') {
+			if (query.hasOwnProperty(key) && key !== 'pages_page' && key !== 'page' && key !== 'srt' && key !== 'dir' && key !== 'f' && key !== 'u_action' && key !== 'match_holding') {
 				var values = (typeof query[key] === 'string') ? [ query[key] ] : query[key];
 				for (var i = 0; i < values.length; i++) {
 					var value = values[i];

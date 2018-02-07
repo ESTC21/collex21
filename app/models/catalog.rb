@@ -189,12 +189,18 @@ def search_review(uri)
 end
 =end
 
-   def search_direct(constraints, start, max, sort_by, sort_ascending, u_action=nil)
+   def search_direct(constraints, start, max, sort_by, sort_ascending, options={})
       sort = sort_by == nil ? "" : "sort=#{sort_by.gsub('_sort', '')} #{sort_ascending ? 'asc' : 'desc'}"
 	   hl = "hl=on"
 	   start = start ? "start=#{start}" : ""
 	   max = max ? "max=#{max}" : ""
+
+      u_action = options[:u_action]
+      match_holding =  options[:match_holding]
+
       u_action = u_action ? "u_action=#{u_action}" : nil
+      match_holding = match_holding ? "match_holding=#{u_action}" : nil
+
      # role= "aut=Surr, T. S. 1770-1847."
 	   params = parse_constraints(constraints)
 	   params.push(sort) if sort.length > 0
@@ -202,6 +208,8 @@ end
 	   params.push(start) if start.length > 0
 	   params.push(max) if max.length > 0
       params.push(u_action) if u_action.present?
+      params.push(match_holding) if match_holding.present?
+
 	   # params.push(role) if role.length > 0
 
 

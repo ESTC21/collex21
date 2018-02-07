@@ -81,7 +81,7 @@ class SearchController < ApplicationController
    				begin
    					@solr = Catalog.factory_create(session[:use_test_index] == "true") if @solr == nil
 						puts constraints
-					  results = @solr.search_direct(constraints, (page.to_i - 1) * items_per_page, nil, sort_param, sort_ascending, params[:u_action])
+					  results = @solr.search_direct(constraints, (page.to_i - 1) * items_per_page, nil, sort_param, sort_ascending, params)
 					Catalog.log_catalog("Results info: ", "#{results}")
 				results['message'] = ''
    				rescue Catalog::Error => e

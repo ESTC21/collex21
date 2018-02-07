@@ -46,7 +46,7 @@ jQuery(document).ready(function($) {
 
 	function hasSearch(obj) {
 		for (var key in obj) {
-			if (obj.hasOwnProperty(key) && key !== 'srt' && key !== 'dir' && key !== 'f' && key !== 'fuz_t' && key !== 'fuz_q' && key != 'u_action') {
+			if (obj.hasOwnProperty(key) && key !== 'srt' && key !== 'dir' && key !== 'f' && key !== 'fuz_t' && key !== 'fuz_q' && key != 'u_action' && key != 'match_holding') {
 				return false;
 			}
 		}

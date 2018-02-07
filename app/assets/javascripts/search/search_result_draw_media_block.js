@@ -89,7 +89,26 @@ jQuery(document).ready(function($) {
 
         var displaybuttons = "";
 
-        if (matchsession == "true")
+        if (window.location.search.include("match_holding=true")) {
+            var $j = jQuery.noConflict();
+            $j('#chooseobjects').hide();
+            var match = "";
+            match = matchbutton == "on" ? window.pss.createHtmlTag("a", { 'class': 'match_holding_match'}, "Match") : '';
+            displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, match);
+        }
+        else if (window.location.search.include("u_action=match_holding_match")) {
+            var $j = jQuery.noConflict();
+            $j('#chooseobjects').show();
+            var predicatesInfo = window.gon.predicatesInfo;
+            //var selectTypeOptions = window.pss.createHtmlTag("option", {value: '' }, 'Select Relationship');
+            var selectTypeOptions = "";
+            for (var i = 0; i < predicatesInfo.length; i++){
+                selectTypeOptions += window.pss.createHtmlTag("option", {value: predicatesInfo[i].id }, predicatesInfo[i].display_name);
+            }
+            var predicateInfo = window.pss.createHtmlTag("select", {'class': 'annotation_predicateinfo', 'id': 'annotation_predicateinfo'}, selectTypeOptions);
+            displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, predicateInfo);
+        }
+        else if (matchsession == "true")
         {
             var $j = jQuery.noConflict();
             $j('#chooseobjects').show();

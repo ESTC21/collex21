@@ -156,6 +156,11 @@ class Setup < ActiveRecord::Base
     return false
   end
 
+  def self.display_match_holdings_tab?()
+    return true if globals()['enable_match_holdings_tab'] != 'false'
+    return false
+  end
+
   def self.display_publications_tab?()
     return true if globals()['enable_publications_tab'] != 'false'
     return false

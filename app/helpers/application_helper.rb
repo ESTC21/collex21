@@ -162,6 +162,7 @@ private
     tabs.push({ :name => 'Publications', :link => '/publications', :use_long => true }) if Setup.display_publications_tab?
     tabs.push({ :name => 'Browse', :link => search_path }) if Setup.display_search_tab?
     tabs.push({ :name => 'Review User Contributions', :link => '/annotationreview' }) if Setup.display_review_tab?
+    tabs.push({ :name => 'Match Holdings', :link => '/search?match_holding=true' }) if Setup.display_match_holdings_tab?
     #tabs.push({ :name => 'Contribute to the ESTC', :link => '/contribute' }) 
 
     if COLLEX_PLUGINS['typewright']
