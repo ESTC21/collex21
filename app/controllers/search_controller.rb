@@ -36,11 +36,19 @@ class SearchController < ApplicationController
 		get_annotate_match_button_info()
 		get_predicate_info()
 		get_site_info()
+
+		if params[:match_holding_match]
+			session[:title] = params[:match_holding_match][:title]
+		  session[:uri] = params[:match_holding_match][:uri]
+		  session[:url] = params[:match_holding_match][:url]
+		end
+
 		if params[:match]
 			session[:title] = params[:match][:title]
-		  session[:uri] = params[:match][:uri]
-		  session[:url] = params[:match][:url]
+			session[:uri] = params[:match][:uri]
+			session[:url] = params[:match][:url]
 		end
+
 
 		if params[:annotate]
 			session[:annotateTitle] = params[:annotate][:title]

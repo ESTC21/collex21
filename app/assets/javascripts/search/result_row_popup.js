@@ -596,7 +596,10 @@ function getchooseObjectInfo(link) {
 		var checkbox = checkboxes[i];
 		var predicateinfo = selectelements[i].options[selectelements[i].selectedIndex].text;
 		if(checkbox.checked && predicateinfo != "Select Predicate"){
-			var objects ={objectTitle:checkbox.name, objectUri:checkbox.value, predicateId:selectelements[i].options[selectelements[i].selectedIndex].value, predicateDisplayname:predicateinfo};
+			var objects ={objectTitle: jQuery(checkbox).parents('.record-row-container').data('title'),
+                objectUri:checkbox.value,
+                predicateId:selectelements[i].options[selectelements[i].selectedIndex].value,
+                predicateDisplayname:predicateinfo};
 			objectsinfo.push(objects);
 		}
 	}
