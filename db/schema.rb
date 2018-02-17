@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180129175554) do
+ActiveRecord::Schema.define(:version => 20180217190402) do
 
   create_table "annotations", :force => true do |t|
     t.text     "subject_uri"
@@ -394,8 +394,9 @@ ActiveRecord::Schema.define(:version => 20180129175554) do
   create_table "predicates", :force => true do |t|
     t.text     "uri"
     t.text     "display_name"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "predicate_type"
   end
 
   create_table "publication_images", :force => true do |t|
