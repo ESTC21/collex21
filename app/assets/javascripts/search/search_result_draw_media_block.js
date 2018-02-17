@@ -157,7 +157,7 @@ jQuery(document).ready(function($) {
                 if (hit.watch != true && watchbutton == 'on')
                     watch = window.pss.createHtmlTag("a", {'class': 'watch'}, "Watch");
                 else if ((hit.watch == true && unwatchbutton == 'on'))
-                    watch = window.pss.createHtmlTag("a", {'class': 'unwatch'}, "UnWatch");
+                    watch = window.pss.createHtmlTag("a", {'class': 'unwatch'}, "Unwatch");
             }
             // commented Exhibit
             // displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, collect+uncollect+discuss+exhibit+typewright+pages+match+annotate+watch);
