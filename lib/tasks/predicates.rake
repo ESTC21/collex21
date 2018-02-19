@@ -16,7 +16,7 @@ namespace :predicates do
       predicate = Predicate.find_by_uri(uri)
       predicate = Predicate.find_by_display_name(display_name) if predicate.blank?
 
-      predicate.blank? ? Predicate.create({:uri => row[0], :display_name => row[1]}) : (puts "duplicate uri: #{uri} exists in the csv file!")      
+      predicate.blank? ? Predicate.create({:uri => row[0], :display_name => row[1], predicate_type: row[2].to_s }) : (puts "duplicate uri: #{uri} exists in the csv file!")
       
     end
   end
