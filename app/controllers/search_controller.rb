@@ -36,6 +36,7 @@ class SearchController < ApplicationController
 		get_annotate_match_button_info()
 		get_predicate_info()
 		get_site_info()
+    get_exhibit_info()
 
 		if params[:match_holding_match]
 			session[:title] = params[:match_holding_match][:title]

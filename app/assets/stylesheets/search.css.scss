@@ -281,6 +281,30 @@ body.pg-search {
   	text-align:center;
   }
 
+  .search-result {
+    .search_result_data_container {
+      span.label_span {
+        color: #445aac;
+        position: absolute;
+      }
+      span.value_span {
+        margin-left: 100px;
+        display: block;
+      }
+      .more {
+        cursor: pointer;
+        color: #445aac;
+      }
+      .annotation-row {
+        button {
+          cursor: pointer;
+          background: #120F56;
+          color: #fff;
+        }
+      }
+    }
+  }
+
 /*----------------------------*/
 
   td.edit_delete_col {

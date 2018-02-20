@@ -281,6 +281,16 @@ jQuery(document).ready(function($) {
                     html += "<br>" + window.pss.createHtmlTag("span", { 'class': 'value' }, value[i]);
                 }
                 return window.pss.createHtmlTag("div", { 'class': klass }, window.pss.createHtmlTag("td", { 'class': 'label' }, label) + window.pss.createHtmlTag("td", { 'class': 'label' }, html));
+            case "single_item_span":
+                return window.pss.createHtmlTag("div", { 'class': klass },
+                    window.pss.createHtmlTag("span", { 'class': 'label_span' }, label) +
+                    window.pss.createHtmlTag("span", { 'class': 'value_span' }, value));
+            case "multiple_item_span":
+                var html = window.pss.createHtmlTag("span ", { 'class': 'label_span' }, label);
+                for (var i = 0; i < value.length; i++) {
+                    html += window.pss.createHtmlTag("span", { 'class': 'value_span' }, value[i]);
+                }
+                return window.pss.createHtmlTag("div", { 'class': klass }, html);
             //return window.pss.createHtmlTag("div", { 'class': klass },
             //	window.pss.createHtmlTag("td", { 'class': 'label' }, label) +
             //	window.pss.createHtmlTag("td", { 'class': 'value' }, value));//window.pss.createHtmlTag("span", { 'class': 'value' }, value.join("; ")));
@@ -476,14 +486,14 @@ jQuery(document).ready(function($) {
         needShowMoreLink = false;
         var html = "";
         html += createResultContentItem('one_col', '', obj.alternative, false);
-        html += createResultContentItem('single_item', 'ESTC ID: ', obj.uri.substring(obj.uri.lastIndexOf('/') + 1), false);
-        html += createResultContentItem('single_item', 'Date:', obj.year, false);
-        html += createResultContentItem('single_item', 'Period:', obj.created, false);
-        html += createResultContentItem('multiple_item', 'Author:', obj.role_AUT, false);
+        html += createResultContentItem('single_item_span', 'ESTC ID: ', obj.uri.substring(obj.uri.lastIndexOf('/') + 1), false);
+        html += createResultContentItem('single_item_span', 'Date:', obj.year, false);
+        html += createResultContentItem('single_item_span', 'Period:', obj.created, false);
+        html += createResultContentItem('multiple_item_span', 'Author:', obj.role_AUT, false);
         // html += createResultContentItem('separate_lines', 'Source:', obj.source, false);
 
         if (collectedDate)
-            html += createResultContentItem('single_item', 'Collected&nbsp;on:', formatDate(collectedDate), false, 'collected-on');
+            html += createResultContentItem('single_item_span', 'Collected&nbsp;on:', formatDate(collectedDate), false, 'collected-on');
         else
             html += createBlankResultContentItem('row collected-on');
 
@@ -494,7 +504,7 @@ jQuery(document).ready(function($) {
 
         if (enable_site == 'on'){
             var site = window.collex.getSite(obj.archive);
-            html += createResultContentItem('single_item', 'Site:', site, false);
+            html += createResultContentItem('single_item_span', 'Site:', site, false);
         }
 
         var table = "";
@@ -593,17 +603,25 @@ jQuery(document).ready(function($) {
 
         html += createResultContentItem('separate_lines', 'Has Part:', createSubMedia(obj.hasPart), true);
         html += createResultContentItem('separate_lines', 'Is Part Of:', createSubMedia(obj.partOf), true);
-        var exhibits;
-        if (obj.exhibits) {
-            exhibits = [];
-            for (var i = 0; i < obj.exhibits.length; i++) {
-                exhibits.push(formatExhibit(obj.exhibits[i]));
-            }
+
+        var enable_exhibits = 'off';
+        if(window.gon.enable_exhibit !== undefined){
+            enable_exhibits = (window.gon.enable_exhibit)[0].value;
         }
-        if (exhibits)
-            html += createResultContentItem('multiple_item', 'Exhibits:', exhibits, true, 'exhibits-row');
-        else
-            html += createBlankResultContentItem('row exhibits-row');
+
+        if (enable_exhibits == 'on') {
+            var exhibits;
+            if (obj.exhibits) {
+                exhibits = [];
+                for (var i = 0; i < obj.exhibits.length; i++) {
+                    exhibits.push(formatExhibit(obj.exhibits[i]));
+                }
+            }
+            if (exhibits)
+                html += createResultContentItem('multiple_item', 'Exhibits:', exhibits, true, 'exhibits-row');
+            else
+                html += createBlankResultContentItem('row exhibits-row');
+        }
 
         if (needShowMoreLink && index !== null) {
             html += window.pss.createHtmlTag("button", { id: "more-search_result_"+index,  'class': 'nav_link more', onclick: 'removeHidden("more-search_result_' + index + '", "search_result_' + index + '");return false;'}, '[more...]');

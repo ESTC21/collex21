@@ -252,5 +252,9 @@ class ApplicationController < ActionController::Base
    		gon.enable_site = Setup.where(:key => 'enable_site')
    	end
 
+    def get_exhibit_info
+      gon.enable_exhibit = Setup.where(:key => 'enable_searchresults_exhibits')
+    end
+
 
 end
