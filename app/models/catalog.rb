@@ -196,10 +196,12 @@ end
 	   max = max ? "max=#{max}" : ""
 
       u_action = options[:u_action]
+      orphan = options[:orphan]
       match_holding =  options[:match_holding]
 
       u_action = u_action ? "u_action=#{u_action}" : nil
       match_holding = match_holding ? "match_holding=#{u_action}" : nil
+      orphan = orphan ? "orphan=#{orphan}" : nil
 
      # role= "aut=Surr, T. S. 1770-1847."
 	   params = parse_constraints(constraints)
@@ -209,6 +211,7 @@ end
 	   params.push(max) if max.length > 0
       params.push(u_action) if u_action.present?
       params.push(match_holding) if match_holding.present?
+      params.push(orphan) if orphan.present?
 
 	   # params.push(role) if role.length > 0
 

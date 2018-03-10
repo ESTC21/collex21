@@ -11,9 +11,10 @@ jQuery(document).ready(function($) {
 		var url = parent.attr("data-url");
 		var lib_code = parent.attr("data-lib-code");
 		var isLoggedIn = window.collex.currentUserId && window.collex.currentUserId > 0;
+		var orphan = parent.attr('data-orphan');
 		var title = parent.attr("data-title");
 		var hasEdit = parent.find('button.edit').length > 0;		
-		return { uri: uri, url: url, index: index, isLoggedIn: isLoggedIn, title: title, hasEdit: hasEdit, libCode: lib_code};
+		return { uri: uri, url: url, index: index, isLoggedIn: isLoggedIn, title: title, hasEdit: hasEdit, libCode: lib_code, orphan: orphan};
 	}
 
 	/*body.on("click", ".search_result_buttons .checkAnnotation", function (e) {
@@ -40,7 +41,7 @@ jQuery(document).ready(function($) {
 
 	body.on("click", ".search_result_buttons .match", function (e) {
 		var params = setup(e, this);
-		doMatch(params.uri, params.url, params.index, 'search_result_'+params.index, params.isLoggedIn, params.title, "match");
+		doMatch(params.uri, params.url, params.index, 'search_result_'+params.index, params.isLoggedIn, params.title, params.orphan);
 	});
 
 	body.on("click", ".search_result_buttons .watch", function (e) {

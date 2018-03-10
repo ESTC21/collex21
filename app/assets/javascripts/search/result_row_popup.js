@@ -451,12 +451,13 @@ function doCollect(partial, uri, row_num, row_id, is_logged_in, hasEdit)
 		ninesObjCache.reset('/forum/get_nines_obj_list');	// TODO-PER: don't hard code this value!
 }
 
-function onMatchSuccess(resp) {
-	newwindow = window.open("/search?u_action=match", '_blank', "height= " + screen.height * (0.9) + ",width=" + screen.width * (0.9) + " ");
+function onMatchSuccess(params) {
+  var orphan = params.orphan == 'false' ? 'orphan=false' : 'orphan=true'
+	newwindow = window.open("/search?u_action=match" + "&" + orphan, '_blank', "height= " + screen.height * (0.9) + ",width=" + screen.width * (0.9) + " ");
     newwindow.moveTo(20, 20);
 }
 
-function doMatch(uri, url, row_num, row_id, is_logged_in, title)
+function doMatch(uri, url, row_num, row_id, is_logged_in, title, orphan)
 {
 	if (!is_logged_in) {
 		var dlg = new SignInDlg();
@@ -464,14 +465,14 @@ function doMatch(uri, url, row_num, row_id, is_logged_in, title)
 		dlg.setRedirectPageToCurrentWithParam('script=doCollect&uri='+uri+'&row_num='+row_num+'&row_id='+row_id);
 		dlg.show('sign_in');
 		return;
-	} 
+	}
 
-	var params = {uri: uri, url: url, row_num: row_num, full_text: '', title: title};
+	var params = {uri: uri, url: url, row_num: row_num, full_text: '', title: title, orphan: orphan};
 	var $j = jQuery.noConflict();
 	$j.ajax({
 			type: 'GET',
             data: { match: params },
-            success: onMatchSuccess
+            success: onMatchSuccess(params)
             });
 }
 

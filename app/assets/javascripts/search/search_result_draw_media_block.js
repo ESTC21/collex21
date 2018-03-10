@@ -639,7 +639,7 @@ jQuery(document).ready(function($) {
         var hiddenlist = window.pss.createHtmlTag("table", {'class': "hiddeninfo"}, table);
         html += window.pss.createHtmlTag("div", { 'class': "row hidden" }, hiddenlist);
 
-        return window.pss.createHtmlTag("div", { 'class': 'search_result_data_container', 'data-uri': obj.uri, 'data-url': obj.url }, html);
+        return window.pss.createHtmlTag("div", { 'class': 'search_result_data_container', 'data-uri': obj.uri, 'data-url': obj.url, 'data-orphan': obj.orphan }, html);
     }
 
     function createSubMediaBlock(obj) {
@@ -674,7 +674,7 @@ jQuery(document).ready(function($) {
             klass += " result_row_collected";
 
         //TODO: Add lib_code once records have those
-        html += window.pss.createHtmlTag("div", { 'id': 'search_result_'+ index, 'class': klass, 'data-index': index, 'data-uri': obj.uri, 'data-url': obj.url, 'data-title': obj.title, 'data-lib-code': '' }, imageBlock+actionButtons+results);
+        html += window.pss.createHtmlTag("div", { 'id': 'search_result_'+ index, 'class': klass, 'data-index': index, 'data-uri': obj.uri, 'data-url': obj.url, 'data-title': obj.title, 'data-lib-code': '', 'data-orphan': obj.orphan }, imageBlock+actionButtons+results);
 
         /*if (hidden){
          klass += " hidden";
@@ -816,7 +816,9 @@ jQuery(document).ready(function($) {
         for (var i = 0; i < obj.hits.length; i++) {
             var isCollected = obj.collected[obj.hits[i].uri] !== undefined;
             var hasPredicate = obj.hits[i].hasPart !== undefined;
-            // if(obj.hits[i].instanceof === undefined) {
+
+            obj.hits[i]['orphan'] = obj.hits[i].hasInstance == undefined ? true : false
+
             _.find(watching_records, function(_obj){
                 if(_obj.uri == obj.hits[i].uri) {
                     return obj.hits[i]['watch'] = true;
