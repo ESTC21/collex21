@@ -92,7 +92,6 @@ jQuery(document).ready(function($) {
 		var html = "";
 		html += createResultContentItem('one_col', '', obj.alternative, false);
 		html += createResultContentItem('single_item', 'ESTC ID: ', obj.uri.substring(obj.uri.lastIndexOf('/') + 1), false);
-		html += createResultContentItem('single_item', 'Date:', obj.date_label, false);
 		html += createResultContentItem('multiple_item', 'Author:', obj.role_AUT, false);
 		html += createResultContentItem('separate_lines', 'Source:', obj.source, false);
 		
@@ -199,7 +198,6 @@ jQuery(document).ready(function($) {
 		var html = "";
 		html += createResultContentItem('one_col', '', obj.alternative, false);
         html += createResultContentItem('single_item', 'ESTC ID: ', obj.uri.substring(obj.uri.lastIndexOf('/') + 1), false);
-        html += createResultContentItem('single_item', 'Date:', obj.year, false);
         html += createResultContentItem('single_item', 'Period:', obj.created, false);
         html += createResultContentItem('multiple_item', 'Author:', obj.role_AUT, false);
 
@@ -215,7 +213,6 @@ jQuery(document).ready(function($) {
 
         // Value displayed on the page should be the value of the <bf:shelfMark> element for the identified resource,
         // and it should be a link to the record display of that resource.
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('hasInstanceItem', 'Copies:', obj, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Notes:', obj.description, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'URL:', obj.url, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Standard Title:', obj.titleOfResource, true));
@@ -225,7 +222,8 @@ jQuery(document).ready(function($) {
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Series Statement:', obj.P1041, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Note on Frequency:', obj.noteOnFrequency, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Imprint:', obj.publisher, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Extant:', obj.format, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Era:', obj.year, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Physical Description:', obj.format, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Physical Description:', obj.doc_type, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Language:', obj.language, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Shelf Mark:', obj.shelfMark, true));
@@ -285,7 +283,7 @@ jQuery(document).ready(function($) {
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Wood Cutter:', obj.role_WDC, true));
 		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject:', obj.subject, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Digital Surrogats:', obj.digital_surrogats, true));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Coverage:', obj.coverage, true));
+		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Place:', obj.coverage, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Sub Location:', obj.subLocation, true));
 		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Is Referenced By:', obj.isReferencedBy, true));
 		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Shelf Mark:', obj.shelfMark, true));
@@ -293,6 +291,7 @@ jQuery(document).ready(function($) {
 		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Instance of:', obj.instanceof, true));
 		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Description:', obj.description, true));
 		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'URL:', obj.url, true));
+    table += window.pss.createHtmlTag("tr", {}, createResultContentItem('hasInstanceItem', 'Copies:', obj, true));
 
 		var exhibits;
 		if (obj.exhibits) {
@@ -322,8 +321,7 @@ jQuery(document).ready(function($) {
 	function createResultContentItem(type, label, value, startHidden, rowClass) {
         var shelfMark = '';
 	    if(type === 'hasInstanceItem' && typeof value === 'object') {
-            shelfMark = value.shelfMark;
-            value = value.hasInstance;
+          value = value.shelf_mark_copies;
         }
 		if (!value)
 			return "";
@@ -379,22 +377,15 @@ jQuery(document).ready(function($) {
                 //
                 var html = "";
                 for (var i = 0; i < value.length; i++) {
-                    var plainTextURL = value[i];
+                    var plainTextURL = value[i][0];
                     var splitted_url = plainTextURL.split('/');
                     var item_identifier = splitted_url[splitted_url.length-1];
 
                     var final_value = '';
-
                     if (i > 0) {
                         html += "<br>";
                     }
-
-                    if(shelfMark === undefined) {
-                        final_value = item_identifier;
-                    }
-                    else {
-                        final_value = shelfMark;
-                    }
+                    final_value = value[i][1];
                     html += "<a target='_blank' style=\"text-decoration: none;\" href=\"http://estc21.ucr.edu/fullrecord?action=fullrecord&uri=" + plainTextURL + "\">" + window.pss.createHtmlTag("span", {'class': 'value'}, final_value) + "</a>";
                 }
                 return window.pss.createHtmlTag("div", { 'class': klass }, window.pss.createHtmlTag("td", { 'class': 'label' }, label) + window.pss.createHtmlTag("td", { 'class': 'label' }, html));

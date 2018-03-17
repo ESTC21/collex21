@@ -650,7 +650,8 @@ end
       #puts "Before call solr"
       response = call_solr("search/details", :get, [ "uri=#{uri}" ]) rescue nil
       #puts "After call solr"
-      return normalize_hits(response.nil? ? nil : response['search']['results']['result'])[0]
+      return response['document']
+      # return normalize_hits(response.nil? ? nil : response['search']['results']['result'])[0]
    end
 
    def modify_object(uri, operation, field, value) #called when "Approve" is pressed.
@@ -803,7 +804,7 @@ end
       params.push("test_index=true") if @use_test_index
       args = params.length > 0 ? "#{params.collect { |item| esc_arg(item) }.join('&')}" : ""
 
-      request = url == 'search' ? "/#{url}.json" : "/#{url}.xml"
+      request = url.in?(['search', 'search/details']) ? "/#{url}.json" : "/#{url}.xml"
       url = URI.parse(Setup.solr_url())
       puts "Request URL"
       puts url
@@ -837,7 +838,7 @@ end
          raise Catalog::Error.new(msg)
       end
       begin
-         if request == '/search.json'
+         if request.in?(['/search.json', '/search/details.json'])
             results = JSON.parse(res.body)
          else
             results = Hash.from_xml(res.body)

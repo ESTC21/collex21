@@ -509,97 +509,97 @@ jQuery(document).ready(function($) {
 
         var table = "";
 
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Place:', obj.coverage[0], true));
         // updated new RDF model
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject:', obj.subject, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject URI:', obj.subject_uri, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject:', obj.subject, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject URI:', obj.subject_uri, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Owner:', obj.role_OWN, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Repository:', obj.role_RPS, true));
 
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('hasInstanceItem', 'Copies:', obj, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Notes:', obj.description, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Notes:', obj.description, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'URL:', obj.url, true));
 
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Standard Title:', obj.titleOfResource, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Abbreviated Title:', obj.abbreviatedTitle, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Variant Title:', obj.variantTitle, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Previous Title:', obj.earlierTitleProper, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Series Statement:', obj.P1041, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Note on Frequency:', obj.noteOnFrequency, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Abbreviated Title:', obj.abbreviatedTitle, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Variant Title:', obj.variantTitle, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Previous Title:', obj.earlierTitleProper, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Series Statement:', obj.P1041, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Note on Frequency:', obj.noteOnFrequency, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Imprint:', obj.publisher, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Extant:', obj.format, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Physical Description:', obj.doc_type, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Language:', obj.language, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Shelf Mark:', obj.shelfMark, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Referenced by:', obj.isReferencedBy, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Rights Statement:', obj.rights, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('instanceOfItem', 'ESTC Manifestation Record:', obj.instanceof, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Physical Description:', obj.format, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Physical Description:', obj.doc_type, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Language:', obj.language, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Shelf Mark:', obj.shelfMark, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Referenced by:', obj.isReferencedBy, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Rights Statement:', obj.rights, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('instanceOfItem', 'ESTC Manifestation Record:', obj.instanceof, true));
 
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Artist:', obj.role_ART, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Artist:', obj.role_ART, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Genre:', obj.genre, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Discipline:', obj.discipline, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Exhibit&nbsp;type:', obj.exhibit_type, false));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'License:', obj.license, false));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Discipline:', obj.discipline, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Exhibit&nbsp;type:', obj.exhibit_type, false));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'License:', obj.license, false));
 
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Editor:', obj.role_EDT, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Publisher:', obj.role_PBL, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Owner:', obj.role_OWN, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Translator:', obj.role_TRL, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Provenance:', obj.provenance, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Architect:', obj.role_ARC, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Binder:', obj.role_BND, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Book Designer:', obj.role_BKD, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Book Producer:', obj.role_BKP, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Broadcaster:', obj.role_BRD, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Calligrapher:', obj.role_CLL, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Cartographer:', obj.role_CTG, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Collector:', obj.role_COL, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Colorist:', obj.role_CLR, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Commentator:', obj.role_CWT, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Compiler:', obj.role_COM, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Compositor:', obj.role_CMT, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Cinematographer:', obj.role_CNG, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Conductor:', obj.role_CND, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Creator:', obj.role_CRE, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Director:', obj.role_DRT, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Dubious Author:', obj.role_DUB, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Facsimilist:', obj.role_FAC, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Former Owner:', obj.role_FMO, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Illuminator:', obj.role_ILU, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Illustrator:', obj.role_ILL, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Interviewer:', obj.role_IVR, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Interviewee:', obj.role_IVE, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Lithographer:', obj.role_LTG, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Performer:', obj.role_PRF, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Printer:', obj.role_PRT, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Printer of plates:', obj.role_POP, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Printmaker:', obj.role_PRM, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Producer:', obj.role_PRO, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Production Company:', obj.role_PRN, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Translator:', obj.role_TRL, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Provenance:', obj.provenance, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Architect:', obj.role_ARC, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Binder:', obj.role_BND, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Book Designer:', obj.role_BKD, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Book Producer:', obj.role_BKP, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Broadcaster:', obj.role_BRD, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Calligrapher:', obj.role_CLL, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Cartographer:', obj.role_CTG, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Collector:', obj.role_COL, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Colorist:', obj.role_CLR, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Commentator:', obj.role_CWT, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Compiler:', obj.role_COM, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Compositor:', obj.role_CMT, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Cinematographer:', obj.role_CNG, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Conductor:', obj.role_CND, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Creator:', obj.role_CRE, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Director:', obj.role_DRT, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Dubious Author:', obj.role_DUB, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Facsimilist:', obj.role_FAC, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Former Owner:', obj.role_FMO, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Illuminator:', obj.role_ILU, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Illustrator:', obj.role_ILL, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Interviewer:', obj.role_IVR, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Interviewee:', obj.role_IVE, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Lithographer:', obj.role_LTG, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Performer:', obj.role_PRF, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Printer:', obj.role_PRT, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Printer of plates:', obj.role_POP, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Printmaker:', obj.role_PRM, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Producer:', obj.role_PRO, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Production Company:', obj.role_PRN, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Repository:', obj.role_RPS, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Holding Institution:', obj.role_RPS, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Rubricator:', obj.role_RBR, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Scribe:', obj.role_SCR, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Sculptor:', obj.role_SCL, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Translator:', obj.role_TRL, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Type Designer:', obj.role_TYD, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Typographer:', obj.role_TYG, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Wood Engraver:', obj.role_WDE, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Wood Cutter:', obj.role_WDC, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Digital Surrogats:', obj.digital_surrogats, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Coverage:', obj.coverage, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Sub Location:', obj.subLocation, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Holding Institution:', obj.role_RPS, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Rubricator:', obj.role_RBR, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Scribe:', obj.role_SCR, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Sculptor:', obj.role_SCL, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Translator:', obj.role_TRL, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Type Designer:', obj.role_TYD, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Typographer:', obj.role_TYG, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Wood Engraver:', obj.role_WDE, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Wood Cutter:', obj.role_WDC, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Digital Surrogats:', obj.digital_surrogats, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Sub Location:', obj.subLocation, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Is Referenced By:', obj.isReferencedBy, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Contributor:', obj.contributor, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Contributor:', obj.contributor, true));
 
         // here's where I need to break in and call to a different function that will go out and grab the
         // holding information for each of these and display that instead of the ID
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Has Instance Z:', obj.hasInstance, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('hasInstanceItem', 'Holdings:', obj.hasInstance, true));
 
-        if (index !== null) {
-            var tags = createTagLine(obj.uri, index, obj.my_tags, obj.tags);
-            table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Tags:', tags, true, 'tag-list'));
-        }
+        // if (index !== null) {
+        //     var tags = createTagLine(obj.uri, index, obj.my_tags, obj.tags);
+        //     table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Tags:', tags, true, 'tag-list'));
+        // }
+        //table += window.pss.createHtmlTag("tr", {}, createResultContentItem('hasInstanceItem', 'Copies:', obj, true));
 
         html += createResultContentItem('separate_lines', 'Has Part:', createSubMedia(obj.hasPart), true);
         html += createResultContentItem('separate_lines', 'Is Part Of:', createSubMedia(obj.partOf), true);
