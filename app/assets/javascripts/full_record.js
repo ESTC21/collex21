@@ -206,7 +206,6 @@ jQuery(document).ready(function($) {
 		var table = "";
 
         // updated new RDF model
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Place:', obj.coverage, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject:', obj.subject, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject URI:', obj.subject_uri, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Owner:', obj.role_OWN, true));
@@ -227,7 +226,7 @@ jQuery(document).ready(function($) {
             'Imprint:', obj.coverage[0] + ": " + obj.publisher + ", " + obj.year, true));
 
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Physical Description:', obj.format, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Physical Description:', obj.doc_type, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Physical Description:', obj.doc_type, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Language:', obj.language, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Shelf Mark:', obj.shelfMark, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Referenced by:', obj.isReferencedBy, true));
@@ -284,6 +283,7 @@ jQuery(document).ready(function($) {
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Typographer:', obj.role_TYG, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Wood Engraver:', obj.role_WDE, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Wood Cutter:', obj.role_WDC, true));
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Place:', obj.coverage, true));
 		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject:', obj.subject, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Digital Surrogats:', obj.digital_surrogats, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Sub Location:', obj.subLocation, true));
