@@ -222,8 +222,12 @@ jQuery(document).ready(function($) {
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Series Statement:', obj.P1041, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Note on Frequency:', obj.noteOnFrequency, true));
 
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table',
-            'Imprint:', obj.coverage[0] + ": " + obj.publisher + ", " + obj.year, true));
+        // combine fields to get imprint
+        var imprint = obj.publisher + ", " + obj.year;
+        if(obj.coverage !== undefined) {
+            imprint = obj.coverage[0] + ": " + obj.publisher + ", " + obj.year;
+        }
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Imprint:', imprint, true));
 
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Physical Description:', obj.format, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item_table', 'Physical Description:', obj.doc_type, true));
@@ -241,7 +245,7 @@ jQuery(document).ready(function($) {
 
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Editor:', obj.role_EDT, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Publisher:', obj.role_PBL, true));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Owner:', obj.role_OWN, true));
+		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Owner:', obj.role_OWN, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Translator:', obj.role_TRL, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Provenance:', obj.provenance, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Architect:', obj.role_ARC, true));
@@ -274,7 +278,7 @@ jQuery(document).ready(function($) {
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Printmaker:', obj.role_PRM, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Producer:', obj.role_PRO, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Production Company:', obj.role_PRN, true));
-		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Repository:', obj.role_RPS, true));
+		// table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Repository:', obj.role_RPS, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Rubricator:', obj.role_RBR, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Scribe:', obj.role_SCR, true));
 		table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Sculptor:', obj.role_SCL, true));

@@ -523,8 +523,13 @@ jQuery(document).ready(function($) {
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Previous Title:', obj.earlierTitleProper, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Series Statement:', obj.P1041, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Note on Frequency:', obj.noteOnFrequency, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item',
-            'Imprint:', obj.coverage[0] + ": " + obj.publisher + ", " + obj.year, true));
+
+        var imprint = obj.publisher + ", " + obj.year;
+        if(obj.coverage !== undefined) {
+            imprint = obj.coverage[0] + ": " + obj.publisher + ", " + obj.year;
+        }
+        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Imprint:', imprint, true));
+
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Place:', obj.coverage, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Physical Description:', obj.format, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Physical Description:', obj.doc_type, true));
