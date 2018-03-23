@@ -504,18 +504,18 @@ jQuery(document).ready(function($) {
 
         if (enable_site == 'on'){
             var site = window.collex.getSite(obj.archive);
-            html += createResultContentItem('single_item_span', 'Site:', site, false);
+            // html += createResultContentItem('single_item_span', 'Site:', site, false);
         }
 
         var table = "";
         // updated new RDF model
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject:', obj.subject, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject URI:', obj.subject_uri, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Owner:', obj.role_OWN, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Repository:', obj.role_RPS, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Owner:', obj.role_OWN, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Repository:', obj.role_RPS, true));
 
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Notes:', obj.description, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'URL:', obj.url, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'URL:', obj.url, true));
 
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Standard Title:', obj.titleOfResource, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Abbreviated Title:', obj.abbreviatedTitle, true));
@@ -530,7 +530,7 @@ jQuery(document).ready(function($) {
         }
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Imprint:', imprint, true));
 
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Place:', obj.coverage, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Place:', obj.coverage, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Physical Description:', obj.format, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Physical Description:', obj.doc_type, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Language:', obj.language, true));
@@ -540,14 +540,14 @@ jQuery(document).ready(function($) {
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('instanceOfItem', 'ESTC Manifestation Record:', obj.instanceof, true));
 
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Artist:', obj.role_ART, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Genre:', obj.genre, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Genre:', obj.genre, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Discipline:', obj.discipline, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'Exhibit&nbsp;type:', obj.exhibit_type, false));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('single_item', 'License:', obj.license, false));
 
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Editor:', obj.role_EDT, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Publisher:', obj.role_PBL, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Owner:', obj.role_OWN, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Editor:', obj.role_EDT, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Publisher:', obj.role_PBL, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Owner:', obj.role_OWN, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Translator:', obj.role_TRL, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Provenance:', obj.provenance, true));
         // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Architect:', obj.role_ARC, true));
@@ -606,8 +606,8 @@ jQuery(document).ready(function($) {
         // }
         //table += window.pss.createHtmlTag("tr", {}, createResultContentItem('hasInstanceItem', 'Copies:', obj, true));
 
-        html += createResultContentItem('separate_lines', 'Has Part:', createSubMedia(obj.hasPart), true);
-        html += createResultContentItem('separate_lines', 'Is Part Of:', createSubMedia(obj.partOf), true);
+        // html += createResultContentItem('separate_lines', 'Has Part:', createSubMedia(obj.hasPart), true);
+        // html += createResultContentItem('separate_lines', 'Is Part Of:', createSubMedia(obj.partOf), true);
 
         var enable_exhibits = 'off';
         if(window.gon.enable_exhibit !== undefined){
@@ -622,10 +622,10 @@ jQuery(document).ready(function($) {
                     exhibits.push(formatExhibit(obj.exhibits[i]));
                 }
             }
-            if (exhibits)
-                html += createResultContentItem('multiple_item', 'Exhibits:', exhibits, true, 'exhibits-row');
-            else
-                html += createBlankResultContentItem('row exhibits-row');
+            // if (exhibits)
+            //     html += createResultContentItem('multiple_item', 'Exhibits:', exhibits, true, 'exhibits-row');
+            // else
+            //     html += createBlankResultContentItem('row exhibits-row');
         }
 
         if (needShowMoreLink && index !== null) {
