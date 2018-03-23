@@ -207,7 +207,7 @@ jQuery(document).ready(function($) {
 
         // updated new RDF model
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject:', obj.subject, true));
-        table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject URI:', obj.subject_uri, true));
+        // table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Subject URI:', obj.subject_uri, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Owner:', obj.role_OWN, true));
         table += window.pss.createHtmlTag("tr", {}, createResultContentItem('multiple_item', 'Repository:', obj.role_RPS, true));
 
@@ -394,7 +394,7 @@ jQuery(document).ready(function($) {
                         html += "<br>";
                     }
                     final_value = value[i][1];
-                    html += "<a target='_blank' style=\"text-decoration: none;\" href=\"http://estc21.ucr.edu/fullrecord?action=fullrecord&uri=" + plainTextURL + "\">" + window.pss.createHtmlTag("span", {'class': 'value'}, final_value) + "</a>";
+                    html += window.pss.createHtmlTag("span", {'class': 'value'}, final_value);
                 }
                 return window.pss.createHtmlTag("div", { 'class': klass }, window.pss.createHtmlTag("td", { 'class': 'label' }, label) + window.pss.createHtmlTag("td", { 'class': 'label' }, html));
 
