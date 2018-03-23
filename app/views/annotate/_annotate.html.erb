@@ -29,7 +29,7 @@
     <br>
     <p>
       This item <%= f.select(:predicate,  options_for_select(@predicates.map{ |predicate| [predicate.display_name, predicate.id, {'data-type' => predicate.predicate_type.to_s.downcase }] }), prompt: "Select a verb") %>&nbsp;&nbsp;
-      <%= f.text_field :object_uri, size: 50, class: 'add-autocomplete regular-input query-editing jq-autocomplete', 'data-autocomplete-url': "/search/auto_complete_for_q", 'data-autocomplete-field': ".query_type_select" %>
+      <%= f.text_field :object_uri, size: 50, class: 'add-autocomplete regular-input query-editing jq-autocomplete', 'data-autocomplete-url': "/search_for_annotate", 'data-autocomplete-field': ".query_type_select" %>
     </p>
 
     <p>

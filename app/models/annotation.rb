@@ -5,6 +5,21 @@ class Annotation < ActiveRecord::Base
 
   after_save :send_email_to_watching_users
 
+  def self.autocomplete_search(params)
+    term = params[:term]
+
+    url = URI.parse(uri)
+    begin
+      res = Net::HTTP.start(url.host, url.port) do |http|
+        term = '?query=' + term if term.length > 0
+        http.get("#{uri}#{term}")
+      end
+    rescue Exception => e
+      msg = e.to_s
+    end
+    parse_response(JSON.parse(res.body))
+  end
+
   private
 
   def send_email_to_watching_users
@@ -24,5 +39,15 @@ class Annotation < ActiveRecord::Base
         WatchingUsersMailer.annotation_notification_email(user_emails, title, uri).deliver
       end
     end
+  end
+
+  def self.uri
+    'http://www.viaf.org/viaf/AutoSuggest'
+  end
+
+  def self.parse_response(response)
+    return [] if response.blank? || response['result'].blank?
+    suggestions = response['result'].group_by{|result| result['term'] }
+    suggestions.map{|name, results| [name, results.length]}
   end
 end
