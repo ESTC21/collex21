@@ -443,7 +443,7 @@ jQuery(document).ready(function($) {
         } else
             linkLabel = "Add Private Annotation";
 
-        return window.pss.createHtmlTag("button", { 'class': 'modify_link', onclick: doAnnotation }, linkLabel)+currentAnnotation;
+        return "" //window.pss.createHtmlTag("button", { 'class': 'modify_link', onclick: doAnnotation }, linkLabel)+currentAnnotation;
     }
 
     function formatDate(date) {
