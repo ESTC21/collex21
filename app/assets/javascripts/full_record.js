@@ -394,7 +394,8 @@ jQuery(document).ready(function($) {
                         html += "<br>";
                     }
                     final_value = value[i][1];
-                    html += window.pss.createHtmlTag("span", {'class': 'value'}, final_value);
+                    html += "<a style=\"text-decoration: none;\" href=\"http://estc21.ucr.edu/fullrecord?action=fullrecord&uri=" + plainTextURL + "\">" + window.pss.createHtmlTag("span", {'class': 'value'}, final_value) + "</a>";
+
                 }
                 return window.pss.createHtmlTag("div", { 'class': klass }, window.pss.createHtmlTag("td", { 'class': 'label' }, label) + window.pss.createHtmlTag("td", { 'class': 'label' }, html));
 
