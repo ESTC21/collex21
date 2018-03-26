@@ -380,6 +380,7 @@ Collex::Application.routes.draw do
 
   get '/annotate' => 'annotate#index'
   post '/create_annotate' => 'annotate#create'
+  post '/search_for_annotate' => 'annotate#search'
 
   post '/watch' => 'watch#create'
   post '/unwatch' => 'watch#delete'

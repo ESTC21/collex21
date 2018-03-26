@@ -93,6 +93,11 @@ class AnnotateController < ApplicationController
     end
   end
 
+  def search
+    results = Annotation.autocomplete_search(params)
+    render json: results
+  end
+
 
   private
 
