@@ -7,7 +7,6 @@
       <ul id="list-objects" class="no-margin">
         <% checkerror = true %>
         <% @matchinfo.each do |obj| %>
-          <% byebug %>
           <% if obj[:errorMsg].empty? %>
             <% checkerror = false %>
           <% end %>

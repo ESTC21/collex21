@@ -23,7 +23,6 @@ before_filter :init_view_options
     else
       @matchinfo.push({objectTitle: objectTitle, objectUri: objectUri, predicateId: predicateId, predicateDisplayname: predicateDisplayname, errorMsg: ""})
     end
-    byebug
     session[:matchinfo] = @matchinfo
   end
 

@@ -63,7 +63,7 @@
 
       <div class="page_subheader">
         <% if params[:u_action] == 'match_holding_match' %>
-          Search For Parent Records
+          Search Parent Records for <b><%= session[:childTitle] %></b>
         <% else %>
           Add new search criteria or select limiters to refine your search.
         <% end %>

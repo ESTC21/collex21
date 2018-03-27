@@ -39,7 +39,6 @@ class SearchController < ApplicationController
     get_exhibit_info()
 
 		if params[:match_holding_match]
-      byebug
 			session[:childTitle] = params[:match_holding_match][:title]
 		  session[:childUri] = params[:match_holding_match][:uri]
 		  session[:childUrl] = params[:match_holding_match][:url]
