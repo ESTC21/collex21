@@ -61,7 +61,13 @@
 				</div>
 			<% end -%>
 
-			<div class="page_subheader">Add new search criteria or select limiters to refine your search.</div>
+      <div class="page_subheader">
+        <% if params[:u_action] == 'match_holding_match' %>
+          Search For Parent Records
+        <% else %>
+          Add new search criteria or select limiters to refine your search.
+        <% end %>
+			</div>
 			<table class="query search-form">
 			</table>
 		

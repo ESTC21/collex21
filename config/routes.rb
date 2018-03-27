@@ -370,6 +370,8 @@ Collex::Application.routes.draw do
   post '/test_error_response' => 'application#test_error_response'
 
   match '/searchmatch' => 'match#index'
+  match '/search_matchholding' => 'match_holdings#match'
+  match '/create_matchholding' => 'match_holdings#create'
   match '/create_match' => 'match#create'
   post '/match/getMatchInfo' => 'match#get_match_info'
   post '/match/saveMatchInfo' => 'match#save_match_info'

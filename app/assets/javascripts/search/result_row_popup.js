@@ -477,8 +477,7 @@ function doMatch(uri, url, row_num, row_id, is_logged_in, title, orphan)
 }
 
 function onMatchHoldingMatchSuccess(resp) {
-  newwindow = window.open("/search?u_action=match_holding_match", '_blank', "height= " + screen.height * (0.9) + ",width=" + screen.width * (0.9) + " ");
-    newwindow.moveTo(20, 20);
+  window.location.href = '/search?u_action=match_holding_match'
 }
 
 function doMatchHoldingMatch(uri, url, row_num, row_id, is_logged_in, title) {
@@ -583,6 +582,34 @@ function onAnnotateSuccess(resp) {
         sessionStorage.setItem('returnURI', window.location.href);
     }
 	window.location.href = '/annotate?action=annotate'
+    // newwindow = window.open("/annotate?action=annotate", '_blank', "height= " + screen.height * (0.9) + ",width=" + screen.width * (0.9) + " ");
+    // newwindow.moveTo(20, 20);
+}
+
+function doAnnotateChild(uri, url, row_num, row_id, is_logged_in, title)
+{
+  if (!is_logged_in) {
+    var dlg = new SignInDlg();
+    dlg.setInitialMessage("Please log in to annotate objects");
+    dlg.setRedirectPageToCurrentWithParam('script=doCollect&uri='+uri+'&row_num='+row_num+'&row_id='+row_id);
+    dlg.show('sign_in');
+    return;
+  }
+
+  var params = {uri: uri, url: url, row_num: row_num, full_text: '', title: title};
+  var $j = jQuery.noConflict();
+  $j.ajax({
+      type: 'GET',
+            data: { annotate_child: params },
+            success: onAnnotateChildSuccess
+            });
+}
+function onAnnotateChildSuccess(resp) {
+  sessionStorage.setItem('annotate', true);
+  if(window.location.pathname == '/search') {
+    sessionStorage.setItem('returnURI', window.location.href);
+  }
+  window.location.href = '/search_matchholding'
     // newwindow = window.open("/annotate?action=annotate", '_blank', "height= " + screen.height * (0.9) + ",width=" + screen.width * (0.9) + " ");
     // newwindow.moveTo(20, 20);
 }

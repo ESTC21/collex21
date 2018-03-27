@@ -1,0 +1,93 @@
+<div class="inner-content">
+  <%= form_for(@annotation, url: create_matchholding_path, :html => { :multipart => true, :onsubmit => "return confirm('Are you sure you want to make the following match?');" }) do |f| %>
+    <%= f.hidden_field :subject, :value => session[:parentUri] %>
+    <input type ="hidden" value = '<%= session[:parentTitle] %>' name = "title">
+    <p><%= link_to "Back to Search", :back, class: 'back-to-search' %></p>
+    <% if session[:childUri].present? %>
+      <ul id="list-objects" class="no-margin">
+        <% checkerror = true %>
+        <% @matchinfo.each do |obj| %>
+          <% byebug %>
+          <% if obj[:errorMsg].empty? %>
+            <% checkerror = false %>
+          <% end %>
+          <li>
+            <p id="notice" class="notice" style = "font-weight: bold; font-size: 12pt; color: Red">
+              <%= obj[:errorMsg] %>
+            </p>
+            <p class="record-title-uri">
+              <a href = "/fullrecord?action=fullrecord&uri=<%= session[:parentUri]%> ", target = '_blank'>
+                <%= session[:parentTitle] %>
+              </a>
+            </p>
+            <p><b> <%=  obj[:predicateDisplayname] %> of </b></p>
+            <p class="record-title-uri">
+              <a href = "/fullrecord?action=fullrecord&uri=<%= obj[:objectUri]%> ", target = '_blank'>
+                <%= obj[:objectTitle] %>
+              </a>
+            </p>
+          </li>
+        <% end %>
+        <p>
+          Enhance the ESTC by using the form below to provide more or corrected information about the indicated item.
+          User entered annotations are reviewed by other ESTC <br>users and ESTC Staff. All annotations become part of the
+          history of the record being annotated. Annotations that are approved by ESTC staff become part of the official<br>
+          ESTC record for an item.
+        </p>
+
+        <p class="info-box-highlighter">
+          You are annotating: <%= session[:childTitle] %>
+        </p>
+        <br>
+        <p>
+          <span>
+            Please provide as detailed an explanation as possible about how you arrived at your assertion, providing as much evidences as<br>
+            possible. This information will help other users and ESTC staff to determine the accuracy of the assertion and will increase the<br>
+            odds that it is approved.
+          </span>
+          <br><br>
+          <% if checkerror == false %>
+            <%= f.text_area :feedback, cols: 65, rows: 10 %>
+          <% else %>
+            <p style = "font-size: 12pt; color: Red"><%= "All the matches has been made already!" %></p>
+            <%= f.text_area :feedback, cols: 65, rows: 10, disabled: true %>
+          <% end %>
+        </p>
+        <p>
+          You can also attach file in support of your annotation:<br>
+          <%= file_field_tag "documents[]", :multiple => true %>
+        </p>
+
+        <p>
+          <%= f.submit "Submit Annotation for Review", :id => "submitbtn" %>
+        </p>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
+
+<script>
+    var $j = jQuery.noConflict();
+
+    $j("#closebtn").click(function(){
+        window.close();
+    });
+    var textValue = '';
+
+    $j("#annotation_feedback").keyup(function() {
+        textValue = $j(this).val();
+        if(textValue == '' || $j('#list-objects').children().length == 0){
+            $j("#submitbtn").prop('disabled', true);
+        }
+        else{
+            $j("#submitbtn").prop('disabled', false);
+        }
+    });
+
+    $j(document).ready(function(){
+        if($j('#list-objects').children().length == 0 || $j("#annotation_feedback").val() == ''){
+            $j('#submitbtn').prop('disabled',true);
+        }
+    });
+
+</script>

@@ -59,6 +59,11 @@ jQuery(document).ready(function($) {
 		doAnnotate(params.uri, params.url, params.index, 'search_result_'+params.index, params.isLoggedIn, params.title, "annotate");
 	});
 
+	body.on("click", ".search_result_buttons .annotate_child, .contribute_action .annotate_child ", function (e) {
+		var params = setup(e, this);
+		doAnnotateChild(params.uri, params.url, params.index, 'search_result_'+params.index, params.isLoggedIn, params.title, "annotate_child");
+	});
+
 	body.on("click", ".search_result_buttons .collect", function (e) {
 		var params = setup(e, this);
 		doCollect('/results/result_row', params.uri, params.index, 'search_result_'+params.index, params.isLoggedIn, params.hasEdit);

@@ -39,9 +39,10 @@ class SearchController < ApplicationController
     get_exhibit_info()
 
 		if params[:match_holding_match]
-			session[:title] = params[:match_holding_match][:title]
-		  session[:uri] = params[:match_holding_match][:uri]
-		  session[:url] = params[:match_holding_match][:url]
+      byebug
+			session[:childTitle] = params[:match_holding_match][:title]
+		  session[:childUri] = params[:match_holding_match][:uri]
+		  session[:childUrl] = params[:match_holding_match][:url]
 		end
 
 		if params[:match]
@@ -53,9 +54,17 @@ class SearchController < ApplicationController
 
 		if params[:annotate]
 			session[:annotateTitle] = params[:annotate][:title]
-		    session[:annotateUri] = params[:annotate][:uri] 
-		    session[:annotateUrl] = params[:annotate][:url]
+		  session[:annotateUri] = params[:annotate][:uri]
+		  session[:annotateUrl] = params[:annotate][:url]
 		end
+
+    if params[:annotate_child]
+      session[:parentTitle] = params[:annotate_child][:title]
+      session[:parentUri] = params[:annotate_child][:uri]
+      session[:parentUrl] = params[:annotate_child][:url]
+    end
+
+
 		session[:objectparams] = ""
 		respond_to do |format|
 				format.html {

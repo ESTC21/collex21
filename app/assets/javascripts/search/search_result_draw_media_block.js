@@ -98,15 +98,20 @@ jQuery(document).ready(function($) {
         }
         else if (window.location.search.include("u_action=match_holding_match")) {
             var $j = jQuery.noConflict();
+            var annotate = "";
             $j('#chooseobjects').show();
-            var predicatesInfo = window.gon.predicatesInfo;
-            //var selectTypeOptions = window.pss.createHtmlTag("option", {value: '' }, 'Select Relationship');
-            var selectTypeOptions = "";
-            for (var i = 0; i < predicatesInfo.length; i++){
-                selectTypeOptions += window.pss.createHtmlTag("option", {value: predicatesInfo[i].id }, predicatesInfo[i].display_name);
+           if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar || window.collex.isUser) {
+                annotate = annotatebutton == "on" ? window.pss.createHtmlTag("a", {'class': 'annotate_child'}, "Match") : '';
+                displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, annotate);
             }
-            var predicateInfo = window.pss.createHtmlTag("select", {'class': 'annotation_predicateinfo', 'id': 'annotation_predicateinfo'}, selectTypeOptions);
-            displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, predicateInfo);
+            // var predicatesInfo = window.gon.predicatesInfo;
+            //var selectTypeOptions = window.pss.createHtmlTag("option", {value: '' }, 'Select Relationship');
+            // var selectTypeOptions = "";
+            // for (var i = 0; i < predicatesInfo.length; i++){
+            //     selectTypeOptions += window.pss.createHtmlTag("option", {value: predicatesInfo[i].id }, predicatesInfo[i].display_name);
+            // }
+            // var predicateInfo = window.pss.createHtmlTag("select", {'class': 'annotation_predicateinfo', 'id': 'annotation_predicateinfo'}, selectTypeOptions);
+
         }
         else if (matchsession == "true")
         {
@@ -147,9 +152,9 @@ jQuery(document).ready(function($) {
             var watch = "";
             var annotate = "";
 
-            if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar) {
-                match = matchbutton == "on" ? window.pss.createHtmlTag("a", { 'class': 'match'}, "Match") : '';
-            }
+            // if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar) {
+            //     match = matchbutton == "on" ? window.pss.createHtmlTag("a", { 'class': 'match'}, "Match") : '';
+            // }
             if (window.collex.isBibliographer || window.collex.isAdmin || window.collex.isScholar || window.collex.isUser) {
                 annotate = annotatebutton == "on" ? window.pss.createHtmlTag("a", {'class': 'annotate'}, "Contribute") : '';
             }
@@ -161,7 +166,7 @@ jQuery(document).ready(function($) {
             }
             // commented Exhibit
             // displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, collect+uncollect+discuss+exhibit+typewright+pages+match+annotate+watch);
-            displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, collect+uncollect+discuss+exhibit+typewright+pages+match+annotate+watch);
+            displaybuttons = window.pss.createHtmlTag("div", { 'class': 'search_result_buttons' }, collect+uncollect+discuss+exhibit+typewright+pages+annotate+watch);
         }
         return displaybuttons;
     }
