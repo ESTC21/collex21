@@ -36,6 +36,8 @@
       <span id="collapse_all" style="display: none;">[Collapse All Entries]</span>
    </a>
 
-  <a class="modify_link" onclick="getchooseObjectInfo(this);" id = "chooseobjects" ><button type="button" class="choose_objects" id = "choose_objects"> Choose Objects </button></a>
+  <% unless hide_choose_object_button %>
+    <a class="modify_link" onclick="getchooseObjectInfo(this);" id = "chooseobjects" ><button type="button" class="choose_objects" id = "choose_objects"> Choose Objects </button></a>
+  <% end %>
   <div id='match_error' style="color:#FF0000"></div>  
 </div>

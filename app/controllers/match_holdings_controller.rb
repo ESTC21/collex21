@@ -87,7 +87,7 @@ before_filter :init_view_options
             params[:documents] = nil rescue nil
           end
         end
-       format.html { redirect_to '/fullrecord?action=fullrecord&uri='+subjectUri+'' }
+       format.html { redirect_to '/fullrecord?action=fullrecord&uri='+subjectUri+'&source=matchholding' }
       end
 
     end

@@ -24,7 +24,8 @@
    <%= title %></div>
 <hr class="search_results_hr" />
 
-<div class="expand_all_link"><%= render( :partial => 'results/bulkcollect', :locals => {:mode => mode, :page => page} ) %></div>
+<div class="expand_all_link"><%= render( :partial => 'results/bulkcollect',
+                                         :locals => {:mode => mode, :page => page, hide_choose_object_button: hide_choose_object_button} ) %></div>
 <div class="search_results_pages">
    <div class="pagination"></div>
 </div>

@@ -63,8 +63,10 @@
 
       <div class="page_subheader">
         <% if params[:u_action] == 'match_holding_match' %>
-          Search Parent Records for <b><%= session[:childTitle] %></b>
-        <% else %>
+          Search Parent Records for
+            <b><%= link_to session[:childTitle], "/fullrecord?action=fullrecord&uri=" + session[:childUri] + "", :target => "_self" %></b>
+
+      <% else %>
           Add new search criteria or select limiters to refine your search.
         <% end %>
 			</div>
@@ -85,7 +87,11 @@
 
 <span id='search_result_match_description'>Select the related items from you search returns below and define the parent/child relationship using the dropdown menu next to each item. You can make multiple associations. When you have finished your selections, click on the 'Choose Objects' button to submit the form. </span>
 
-				<%= render :partial => 'results/results_with_all_functionality', :locals => {:mode => :both, :title => raw("<span id='search_result_count'>Search Results ()</span>"), :results => [], :page => 1, :num_pages => 1, :controller => 'collex', :action => 'browse'} %>
+				<%= render :partial => 'results/results_with_all_functionality',
+                   :locals => {:mode => :both,
+                               :title => raw("<span id='search_result_count'>Search Results ()</span>"),
+                               :results => [], :page => 1, :num_pages => 1,
+                               :controller => 'collex', :action => 'browse', hide_choose_object_button: (params[:u_action] == 'match_holding_match')} %>
 
 			</div>
 		</div>
